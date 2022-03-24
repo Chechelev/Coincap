@@ -1,0 +1,71 @@
+$text-color: #fff;
+$header-color: rgb(0, 53, 128);
+$font-size: 18px;
+
+.header {
+  width: 100%;
+  padding: 15px 10px;
+  background: linear-gradient(90deg, rgba(59, 58, 153, 0.958420868347339) 18%, rgba(2, 0, 176, 0.958420868347339) 53%, rgba(120, 198, 191, 0.8099614845938375) 100%);
+}
+
+.container__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: $font-size;
+  color: $text-color;
+}
+
+.logo img {
+  width: 80px;
+  max-width: 100%;
+  cursor: pointer;
+}
+
+.top-coins {
+  display: flex;
+}
+
+.top-coins__item {
+  display: flex;
+  margin-right: 20px;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: all .2s;
+}
+
+.top-coins__item:last-child {
+  margin-right: 0;
+}
+
+.top-coins__item:hover {
+  border-bottom: 2px solid $text-color;
+}
+
+.top-coins__item-name {
+  padding-right: 5px;
+}
+
+.user-wallet-info {
+  display: flex;
+  cursor: pointer;
+}
+
+.user-wallet-info:hover {
+  .fa-briefcase {
+    color: #adffc5;
+    transform: scale(1.1);
+  }
+}
+
+.user-wallet__different-cost {
+  margin: 0 10px;
+}
+
+.fa-briefcase {
+  font-size: 20px;
+  display: flex;
+  align-self: center;
+  margin-left: 10px;
+  transition: all .2s;
+}
