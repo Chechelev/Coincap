@@ -14,7 +14,7 @@ export class CryptoItem extends Component {
         <td>$15,07b</td>
         <td>2.40%</td>
         <td className="crypto-add">
-          <i class="fa-solid fa-plus"></i>
+          <i className="fa-solid fa-plus"></i>
         </td>
       </tr>
     )

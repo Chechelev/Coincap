@@ -1,11 +1,11 @@
 $text-color: #fff;
-$header-color: rgb(0, 53, 128);
+$header-color: linear-gradient(90deg, rgba(59, 58, 153, 0.958420868347339) 18%, rgba(2, 0, 176, 0.958420868347339) 53%, rgba(120, 198, 191, 0.8099614845938375) 100%);
 $font-size: 18px;
 
 .header {
   width: 100%;
   padding: 15px 10px;
-  background: linear-gradient(90deg, rgba(59, 58, 153, 0.958420868347339) 18%, rgba(2, 0, 176, 0.958420868347339) 53%, rgba(120, 198, 191, 0.8099614845938375) 100%);
+  background: $header-color;
 }
 
 .container__inner {

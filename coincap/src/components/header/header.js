@@ -33,7 +33,7 @@ export class Header extends Component {
               <div className="user-wallet__current-cost">134,32 USD</div>
               <div className="user-wallet__different-cost">+2,38</div>
               <div className="user-wallet__different-cost-percent">(+1,80%)</div>
-              <i class="fa-solid fa-briefcase"></i>
+              <i className="fa-solid fa-briefcase"></i>
             </div>
 
           </div>
