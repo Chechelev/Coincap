@@ -1,0 +1,26 @@
+$blue:#6699ff;
+
+tr {
+  cursor: pointer;
+}
+
+tr:hover td:not(:last-child) {
+  color: $blue;
+}
+
+.crypto-add {
+  font-size: 20px;
+  font-weight: 400px;
+  transition: all .2s;
+}
+
+.crypto-add:hover {
+  transform: scale(1.1);
+  color: $blue;
+}
+
+.fa-plus {
+  border: 1px solid $blue;
+  padding: 3px;
+  border-radius: 10px;
+}

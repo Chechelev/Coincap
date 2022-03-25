@@ -1,0 +1,37 @@
+table {
+  margin-top: 50px;
+  font-size: 16px;
+  background: white;
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+th {
+  padding: 10px 8px;
+  text-align: center;
+  font-weight: normal;
+  color: #039;
+  border-bottom: 2px solid #6678b1;
+}
+
+th:nth-child(1) {
+  width: 3%;
+}
+
+th:nth-child(2) {
+  width: 10%;
+}
+
+th:nth-child(3) {
+  width: 20%;
+}
+
+td {
+  padding: 9px 8px;
+  border-bottom: 1px solid #ccc;
+  color: rgb(52, 52, 80);
+  text-align: center;
+  font-weight: 300;
+  transition: .2s linear;
+}
