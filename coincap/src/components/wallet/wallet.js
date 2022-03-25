@@ -22,6 +22,9 @@ export class Wallet extends Component {
                 <div className="modal-body__item-name">Bitcoin</div>
                 <div className="modal-body__item-amount">2.5</div>
                 <div className="modal-body__item-total-price">$123.123</div>
+                <div className="crypto-minus">
+                  <i className="fa-solid fa-minus"></i>
+                </div>
               </div>
             </div>
           </div>
