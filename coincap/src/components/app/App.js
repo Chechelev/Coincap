@@ -4,8 +4,10 @@ import './App.scss';
 import { Header } from '../header/header';
 import { CryptoTable } from '../crypto-table/crypto-table';
 import { Wallet } from '../wallet/wallet';
+import { CoincapService } from '../../services/coincap-service'
 
 class App extends Component {
+
   render() {
     return (
       <div className="App">
