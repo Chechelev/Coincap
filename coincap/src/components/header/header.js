@@ -8,7 +8,7 @@ export class Header extends Component {
   coincapService = new CoincapService();
 
   state = {
-    coinList: null
+    headerCoinList: null
   };
 
 
@@ -24,9 +24,9 @@ export class Header extends Component {
   updateData = () => {
     this.coincapService
       .getAllCoins()
-      .then((coinList) => {
+      .then((headerCoinList) => {
         this.setState({
-          coinList
+          headerCoinList
         });
       })
   }
@@ -43,13 +43,13 @@ export class Header extends Component {
   };
 
   render() {
-    const { coinList } = this.state;
+    const { headerCoinList } = this.state;
 
-    if (!coinList) {
+    if (!headerCoinList) {
       return <Spinner />;
     }
 
-    const items = this.renderItems(coinList)
+    const items = this.renderItems(headerCoinList)
 
     return (
       <header className="header">
@@ -61,6 +61,7 @@ export class Header extends Component {
             <div className="top-coins">
               {items}
             </div>
+
             <div className="user-wallet-info">
               <div className="user-wallet__current-cost">134,32 USD</div>
               <div className="user-wallet__different-cost">+2,38</div>

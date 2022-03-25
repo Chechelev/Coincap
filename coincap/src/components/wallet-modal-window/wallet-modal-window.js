@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './wallet.scss';
+import './wallet-modal-window.scss';
 
 export class Wallet extends Component {
   render() {
