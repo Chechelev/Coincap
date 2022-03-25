@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import './header.scss';
 import logo from './logo.svg';
 import { CoincapService } from '../../services/coincap-service';
+import { Spinner } from '../spinner/spinner';
 export class Header extends Component {
 
   coincapService = new CoincapService();
 
   state = {
-    coinList: null
+    coinList: null,
   };
 
   componentDidMount() {
@@ -15,32 +16,26 @@ export class Header extends Component {
       .getAllCoins()
       .then((coinList) => {
         this.setState({
-          coinList
+          coinList,
         });
       })
   };
 
   renderItems(arr) {
-    return arr.slice(0, 3).map((coin) => {
+    return arr.slice(0, 3).map(({ id, name, priceUsd }) => {
       console.log(arr.slice(0, 3))
       return (
-        <div className="top-coins__item" key={coin.id}>
-          <div className="top-coins__item-name">{coin.name}</div>
-          <div className="top-coins__item-price">{`${parseFloat(coin.priceUsd).toFixed(3)}$`}</div>
+        <div className="top-coins__item" key={id}>
+          <div className="top-coins__item-name">{name}</div>
+          <div className="top-coins__item-price">{`${parseFloat(priceUsd).toFixed(3)}$`}</div>
         </div>
       );
     });
   };
 
   render() {
-
     const { coinList } = this.state;
-
-    if (!coinList) {
-      return 'lol'
-    }
-
-    const items = this.renderItems(coinList)
+    const items = this.renderItems(coinList);
 
     return (
       <header className="header">
