@@ -8,22 +8,31 @@ export class Header extends Component {
   coincapService = new CoincapService();
 
   state = {
-    coinList: null,
+    coinList: null
   };
 
+
   componentDidMount() {
+    this.updateData();
+    this.interval = setInterval(this.updateData, 5000);
+  };
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  };
+
+  updateData = () => {
     this.coincapService
       .getAllCoins()
       .then((coinList) => {
         this.setState({
-          coinList,
+          coinList
         });
       })
-  };
+  }
 
   renderItems(arr) {
     return arr.slice(0, 3).map(({ id, name, priceUsd }) => {
-      console.log(arr.slice(0, 3))
       return (
         <div className="top-coins__item" key={id}>
           <div className="top-coins__item-name">{name}</div>
@@ -35,7 +44,12 @@ export class Header extends Component {
 
   render() {
     const { coinList } = this.state;
-    const items = this.renderItems(coinList);
+
+    if (!coinList) {
+      return <Spinner />;
+    }
+
+    const items = this.renderItems(coinList)
 
     return (
       <header className="header">
