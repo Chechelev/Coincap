@@ -15,7 +15,7 @@ export class CryptoTable extends Component {
 
   componentDidMount() {
     this.updateData();
-    //this.interval = setInterval(() => this.setState(this.updateData), 10000);
+    this.interval = setInterval(() => this.setState(this.updateData), 10000);
   };
 
   componentWillUnmount() {

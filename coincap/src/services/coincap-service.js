@@ -25,7 +25,7 @@ export class CoincapService {
     return this._transformCoin(coin);
   }
 
-  getCoinsPerPage = async (currentPage = 1) => {
+  getCoinsPerPage = async (currentPage = +localStorage.getItem('page')) => {
     let res = '';
 
     switch (currentPage) {
