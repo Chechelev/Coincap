@@ -20,10 +20,33 @@ export class CoincapService {
     return res.data;
   }
 
-  getCoinc = async (id) => {
+  getCoin = async (id) => {
     const coin = await this.getResource(`/assets/${id}`);
     return this._transformCoin(coin);
   }
+
+  getCoinsPerPage = async (currentPage = 1) => {
+    let res = '';
+
+    switch (currentPage) {
+      case 1:
+        res = await this.getResource(`/assets?offset=${0}&limit=20`);
+        return res.data;
+      case 2:
+        res = await this.getResource(`/assets?offset=${currentPage}0&limit=20`);
+        return res.data;
+      case 3:
+        res = await this.getResource(`/assets?offset=${currentPage + 1}0&limit=20`);
+        return res.data;
+      case 4:
+        res = await this.getResource(`/assets?offset=${currentPage + 2}0&limit=20`);
+        return res.data;
+      case 5:
+        res = await this.getResource(`/assets?offset=${currentPage + 3}0&limit=20`);
+        return res.data;
+    }
+  }
+
 
   _transformCoin = (coin) => {
     return {

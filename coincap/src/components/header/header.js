@@ -14,7 +14,7 @@ export class Header extends Component {
 
   componentDidMount() {
     this.updateData();
-    this.interval = setInterval(this.updateData, 5000);
+    this.interval = setInterval(this.updateData, 10000);
   };
 
   componentWillUnmount() {

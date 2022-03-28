@@ -35,3 +35,75 @@ td {
   font-weight: 300;
   transition: .2s linear;
 }
+
+$blue:#6699ff;
+
+tr {
+  cursor: pointer;
+}
+
+tr:hover td:not(:last-child) {
+  color: $blue;
+}
+
+.crypto-add {
+  font-size: 20px;
+  font-weight: 400px;
+  transition: all .2s;
+}
+
+.crypto-add:hover {
+  transform: scale(1.1);
+  color: $blue;
+}
+
+.fa-plus {
+  border: 1px solid $blue;
+  padding: 3px;
+  border-radius: 3px;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-item {
+  color: #000;
+  border: 3px;
+}
+
+.page-link {
+  float: left;
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+  transition: all .2s;
+  cursor: pointer;
+}
+
+.active {
+  color: #fff;
+  background-color: $blue;
+}
+
+.page-link:hover:not(.active) {
+  background-color: #ddd;
+}
+
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style-type: none;
+  /* Убираем маркеры */
+}
+
+ul {
+  margin-left: 0;
+  /* Отступ слева в браузере IE и Opera */
+  padding-left: 0;
+  /* Отступ слева в браузере Firefox, Safari, Chrome */
+}
