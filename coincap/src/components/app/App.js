@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Routes, Route } from 'react-router-dom';
 
 import { Header } from '../header/header';
 import { Wallet } from '../wallet-modal-window/wallet-modal-window';
@@ -8,8 +9,10 @@ class App extends Component {
     return (
       <div className="App">
         <Header></Header>
-        <CryptoTable></CryptoTable>
-        <Wallet></Wallet>
+        <Routes>
+          <Route path="/" element={<CryptoTable />} />
+        </Routes>
+        <Wallet />
       </div>
     );
   }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './header.scss';
 import logo from './logo.svg';
 import { CoincapService } from '../../services/coincap-service';
@@ -56,7 +57,9 @@ export class Header extends Component {
         <div className="container">
           <div className="container__inner">
             <div className="logo">
-              <img src={logo} alt="Coincap"></img>
+              <Link to="/">
+                <img src={logo} alt="Coincap"></img>
+              </Link>
             </div>
             <div className="top-coins">
               {items}

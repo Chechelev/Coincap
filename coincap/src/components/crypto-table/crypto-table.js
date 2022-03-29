@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './crypto-table.scss';
 import { CoincapService } from '../../services/coincap-service';
 import { Spinner } from '../spinner/spinner';
@@ -9,7 +10,8 @@ export class CryptoTable extends Component {
   coincapService = new CoincapService();
 
   state = {
-    tableCoinList: null
+    tableCoinList: null,
+    showModal: false
   };
 
 
@@ -43,6 +45,7 @@ export class CryptoTable extends Component {
       })
   };
 
+
   renderItems(arr) {
     return arr.map(({ rank, name, priceUsd, marketCapUsd, vwap24Hr, supply, volumeUsd24Hr, changePercent24Hr }) => {
       return (
@@ -55,7 +58,7 @@ export class CryptoTable extends Component {
           <td>{`${parseFloat(supply / 1000000).toFixed(2)}m.`}</td>
           <td>{`${parseFloat(volumeUsd24Hr / 1000000).toFixed(2)}m.`}</td>
           <td>{`${parseFloat(changePercent24Hr).toFixed(2)}%`}</td>
-          <td className="crypto-add">
+          <td className="crypto-add" onClick={this.show}>
             <i className="fa-solid fa-plus"></i>
           </td>
         </tr>
