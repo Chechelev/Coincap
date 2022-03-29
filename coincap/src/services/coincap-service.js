@@ -2,6 +2,10 @@ export class CoincapService {
 
   _apiBase = 'https://api.coincap.io/v2';
 
+  constructor() {
+    localStorage.setItem('page', 1);
+  }
+
   getResource = async (url) => {
     const res = await fetch(`${this._apiBase}${url}`);
 
