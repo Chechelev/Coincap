@@ -1,0 +1,17 @@
+.crypto-details {
+  margin: 50px 0;
+}
+
+.crypto-details__container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.pad {
+  padding: 8px;
+  color: grey;
+  font-weight: 400;
+  font-size: 18px;
+  text-transform: uppercase;
+}
