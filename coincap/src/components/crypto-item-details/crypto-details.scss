@@ -1,17 +1,57 @@
+$color: #039;
+$blue:#6699ff;
+
 .crypto-details {
   margin: 50px 0;
 }
 
 .crypto-details__container {
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-.pad {
-  padding: 8px;
-  color: grey;
-  font-weight: 400;
+.crypto-details__graphic {
+  height: 70vh;
+}
+
+.crypto-details__left {
+  display: flex;
+  flex-direction: column;
+}
+
+.crypto-details__name {
+  margin-bottom: 5px;
+  font-size: 22px;
+  font-weight: 700;
+  color: $color;
+}
+
+.crypto-details__change,
+.crypto-details__price {
+  margin-bottom: 5px;
   font-size: 18px;
-  text-transform: uppercase;
+  color: $color;
+}
+
+.crypto-details__change span,
+.crypto-details__price span {
+  margin-left: 3rem;
+  font-weight: 100;
+
+}
+
+.crypto-details__date {
+  font-size: 16px;
+  font-weight: 100;
+  color: $color;
+}
+
+.change-green {
+  color: green;
+}
+
+.change-red {
+  color: red;
 }

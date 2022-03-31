@@ -55,6 +55,14 @@ tr:hover td:not(:last-child) {
 
 .crypto-add:hover {
   transform: scale(1.1);
+}
+
+.crypto-add a {
+  color: #343450;
+  transition: all .2s;
+}
+
+.crypto-add a:hover {
   color: $blue;
 }
 

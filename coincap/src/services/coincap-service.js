@@ -29,12 +29,6 @@ export class CoincapService {
     return this._transformCoin(coin);
   }
 
-  getCoinHistory = async (id) => {
-    const coinHistory = await this.getResource(`/assets/${id}/history?interval=d1`);
-    console.log(JSON.stringify(coinHistory.data))
-    return this._transformCoinHistory(coinHistory.data);
-  }
-
   getCoinsPerPage = async (currentPage = +localStorage.getItem('page')) => {
     let res = '';
 
@@ -73,15 +67,4 @@ export class CoincapService {
       vwap24Hr: coin.data.vwap24Hr,
     };
   };
-
-  _transformCoinHistory = (coinHistory) => {
-    return {
-      priceUsdAverage: coinHistory.data.priceUsd,
-      time: coinHistory.data.time
-
-    };
-  };
-
 }
-const coincap = new CoincapService();
-coincap.getCoinHistory('bitcoin')
