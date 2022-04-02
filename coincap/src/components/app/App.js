@@ -8,8 +8,8 @@ import { CoinDetails } from '../crypto-item-details/crypto-details';
 class App extends Component {
 
   state = {
-    selectedCoin: 'bitcoin',
-  };
+    selectedCoin: null,
+  }
 
   onCoinSelected = (id) => {
     this.setState({

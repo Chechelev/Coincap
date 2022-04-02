@@ -2,16 +2,35 @@ import React, { Component } from 'react';
 import { CoincapService } from '../../services/coincap-service';
 import { Spinner } from '../spinner/spinner';
 import TradingViewWidget from 'react-tradingview-widget';
+import Modal from '../add-coin-modal-window/addCoinModal';
 import { Button } from '../btn-buy-coin/btn-buy-coin';
 
 import './crypto-details.scss';
 export class CoinDetails extends Component {
 
   coinCap = new CoincapService();
+  /*
+    state = {
+      coin: 'bitcoin',
+      showModal: false,
+    };
+  */
+  constructor() {
+    super();
+    this.state = {
+      coin: 'bitcoin',
+      show: false
+    };
+    this.showModal = this.showModal.bind(this);
+    this.hideModal = this.hideModal.bind(this);
+  }
 
-  state = {
-    coin: 'bitcoin',
-    changeClass: null,
+  showModal = () => {
+    this.setState({ show: true });
+  };
+
+  hideModal = () => {
+    this.setState({ show: false });
   };
 
   componentDidMount() {
@@ -60,7 +79,12 @@ export class CoinDetails extends Component {
               <div className="crypto-details__price">Price <span>{`${parseFloat(priceUsd).toFixed(3)}$`}</span></div>
             </div>
 
-            <Button />
+            <Modal show={this.state.show} handleClose={this.hideModal}>{[name, priceUsd]}</Modal>
+
+            <div className="crypto-details__right">
+              <button className="btn__buy-coin" type="button" onClick={this.showModal}>Buy</button>
+            </div>
+
           </div>
 
           <div className="crypto-details__graphic">
