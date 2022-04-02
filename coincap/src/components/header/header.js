@@ -4,12 +4,14 @@ import './header.scss';
 import logo from './logo.svg';
 import { CoincapService } from '../../services/coincap-service';
 import { Spinner } from '../spinner/spinner';
+import { Wallet } from '../wallet-modal-window/wallet-modal-window';
 export class Header extends Component {
 
   coincapService = new CoincapService();
 
   state = {
-    headerCoinList: null
+    headerCoinList: null,
+    show: false,
   };
 
 
@@ -43,6 +45,14 @@ export class Header extends Component {
     });
   };
 
+  showModal = () => {
+    this.setState({ show: true });
+  };
+
+  hideModal = () => {
+    this.setState({ show: false });
+  };
+
   render() {
     const { headerCoinList } = this.state;
 
@@ -53,28 +63,31 @@ export class Header extends Component {
     const items = this.renderItems(headerCoinList)
 
     return (
-      <header className="header">
-        <div className="container">
-          <div className="container__inner">
-            <div className="logo">
-              <Link to="/">
-                <img src={logo} alt="Coincap"></img>
-              </Link>
-            </div>
-            <div className="top-coins">
-              {items}
-            </div>
+      <>
+        <header className="header">
+          <div className="container">
+            <div className="container__inner">
+              <div className="logo">
+                <Link to="/">
+                  <img src={logo} alt="Coincap"></img>
+                </Link>
+              </div>
+              <div className="top-coins">
+                {items}
+              </div>
 
-            <div className="user-wallet-info">
-              <div className="user-wallet__current-cost">134,32 USD</div>
-              <div className="user-wallet__different-cost">+2,38</div>
-              <div className="user-wallet__different-cost-percent">(+1,80%)</div>
-              <i className="fa-solid fa-briefcase"></i>
-            </div>
+              <div className="user-wallet-info" onClick={this.showModal}>
+                <div className="user-wallet__current-cost">134,32 USD</div>
+                <div className="user-wallet__different-cost">+2,38</div>
+                <div className="user-wallet__different-cost-percent">(+1,80%)</div>
+                <i className="fa-solid fa-briefcase"></i>
+              </div>
 
+            </div>
           </div>
-        </div>
-      </header>
+        </header>
+        <Wallet show={this.state.show} handleClose={this.hideModal} />
+      </>
     )
   }
 } 

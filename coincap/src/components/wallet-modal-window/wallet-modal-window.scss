@@ -111,15 +111,15 @@ $blue:#6699ff;
   overflow: auto;
 }
 
-.modal-body__titles {
+.modal-body__titles-wallet {
   display: flex;
   color: $blue;
 }
 
-.modal-body__titles-name,
-.modal-body__titles-amount,
-.modal-body__titles-total-price {
-  width: 30%;
+.modal-body__titles-wallet-name,
+.modal-body__titles-wallet-amount,
+.modal-body__titles-wallet-total-price {
+  width: 25%;
   text-align: center;
 }
 

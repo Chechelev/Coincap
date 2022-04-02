@@ -1,13 +1,17 @@
 import React from 'react';
 import { useState } from 'react';
 import './addCoinModal.scss';
+
 const Modal = ({ handleClose, handleSubmit, show, warning, children }) => {
 
   const showHideClassName = show ? "modal modal-active" : "modal display-none";
   const warningClassName = warning ? "modal-body__item-amount-warning " : "modal-body__item-amount";
   const [count, setCount] = useState(0);
 
-  localStorage.setItem('submit', count)
+  localStorage.setItem('submit', count);
+  localStorage.setItem('name', children[0]);
+  localStorage.setItem('price', parseFloat(children[1]).toFixed(3));
+
 
   //console.log(localStorage.getItem('submit'))
 

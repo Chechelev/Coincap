@@ -56,3 +56,34 @@ $blue:#6699ff;
 .change-red {
   color: red;
 }
+
+$color: #039;
+$blue:#6699ff;
+
+.btn__buy-coin {
+  font-size: 18px;
+  text-align: center;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 100;
+  background-color: $color;
+  text-transform: uppercase;
+  width: 180px;
+  max-width: 100%;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 0;
+  cursor: pointer;
+  box-shadow: 0px 0px 38px 0 #5d32d466;
+  transition: color .2s, background .2s, opacity .2s;
+}
+
+.btn__buy-coin:hover {
+  background: $blue;
+
+}
+
+.btn__buy-coin:active {
+  opacity: 0.9;
+  transform: scale(.95);
+}
