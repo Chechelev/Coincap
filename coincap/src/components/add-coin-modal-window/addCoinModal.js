@@ -1,8 +1,15 @@
 import React from 'react';
+import { useState } from 'react';
+import './addCoinModal.scss';
+const Modal = ({ handleClose, handleSubmit, show, warning, children }) => {
 
-import './addCoinModal.scss'
-const Modal = ({ handleClose, show, children }) => {
   const showHideClassName = show ? "modal modal-active" : "modal display-none";
+  const warningClassName = warning ? "modal-body__item-amount-warning " : "modal-body__item-amount";
+  const [count, setCount] = useState(0);
+
+  localStorage.setItem('submit', count)
+
+  //console.log(localStorage.getItem('submit'))
 
   return (
     <div className={showHideClassName}>
@@ -21,13 +28,25 @@ const Modal = ({ handleClose, show, children }) => {
             <hr></hr>
             <div className="modal-body__item">
               <div className="modal-body__item-name">{children[0]}</div>
-              <input type="number" min="0.000001" className="modal-body__item-amount" required></input>
-              <div className="modal-body__item-total-price">${children[0]}</div>
+              <input
+                className={warningClassName}
+                type="number"
+                min="0.000001"
+                max="1000"
+                step="0.1"
+                required
+                onChange={(event) => setCount(event.target.value)}
+              ></input>
+              <div className="modal-body__item-total-price">{`${(parseFloat(children[1]) * count).toFixed(3)}$`}</div>
             </div>
           </div>
           <div className="modal-footer">
             <div className="modal-footer__btn-container">
-              <button className="modal-footer__btn" type="submit">Buy</button>
+              <button
+                className="modal-footer__btn"
+                type="submit"
+                onClick={handleSubmit}
+              >buy</button>
             </div>
           </div>
         </div>

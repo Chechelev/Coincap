@@ -148,6 +148,10 @@ $blue:#6699ff;
   margin-top: 15px;
 }
 
+.modal-body__item-amount-warning {
+  border: 1px solid red;
+}
+
 .modal-footer__btn-container {
   display: flex;
   justify-content: center;

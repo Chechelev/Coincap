@@ -9,20 +9,17 @@ import './crypto-details.scss';
 export class CoinDetails extends Component {
 
   coinCap = new CoincapService();
-  /*
-    state = {
-      coin: 'bitcoin',
-      showModal: false,
-    };
-  */
+
   constructor() {
     super();
     this.state = {
       coin: 'bitcoin',
-      show: false
+      show: false,
+      warning: false
     };
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
+    this.submitModal = this.submitModal.bind(this);
   }
 
   showModal = () => {
@@ -31,6 +28,22 @@ export class CoinDetails extends Component {
 
   hideModal = () => {
     this.setState({ show: false });
+    this.setState({ warning: false });
+  };
+
+  submitModal = () => {
+    if (localStorage.getItem('submit') == 0) {
+      alert('Please enter a bigger amount');
+      this.setState({ warning: true });
+    }
+    else if (localStorage.getItem('submit') > 1000) {
+      alert('You can buy only 999 coins per time');
+      this.setState({ warning: true });
+    }
+    else {
+      this.setState({ show: false });
+      this.setState({ warning: false });
+    }
   };
 
   componentDidMount() {
@@ -79,7 +92,7 @@ export class CoinDetails extends Component {
               <div className="crypto-details__price">Price <span>{`${parseFloat(priceUsd).toFixed(3)}$`}</span></div>
             </div>
 
-            <Modal show={this.state.show} handleClose={this.hideModal}>{[name, priceUsd]}</Modal>
+            <Modal show={this.state.show} warning={this.state.warning} handleClose={this.hideModal} handleSubmit={this.submitModal}>{[name, priceUsd]}</Modal>
 
             <div className="crypto-details__right">
               <button className="btn__buy-coin" type="button" onClick={this.showModal}>Buy</button>
