@@ -48,16 +48,32 @@ export class CryptoTable extends Component {
   renderItems(arr) {
     return arr.map(({ id, rank, name, priceUsd, marketCapUsd, vwap24Hr, supply, volumeUsd24Hr, changePercent24Hr }) => {
       return (
-        <tr key={id}>
-          <td>{rank}</td>
-          <td>{name}</td>
-          <td>{`${parseFloat(priceUsd).toFixed(3)}$`}</td>
-          <td>{`${parseFloat(marketCapUsd / 1000000000).toFixed(2)}$ b.`}</td>
-          <td>{`${parseFloat(vwap24Hr).toFixed(2)}$`}</td>
-          <td>{`${parseFloat(supply / 1000000).toFixed(2)}m.`}</td>
-          <td>{`${parseFloat(volumeUsd24Hr / 1000000).toFixed(2)}m.`}</td>
-          <td>{`${parseFloat(changePercent24Hr).toFixed(2)}%`}</td>
-          <td className="crypto-details" onClick={() => this.props.onItemSelected(id)}>
+        <tr key={id} onClick={() => this.props.onItemSelected(id)}>
+          <td>
+            <Link to="/details">{rank}</Link>
+          </td>
+          <td>
+            <Link to="/details">{name}</Link>
+          </td>
+          <td>
+            <Link to="/details">{`${parseFloat(priceUsd).toFixed(3)}$`}</Link>
+          </td>
+          <td>
+            <Link to="/details"> {`${parseFloat(marketCapUsd / 1000000000).toFixed(2)}$ b.`}</Link>
+          </td>
+          <td>
+            <Link to="/details">{`${parseFloat(vwap24Hr).toFixed(2)}$`}</Link>
+          </td>
+          <td>
+            <Link to="/details">  {`${parseFloat(supply / 1000000).toFixed(2)}m.`}</Link>
+          </td>
+          <td>
+            <Link to="/details">  {`${parseFloat(volumeUsd24Hr / 1000000).toFixed(2)}m.`}</Link>
+          </td>
+          <td>
+            <Link to="/details"> {`${parseFloat(changePercent24Hr).toFixed(2)}%`}</Link>
+          </td>
+          <td className="crypto-details">
             <div className='crypto-add'><Link to="/details">More..</Link></div>
           </td>
         </tr>

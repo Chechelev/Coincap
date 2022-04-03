@@ -138,7 +138,7 @@ export class Header extends Component {
               <div className="user-wallet-info" onClick={this.showModal}>
                 <div className="user-wallet__current-cost">{parseFloat(currentCost).toFixed(2)} $</div>
                 <div className="user-wallet__different-cost">{`${difference > 0 ? '+' + (difference) : (difference)}`}</div>
-                <div className="user-wallet__different-cost-percent">{percent > 0 ? percent : 0}%</div>
+                <div className="user-wallet__different-cost-percent">{percent}%</div>
                 <i className="fa-solid fa-briefcase"></i>
               </div>
 

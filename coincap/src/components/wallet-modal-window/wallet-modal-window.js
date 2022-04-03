@@ -14,7 +14,7 @@ export const Wallet = ({ handleClose, show }) => {
         <div className="modal-content">
           <div className="modal-header">
             <h3 className="modal-title">My Coins</h3>
-            <a href="#close" title="Close" className="close" onClick={handleClose}>×</a>
+            <a className="close" onClick={handleClose}>×</a>
           </div>
           <div className="modal-body">
             <div className="modal-body__titles-wallet">

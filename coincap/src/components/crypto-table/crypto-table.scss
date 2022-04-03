@@ -1,3 +1,5 @@
+$blue:#6699ff;
+
 table {
   margin: 50px 0px;
   font-size: 16px;
@@ -36,13 +38,24 @@ td {
   transition: .2s linear;
 }
 
-$blue:#6699ff;
-
 tr {
   cursor: pointer;
 }
 
-tr:hover td:not(:last-child) {
+table tr td a {
+  display:block;
+  height:100%;
+  width:100%;
+  text-decoration: none;
+  color: #343450;
+}
+
+table tr td {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+tr:hover a, td:not(:last-child) {
   color: $blue;
 }
 
@@ -101,18 +114,49 @@ tr:hover td:not(:last-child) {
 }
 
 
-a {
-  text-decoration: none;
+
+@media screen and (max-width: 900px) {
+.crypto-add {
+  font-size: 18px;
+}
+  th:nth-child(4),
+  th:nth-child(5),
+  td:nth-child(4),
+  td:nth-child(5) {
+    display: none;
+  }
 }
 
-li {
-  list-style-type: none;
-  /* Убираем маркеры */
-}
 
-ul {
-  margin-left: 0;
-  /* Отступ слева в браузере IE и Opera */
-  padding-left: 0;
-  /* Отступ слева в браузере Firefox, Safari, Chrome */
-}
+@media screen and (max-width: 650px) {
+  .crypto-add {
+    font-size: 18px;
+  }
+
+  table {
+    margin: 20px 0;
+  }
+    th:nth-child(6),
+    th:nth-child(7),
+    td:nth-child(6),
+    td:nth-child(7) {
+      display: none;
+    }
+
+    th:nth-child(3), th:nth-child(4), th:nth-child(1){
+   width: auto;
+  } 
+    
+  }
+
+  @media screen and (max-width: 450px) {
+    .crypto-add {
+      font-size: 16px;
+    }
+
+      th:nth-child(8), td:nth-child(8) {
+        display: none;
+      }
+  
+      
+    }

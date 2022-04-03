@@ -16,7 +16,7 @@ const Modal = ({ handleClose, handleSubmit, show, warning, children }) => {
         <div className="modal-content">
           <div className="modal-header">
             <h3 className="modal-title">Buy Coins</h3>
-            <a href="#close" title="Close" className="close" onClick={handleClose}>×</a>
+            <a className="close" onClick={handleClose}>×</a>
           </div>
           <div className="modal-body">
             <div className="modal-body__titles">

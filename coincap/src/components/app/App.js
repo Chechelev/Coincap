@@ -8,13 +8,14 @@ import { Footer } from '../footer/footer'
 class App extends Component {
 
   state = {
-    selectedCoin: null,
+    selectedCoin: localStorage.getItem('coinId') || null,
   }
 
   onCoinSelected = (id) => {
     this.setState({
       selectedCoin: id
     });
+    localStorage.setItem('coinId', id);
   };
 
   render() {
