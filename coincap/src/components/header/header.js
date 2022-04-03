@@ -40,16 +40,16 @@ export class Header extends Component {
           headerCoinList
         });
       })
-  }
+  };
 
   updateCostData = () => {
-    this.getCurrentCost().
-      then((headerCoinCost) => {
+    this.getCurrentCost()
+      .then((headerCoinCost) => {
         this.setState({
           headerCoinCost
         });
       });
-  }
+  };
 
   renderItems(arr) {
     return arr.slice(0, 3).map(({ id, name, priceUsd }) => {
@@ -83,10 +83,10 @@ export class Header extends Component {
 
     for (let i = 0; i < localCostArr.length; i++) {
       sum += +localCostArr[i];
-    }
+    };
 
     return sum;
-  }
+  };
 
   async getCurrentCost() {
     let currentCostArr = [];
@@ -98,14 +98,14 @@ export class Header extends Component {
     await Promise.all(existingEntries.map(async (el) => {
       const coin = await this.coincapService.getCoin(el.id)
       currentCostArr.push(+coin.priceUsd * +el.amount)
-    }))
+    }));
 
     for await (const variable of currentCostArr) {
       sum += variable;
-    }
+    };
 
     return sum;
-  }
+  };
 
 
   render() {
@@ -113,7 +113,7 @@ export class Header extends Component {
 
     if (!headerCoinList) {
       return <Spinner />;
-    }
+    };
 
     const items = this.renderItems(headerCoinList);
     let currentCost = headerCoinCost
@@ -148,5 +148,5 @@ export class Header extends Component {
         <Wallet show={this.state.show} handleClose={this.hideModal} />
       </>
     )
-  }
-} 
+  };
+};

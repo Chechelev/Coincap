@@ -28,8 +28,8 @@ export const Wallet = ({ handleClose, show }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 
 

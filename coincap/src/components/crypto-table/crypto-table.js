@@ -138,7 +138,7 @@ export class CryptoTable extends Component {
 
     if (!tableCoinList) {
       return <Spinner />;
-    }
+    };
 
     const items = this.renderItems(tableCoinList)
 
@@ -177,6 +177,6 @@ export class CryptoTable extends Component {
         </div>
         <Modal show={this.state.show} warning={this.state.warning} handleClose={this.hideModal} handleSubmit={this.submitModal}>{[selectedCoin, selectedCoinPrice]}</Modal>
       </React.Fragment>
-    )
-  }
-} 
+    );
+  };
+}; 

@@ -39,6 +39,6 @@ export class WalletItems extends Component {
         </div >
       );
     });
-  }
-}
+  };
+};
 

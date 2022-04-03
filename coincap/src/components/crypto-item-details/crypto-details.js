@@ -13,7 +13,7 @@ export class CoinDetails extends Component {
     coin: null,
     show: false,
     warning: false,
-  }
+  };
 
   showModal = () => {
     this.setState({ show: true });
@@ -59,13 +59,13 @@ export class CoinDetails extends Component {
 
   componentDidMount() {
     this.updateCoin();
-  }
+  };
 
   componentDidUpdate(prevProps) {
     if (this.props.coinId !== prevProps.coinId) {
       this.updateCoin();
-    }
-  }
+    };
+  };
 
   updateCoin() {
     const { coinId } = this.props;
@@ -77,7 +77,7 @@ export class CoinDetails extends Component {
       .then((coin) => {
         this.setState({ coin })
       })
-  }
+  };
 
   render() {
     let date = new Date().toDateString();
@@ -132,7 +132,7 @@ export class CoinDetails extends Component {
             </div>
           </div>
         </div>
-      )
+      );
     }
 
     else if (windowInnerWidth >= 650) {
@@ -183,7 +183,7 @@ export class CoinDetails extends Component {
             </div>
           </div>
         </div>
-      )
+      );
     }
 
     else if (windowInnerWidth < 650) {
@@ -236,7 +236,7 @@ export class CoinDetails extends Component {
             </div>
           </div>
         </div>
-      )
-    }
-  }
-}
+      );
+    };
+  };
+};
