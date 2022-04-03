@@ -18,8 +18,14 @@ export class Header extends Component {
 
   componentDidMount() {
     this.updateData();
-    this.getCurrentCost();
+    this.getCurrentCost()
+      .then((headerCoinCost) => {
+        this.setState({
+          headerCoinCost
+        });
+      });
     this.interval = setInterval(this.updateData, 10000);
+    this.interval1 = setInterval(this.updateCostData, 5000);
   };
 
   componentWillUnmount() {
@@ -34,6 +40,15 @@ export class Header extends Component {
           headerCoinList
         });
       })
+  }
+
+  updateCostData = () => {
+    this.getCurrentCost().
+      then((headerCoinCost) => {
+        this.setState({
+          headerCoinCost
+        });
+      });
   }
 
   renderItems(arr) {
@@ -62,7 +77,6 @@ export class Header extends Component {
     let existingEntries = JSON.parse(localStorage.getItem("walletData"));
     if (existingEntries == null) existingEntries = [];
 
-    console.log(existingEntries)
     existingEntries.map(el => {
       localCostArr.push(el.price * el.amount)
     });
@@ -71,24 +85,28 @@ export class Header extends Component {
       sum += +localCostArr[i];
     }
 
-    console.log('локальная ' + sum)
     return sum;
   }
 
-  getCurrentCost() {
+  async getCurrentCost() {
+    let currentCostArr = [];
+    let sum = 0;
+
     let existingEntries = JSON.parse(localStorage.getItem("walletData"));
     if (existingEntries == null) existingEntries = [];
 
-    existingEntries.map(el => {
-      this.coincapService
-        .getCoin(el.id)
-        .then((headerCoinCost) => {
-          this.setState({
-            headerCoinCost
-          });
-        });
-    });
+    await Promise.all(existingEntries.map(async (el) => {
+      const coin = await this.coincapService.getCoin(el.id)
+      currentCostArr.push(+coin.priceUsd * +el.amount)
+    }))
+
+    for await (const variable of currentCostArr) {
+      sum += variable;
+    }
+
+    return sum;
   }
+
 
   render() {
     const { headerCoinList, headerCoinCost } = this.state;
@@ -98,17 +116,12 @@ export class Header extends Component {
     }
 
     const items = this.renderItems(headerCoinList);
+    let currentCost = headerCoinCost
     const localeCost = this.getLocaleCost();
-    const currentCost = this.getCurrentCost();
-    const difference = parseFloat(localeCost - currentCost).toFixed(2);
+    const difference = parseFloat(currentCost - localeCost).toFixed(2);
     const diff = difference > 0 ? '+' + (difference) : (difference);
-    const percent = parseFloat((100 * difference) / currentCost).toFixed(2);
+    let percent = parseFloat(((currentCost - localeCost) * 100) / localeCost).toFixed(2);
 
-    headerCoinCost.forEach((el) => {
-      arr.push(el.priceUsd)
-    })
-
-    console.log("prices " + currentCost)
 
     return (
       <>
@@ -125,9 +138,9 @@ export class Header extends Component {
               </div>
 
               <div className="user-wallet-info" onClick={this.showModal}>
-                <div className="user-wallet__current-cost">{parseFloat(localeCost).toFixed(3)} $</div>
-                <div className="user-wallet__different-cost">{`${diff == NaN ? diff : 0}`}</div>
-                <div className="user-wallet__different-cost-percent">{percent == NaN ? percent : 0}%</div>
+                <div className="user-wallet__current-cost">{parseFloat(currentCost).toFixed(2)} $</div>
+                <div className="user-wallet__different-cost">{`${diff == NaN ? 0 : diff}`}</div>
+                <div className="user-wallet__different-cost-percent">{percent == NaN ? 0 : percent}%</div>
                 <i className="fa-solid fa-briefcase"></i>
               </div>
 
@@ -138,4 +151,4 @@ export class Header extends Component {
       </>
     )
   }
-} 
+}
