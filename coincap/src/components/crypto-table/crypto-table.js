@@ -4,6 +4,7 @@ import './crypto-table.scss';
 import { Link } from 'react-router-dom';
 import { CoincapService } from '../../services/coincap-service';
 import { Spinner } from '../spinner/spinner';
+import Modal from '../add-coin-modal-window/addCoinModal';
 import ReactPaginate from 'react-paginate';
 
 export class CryptoTable extends Component {
@@ -12,6 +13,11 @@ export class CryptoTable extends Component {
 
   state = {
     tableCoinList: null,
+    selectedCoinId: null,
+    selectedCoin: null,
+    selectedCoinPrice: null,
+    show: false,
+    warning: false
   };
 
 
@@ -73,16 +79,62 @@ export class CryptoTable extends Component {
           <td>
             <Link to="/details"> {`${parseFloat(changePercent24Hr).toFixed(2)}%`}</Link>
           </td>
-          <td className="crypto-details">
-            <div className='crypto-add'><Link to="/details">More..</Link></div>
+          <td className="crypto-add" onClick={() => this.showModal(id, name, priceUsd)}>
+            <i className="fa-solid fa-plus"></i>
           </td>
         </tr>
       );
     });
   };
 
+  showModal = (id, name, price) => {
+    this.setState({
+      show: true,
+      selectedCoinId: id,
+      selectedCoin: name,
+      selectedCoinPrice: price
+    });
+  };
+
+  hideModal = () => {
+    this.setState({ show: false });
+    this.setState({ warning: false });
+  };
+
+  submitModal = () => {
+    if (localStorage.getItem('submit') == 0) {
+      alert('Please enter a bigger amount');
+      this.setState({ warning: true });
+    }
+    else if (localStorage.getItem('submit') > 1000) {
+      alert('You can buy only 999 coins per time');
+      this.setState({ warning: true });
+    }
+    else {
+      this.setState({ show: false });
+      this.setState({ warning: false });
+      this.addWalletItem();
+    }
+  };
+
+  addWalletItem() {
+    const state = this.state;
+    let existingEntries = JSON.parse(localStorage.getItem("walletData"));
+    if (existingEntries == null) existingEntries = [];
+
+    const newItem = {
+      id: state.selectedCoinId,
+      name: state.selectedCoin,
+      price: state.selectedCoinPrice,
+      amount: localStorage.getItem('submit'),
+    }
+    localStorage.setItem('wallet', JSON.stringify(newItem));
+    existingEntries.push(newItem);
+    localStorage.setItem("walletData", JSON.stringify(existingEntries));
+  };
+
   render() {
-    const { tableCoinList } = this.state;
+    const { tableCoinList, selectedCoin, selectedCoinPrice } = this.state;
 
     if (!tableCoinList) {
       return <Spinner />;
@@ -123,6 +175,7 @@ export class CryptoTable extends Component {
             </tbody>
           </table>
         </div>
+        <Modal show={this.state.show} warning={this.state.warning} handleClose={this.hideModal} handleSubmit={this.submitModal}>{[selectedCoin, selectedCoinPrice]}</Modal>
       </React.Fragment>
     )
   }

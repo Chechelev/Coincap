@@ -114,11 +114,11 @@ tr:hover a, td:not(:last-child) {
 }
 
 
-
 @media screen and (max-width: 900px) {
-.crypto-add {
-  font-size: 18px;
-}
+  .crypto-add {
+    font-size: 18px;
+  }
+
   th:nth-child(4),
   th:nth-child(5),
   td:nth-child(4),
@@ -136,27 +136,31 @@ tr:hover a, td:not(:last-child) {
   table {
     margin: 20px 0;
   }
-    th:nth-child(6),
-    th:nth-child(7),
-    td:nth-child(6),
-    td:nth-child(7) {
-      display: none;
-    }
 
-    th:nth-child(3), th:nth-child(4), th:nth-child(1){
-   width: auto;
-  } 
-    
+  th:nth-child(6),
+  th:nth-child(7),
+  td:nth-child(6),
+  td:nth-child(7) {
+    display: none;
   }
 
-  @media screen and (max-width: 450px) {
-    .crypto-add {
-      font-size: 16px;
-    }
+  th:nth-child(3),
+  th:nth-child(4),
+  th:nth-child(1) {
+    width: auto;
+  }
 
-      th:nth-child(8), td:nth-child(8) {
-        display: none;
-      }
-  
-      
-    }
+}
+
+@media screen and (max-width: 450px) {
+  .crypto-add {
+    font-size: 16px;
+  }
+
+  th:nth-child(8),
+  td:nth-child(8) {
+    display: none;
+  }
+
+
+}

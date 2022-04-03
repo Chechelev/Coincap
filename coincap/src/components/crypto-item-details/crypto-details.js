@@ -81,9 +81,7 @@ export class CoinDetails extends Component {
 
   render() {
     let date = new Date().toDateString();
-
     const windowInnerWidth = window.innerWidth;
-    console.log(windowInnerWidth)
 
     if (!this.state.coin) {
       return <Spinner />;
