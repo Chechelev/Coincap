@@ -1,0 +1,30 @@
+$white: #fff;
+
+.footer {
+  padding: 15px;
+  background:
+    linear-gradient(90deg, rgba(59, 58, 153, 0.958421) 18%, rgba(2, 0, 176, 0.958421) 53%,
+      rgba(120, 198, 191, 0.809961) 100%);
+}
+
+.creator-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: $white;
+}
+
+.creator-block__github {
+  width: 90px;
+  text-align: center;
+  border-bottom: 3px solid transparent;
+  transition: all .3s;
+}
+
+.creator-block__github:hover {
+  border-bottom: 3px solid $white;
+}
+
+.github-link {
+  color: $white;
+}

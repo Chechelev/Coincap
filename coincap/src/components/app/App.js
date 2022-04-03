@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import { Header } from '../header/header';
 import { CryptoTable } from '../crypto-table/crypto-table';
 import { CoinDetails } from '../crypto-item-details/crypto-details';
+import { Footer } from '../footer/footer'
 class App extends Component {
 
   state = {
@@ -24,6 +25,7 @@ class App extends Component {
           <Route path="/" element={<CryptoTable onItemSelected={this.onCoinSelected} />} />
           <Route path="/details" element={<CoinDetails coinId={this.state.selectedCoin} />} />
         </Routes>
+        <Footer></Footer>
       </div>
     );
   }
