@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import { Header } from '../header/header';
-import { Wallet } from '../wallet-modal-window/wallet-modal-window';
 import { CryptoTable } from '../crypto-table/crypto-table';
 import { CoinDetails } from '../crypto-item-details/crypto-details';
 class App extends Component {

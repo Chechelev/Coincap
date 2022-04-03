@@ -9,11 +9,6 @@ const Modal = ({ handleClose, handleSubmit, show, warning, children }) => {
   const [count, setCount] = useState(0);
 
   localStorage.setItem('submit', count);
-  localStorage.setItem('name', children[0]);
-  localStorage.setItem('price', parseFloat(children[1]).toFixed(3));
-
-
-  //console.log(localStorage.getItem('submit'))
 
   return (
     <div className={showHideClassName}>
@@ -41,7 +36,7 @@ const Modal = ({ handleClose, handleSubmit, show, warning, children }) => {
                 required
                 onChange={(event) => setCount(event.target.value)}
               ></input>
-              <div className="modal-body__item-total-price">{`${(parseFloat(children[1]) * count).toFixed(3)}$`}</div>
+              <div className="modal-body__item-total-price">{`${((parseFloat(children[1])).toFixed(3) * count)}$`}</div>
             </div>
           </div>
           <div className="modal-footer">

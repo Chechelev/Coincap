@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './crypto-table.scss';
+
 import { Link } from 'react-router-dom';
 import { CoincapService } from '../../services/coincap-service';
 import { Spinner } from '../spinner/spinner';

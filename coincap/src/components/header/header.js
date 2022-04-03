@@ -11,13 +11,21 @@ export class Header extends Component {
 
   state = {
     headerCoinList: null,
+    headerCoinCost: [],
     show: false,
   };
 
 
   componentDidMount() {
     this.updateData();
+    this.getCurrentCost()
+      .then((headerCoinCost) => {
+        this.setState({
+          headerCoinCost
+        });
+      });
     this.interval = setInterval(this.updateData, 10000);
+    this.interval1 = setInterval(this.updateCostData, 5000);
   };
 
   componentWillUnmount() {
@@ -32,6 +40,15 @@ export class Header extends Component {
           headerCoinList
         });
       })
+  }
+
+  updateCostData = () => {
+    this.getCurrentCost().
+      then((headerCoinCost) => {
+        this.setState({
+          headerCoinCost
+        });
+      });
   }
 
   renderItems(arr) {
@@ -53,14 +70,56 @@ export class Header extends Component {
     this.setState({ show: false });
   };
 
+  getLocaleCost() {
+    let localCostArr = [];
+    let sum = 0;
+
+    let existingEntries = JSON.parse(localStorage.getItem("walletData"));
+    if (existingEntries == null) existingEntries = [];
+
+    existingEntries.map(el => {
+      localCostArr.push(el.price * el.amount)
+    });
+
+    for (let i = 0; i < localCostArr.length; i++) {
+      sum += +localCostArr[i];
+    }
+
+    return sum;
+  }
+
+  async getCurrentCost() {
+    let currentCostArr = [];
+    let sum = 0;
+
+    let existingEntries = JSON.parse(localStorage.getItem("walletData"));
+    if (existingEntries == null) existingEntries = [];
+
+    await Promise.all(existingEntries.map(async (el) => {
+      const coin = await this.coincapService.getCoin(el.id)
+      currentCostArr.push(+coin.priceUsd * +el.amount)
+    }))
+
+    for await (const variable of currentCostArr) {
+      sum += variable;
+    }
+
+    return sum;
+  }
+
+
   render() {
-    const { headerCoinList } = this.state;
+    const { headerCoinList, headerCoinCost } = this.state;
 
     if (!headerCoinList) {
       return <Spinner />;
     }
 
-    const items = this.renderItems(headerCoinList)
+    const items = this.renderItems(headerCoinList);
+    let currentCost = headerCoinCost
+    const localeCost = this.getLocaleCost();
+    const difference = parseFloat(localeCost - currentCost).toFixed(2);
+    let percent = parseFloat((100 * difference) / currentCost).toFixed(2);
 
     return (
       <>
@@ -77,9 +136,9 @@ export class Header extends Component {
               </div>
 
               <div className="user-wallet-info" onClick={this.showModal}>
-                <div className="user-wallet__current-cost">134,32 USD</div>
-                <div className="user-wallet__different-cost">+2,38</div>
-                <div className="user-wallet__different-cost-percent">(+1,80%)</div>
+                <div className="user-wallet__current-cost">{parseFloat(currentCost).toFixed(2)} $</div>
+                <div className="user-wallet__different-cost">{`${difference > 0 ? '+' + (difference) : (difference)}`}</div>
+                <div className="user-wallet__different-cost-percent">{percent > 0 ? percent : 0}%</div>
                 <i className="fa-solid fa-briefcase"></i>
               </div>
 

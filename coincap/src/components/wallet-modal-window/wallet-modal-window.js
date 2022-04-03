@@ -4,7 +4,7 @@ import './wallet-modal-window.scss';
 import { WalletItems } from '../walletItems/wallet-items';
 
 
-export const Wallet = ({ handleClose, handleSubmit, show, warning, children }) => {
+export const Wallet = ({ handleClose, show }) => {
 
   const showHideClassName = show ? "modal modal-active" : "modal display-none";
 

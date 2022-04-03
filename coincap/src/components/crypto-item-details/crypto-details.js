@@ -3,7 +3,6 @@ import { CoincapService } from '../../services/coincap-service';
 import { Spinner } from '../spinner/spinner';
 import TradingViewWidget from 'react-tradingview-widget';
 import Modal from '../add-coin-modal-window/addCoinModal';
-import { Header } from '../header/header';
 
 import './crypto-details.scss';
 export class CoinDetails extends Component {
@@ -15,21 +14,7 @@ export class CoinDetails extends Component {
     show: false,
     warning: false,
   }
-  /*
-  constructor() {
-    super();
-    this.state = {
-      coin: null,
-      show: false,
-      warning: false,
-      walletData: []
-    };
-    this.showModal = this.showModal.bind(this);
-    this.hideModal = this.hideModal.bind(this);
-    this.submitModal = this.submitModal.bind(this);
-    this.addWalletItem = this.addWalletItem.bind(this);
-  }
-*/
+
   showModal = () => {
     this.setState({ show: true });
   };
@@ -56,15 +41,14 @@ export class CoinDetails extends Component {
   };
 
   addWalletItem() {
-    console.log('hello')
-
+    const state = this.state.coin;
     let existingEntries = JSON.parse(localStorage.getItem("walletData"));
     if (existingEntries == null) existingEntries = [];
 
     const newItem = {
-      id: this.state.coin.rank,
-      name: this.state.coin.name,
-      price: this.state.coin.priceUsd,
+      id: state.id,
+      name: state.name,
+      price: state.priceUsd,
       amount: localStorage.getItem('submit'),
     }
     localStorage.setItem('wallet', JSON.stringify(newItem));
@@ -134,7 +118,6 @@ export class CoinDetails extends Component {
               interval="D"
               timezone="Etc/UTC"
               theme="Light"
-              style={["1"]}
               locale='en'
               toolbar_bg="#f1f3f6"
               enable_publishing={false}

@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import { CoinDetails } from '../crypto-item-details/crypto-details';
 import './wallet-items.scss';
-
 
 export class WalletItems extends Component {
 
   state = {
-    coins: JSON.parse(localStorage.getItem("walletData"))
+    coins: JSON.parse(localStorage.getItem("walletData")),
 
-  }
+  };
 
   handleDeleteElement = (index) => {
     this.setState(({ coins }) => {
@@ -31,7 +29,7 @@ export class WalletItems extends Component {
 
     return existingEntries.map((element, i) => {
       return (
-        <div className="modal-body__item" key={element.id} >
+        <div className="modal-body__item" key={i} >
           <div className="modal-body__item-name">{element.name}</div>
           <div className="modal-body__item-amount">{element.amount}</div>
           <div className="modal-body__item-total-price">{`${element.amount * parseFloat(element.price).toFixed(2)}`}</div>
