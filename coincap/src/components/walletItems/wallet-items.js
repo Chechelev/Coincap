@@ -32,7 +32,7 @@ export class WalletItems extends Component {
         <div className="modal-body__item" key={i} >
           <div className="modal-body__item-name">{element.name}</div>
           <div className="modal-body__item-amount">{element.amount}</div>
-          <div className="modal-body__item-total-price">{`${element.amount * parseFloat(element.price).toFixed(2)}`}</div>
+          <div className="modal-body__item-total-price">{`${(element.amount * ((parseInt(element.price * 100)) / 100)).toFixed(2)}`}$</div>
           <div className="crypto-minus" onClick={() => this.handleDeleteElement(i)}>
             <i className="fa-solid fa-minus"></i>
           </div>

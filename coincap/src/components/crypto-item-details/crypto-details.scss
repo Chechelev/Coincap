@@ -1,90 +1,77 @@
-$color: #039;
-$blue:#6699ff;
+@import '../scss/colors.scss';
+@import '../scss/mixin.scss';
 
 .crypto-details {
   margin: 50px 0;
+
+  &__container {
+    @include flexible();
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+
+  &__media-container {
+    @include flexible();
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+
+  &__graphic {
+    height: 70vh;
+    z-index: -1;
+  }
+
+  &__middle {
+    max-width: 200px;
+    width: 100%;
+  }
+
+  &__name {
+    margin-bottom: 5px;
+    font-size: 22px;
+    font-weight: 700;
+    color: $dark-blue;
+  }
+
+  &__change,
+  &__price {
+    @include flexible();
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-size: 18px;
+    color: $dark-blue;
+
+    span {
+      font-weight: 100;
+    }
+  }
+
+  &__date {
+    font-size: 16px;
+    font-weight: 100;
+    color: $dark-blue;
+  }
+
+  &__marketCapUsd,
+  &__vwap24Hr,
+  &__supply,
+  &__volume {
+    @include flexible();
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 5px;
+    font-size: 18px;
+    color: $dark-blue;
+    border-bottom: 1px solid #a6c4ff;
+
+    span {
+      margin-left: 3rem;
+      font-weight: 100;
+    }
+  }
 }
 
-.crypto-details__container {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.crypto-details__media-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  margin-top: 20px;
-}
-
-.crypto-details__graphic {
-  height: 70vh;
-  z-index: -1;
-}
-
-.crypto-details__left {
-  display: flex;
-  flex-direction: column;
-}
-
-.crypto-details__middle {
-  max-width: 200px;
-}
-
-.crypto-details__name {
-  margin-bottom: 5px;
-  font-size: 22px;
-  font-weight: 700;
-  color: $color;
-}
-
-.crypto-details__change,
-.crypto-details__price
- {
-   display: flex;
-   justify-content: space-between;
-  margin-bottom: 5px;
-  font-size: 18px;
-  color: $color;
-}
-
-.crypto-details__change span,
-.crypto-details__price span
- {
-  font-weight: 100;
-}
-
-.crypto-details__date {
-  font-size: 16px;
-  font-weight: 100;
-  color: $color;
-}
-
-.crypto-details__marketCapUsd,
-.crypto-details__vwap24Hr,
-.crypto-details__supply,
-.crypto-details__volume {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-  margin-bottom: 5px;
-  font-size: 18px;
-  color: $color;
-  border-bottom: 1px solid #a6c4ff;
-}
-
-.crypto-details__change span,
-.crypto-details__price span,
-.crypto-details__marketCapUsd span,
-.crypto-details__vwap24Hr span,
-.crypto-details__supply span,
-.crypto-details__volume span {
-  margin-left: 3rem;
-  font-weight: 100;
-}
 
 .change-green {
   color: green;
@@ -98,10 +85,10 @@ $blue:#6699ff;
 .btn__buy-coin {
   font-size: 18px;
   text-align: center;
-  color: #fff;
+  color: $white-color;
   font-family: 'Montserrat', sans-serif;
   font-weight: 100;
-  background-color: $color;
+  background-color: $dark-blue;
   text-transform: uppercase;
   width: 180px;
   max-width: 100%;
@@ -111,57 +98,53 @@ $blue:#6699ff;
   cursor: pointer;
   box-shadow: 0px 0px 38px 0 #5d32d466;
   transition: color .2s, background .2s, opacity .2s;
+
+  &:hover{
+    background: $blue-color;
+  }
+  &:active{
+    opacity: 0.9;
+    transform: scale(.95);
+  }
 }
 
-.btn__buy-coin:hover {
-  background: $blue;
-
-}
-
-.btn__buy-coin:active {
-  opacity: 0.9;
-  transform: scale(.95);
-}
 
 @media screen and (max-width: 650px) {
   .crypto-details__container {
     flex-wrap: wrap;
+
+    &__right {
+      width: 100%;
+      margin-top: 15px;
+      text-align: center;
+    }
   }
 
   .btn__buy-coin {
     font-size: 18px;
-
     width: 140px;
-
     padding: 8px 15px;
-
-
     box-shadow: none;
   }
 
-  .crypto-details__right {
-    width: 100%;
-    margin-top: 15px;
-    text-align: center;
-  }
 }
 
 @media screen and (max-width: 500px) {
+  .crypto-details {
+    &__graphic {
+      height: 50vh;
+    }
 
-  .crypto-details__graphic {
-    height: 50vh;
+    &__right,
+    &__middle {
+      width: 100%;
+      margin-top: 15px;
+      text-align: center;
+    }
   }
 }
 
 @media screen and (max-width: 450px) {
-
-  .crypto-details__right,
-  .crypto-details__middle {
-    width: 100%;
-    margin-top: 15px;
-    text-align: center;
-  }
-
   .crypto-details__graphic {
     height: 40vh;
   }

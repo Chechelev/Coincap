@@ -1,19 +1,17 @@
-$text-color: #fff;
-$header-color: linear-gradient(90deg, rgba(59, 58, 153, 0.958420868347339) 18%, rgba(2, 0, 176, 0.958420868347339) 53%, rgba(120, 198, 191, 0.8099614845938375) 100%);
-$font-size: 18px;
+@import '../scss/colors.scss';
+@import '../scss/mixin.scss';
 
 .header {
   width: 100%;
   padding: 15px 10px;
-  background: $header-color;
+  background: $header-footer-bg-color;
 }
 
 .container__inner {
-  display: flex;
-  align-items: center;
+  @include flexible();
   justify-content: space-between;
-  font-size: $font-size;
-  color: $text-color;
+  font-size: 18px;
+  color: $white-color;
 }
 
 .logo img {
@@ -23,38 +21,38 @@ $font-size: 18px;
 }
 
 .top-coins {
-  display: flex;
-}
+  @include flexible();
 
-.top-coins__item {
-  display: flex;
-  margin-right: 20px;
-  border-bottom: 2px solid transparent;
-  cursor: pointer;
-  transition: all .2s;
-}
+  &__item {
+    @include flexible();
+    margin-right: 20px;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: all .2s;
 
-.top-coins__item:last-child {
-  margin-right: 0;
-}
+    &-name {
+      padding-right: 5px;
+    }
 
-.top-coins__item:hover {
-  border-bottom: 2px solid $text-color;
-}
+    &:hover {
+      border-bottom: 2px solid $white-color;
+    }
 
-.top-coins__item-name {
-  padding-right: 5px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 }
 
 .user-wallet-info {
-  display: flex;
+  @include flexible();
   cursor: pointer;
-}
 
-.user-wallet-info:hover {
-  .fa-briefcase {
-    color: #adffc5;
-    transform: scale(1.1);
+  &:hover {
+    .fa-briefcase {
+      color: #adffc5;
+      transform: scale(1.1);
+    }
   }
 }
 
@@ -63,9 +61,8 @@ $font-size: 18px;
 }
 
 .fa-briefcase {
+  @include flexible();
   font-size: 20px;
-  display: flex;
-  align-self: center;
   margin-left: 10px;
   transition: all .2s;
 }
@@ -74,10 +71,10 @@ $font-size: 18px;
   .container__inner {
     font-size: 16px;
   }
-  }
+}
 
 @media screen and (max-width: 800px) {
-.top-coins {
-  display: none;
-}
+  .top-coins {
+    display: none;
+  }
 }

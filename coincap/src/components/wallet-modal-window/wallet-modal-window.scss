@@ -1,4 +1,5 @@
-$blue:#6699ff;
+@import '../scss/colors.scss';
+@import '../scss/mixin.scss';
 
 .modal {
   position: fixed;
@@ -6,7 +7,7 @@ $blue:#6699ff;
   right: 0;
   bottom: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: $modal-bg-color;
   z-index: 2;
   opacity: 0;
   -webkit-transition: opacity 200ms ease-in;
@@ -16,69 +17,80 @@ $blue:#6699ff;
   margin: 0;
   padding: 0;
 
-}
-
-.modal:target {
-  opacity: 1;
-  pointer-events: auto;
-  overflow-y: auto;
-}
-
-.modal-dialog {
-  position: relative;
-  width: auto;
-  margin: 10px;
-}
-
-@media (min-width: 576px) {
-  .modal-dialog {
-    max-width: 500px;
-    margin: 30px auto;
+  &:target {
+    opacity: 1;
+    pointer-events: auto;
+    overflow-y: auto;
   }
-}
 
-.modal-content {
-  position: relative;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  background-color: #fff;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-  border: 1px solid rgba(0, 0, 0, .2);
-  border-radius: .3rem;
-  outline: 0;
-}
-
-@media (min-width: 768px) {
-  .modal-content {
-    -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+  &_dialog {
+    position: relative;
+    width: auto;
+    margin: 10px;
   }
-}
 
-.modal-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 15px;
-  border-bottom: 1px solid #eceeef;
-  color: #fff;
-  background: linear-gradient(90deg, rgba(59, 58, 153, 0.958421) 18%, rgba(2, 0, 176, 0.958421) 53%, rgba(120, 198, 191, 0.809961) 100%);
-}
+  &-content {
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    background-color: $white-color;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: .3rem;
+    outline: 0;
+  }
 
-.modal-title {
-  margin-top: 0;
-  margin-bottom: 0;
-  line-height: 1.5;
-  font-size: 1.25rem;
-  font-weight: 500;
+  &-header {
+    @include flexible();
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid #eceeef;
+    color: $white-color;
+    background: $header-footer-bg-color;
+  }
+
+  &-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 1.5;
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+
+  &-body {
+    position: relative;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 15px;
+    overflow: auto;
+
+    &__titles-wallet {
+      @include flexible();
+      color: $blue-color;
+      justify-content: space-around;
+
+      &-name {
+        width: 27%;
+      }
+      &-amount {
+        width: 25%;
+      }
+      &-total-price {
+        width: 25%;
+        text-align: left;
+      }
+    }
+  }
 }
 
 .close {
@@ -87,64 +99,29 @@ $blue:#6699ff;
   font-size: 32px;
   font-weight: 700;
   line-height: 1;
-  color: #000;
-  text-shadow: 0 1px 0 #fff;
+  color: $black-color;
+  text-shadow: 0 1px 0 $white-color;
   opacity: .5;
   text-decoration: none;
+
+  &:focus, &:hover{
+    color: $black-color;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: .75;
+  } 
 }
 
-.close:focus,
-.close:hover {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-  opacity: .75;
+@media (min-width: 768px) {
+  .modal-content {
+    -webkit-box-shadow: 0 5px 15px $modal-bg-color;
+    box-shadow: 0 5px 15px $modal-bg-color;
+  }
 }
 
-.modal-body {
-  position: relative;
-  -webkit-box-flex: 1;
-  -webkit-flex: 1 1 auto;
-  -ms-flex: 1 1 auto;
-  flex: 1 1 auto;
-  padding: 15px;
-  overflow: auto;
-}
-
-.modal-body__titles-wallet {
-  display: flex;
-  color: $blue;
-}
-
-.modal-body__titles-wallet-name,
-.modal-body__titles-wallet-amount,
-.modal-body__titles-wallet-total-price {
-  width: 25%;
-  text-align: center;
-}
-
-
-.modal-body__item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 15px;
-}
-
-.crypto-minus {
-  font-size: 20px;
-  font-weight: 400px;
-  transition: all .2s;
-  cursor: pointer;
-}
-
-.crypto-minus:hover {
-  transform: scale(1.1);
-  color: $blue;
-}
-
-.fa-minus {
-  border: 1px solid $blue;
-  padding: 3px;
-  border-radius: 3px;
+@media (min-width: 576px) {
+  .modal-dialog {
+    max-width: 500px;
+    margin: 30px auto;
+  }
 }

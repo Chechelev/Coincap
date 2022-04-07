@@ -36,7 +36,7 @@ const Modal = ({ handleClose, handleSubmit, show, warning, children }) => {
                 required
                 onChange={(event) => setCount(event.target.value)}
               ></input>
-              <div className="modal-body__item-total-price">{`${((parseFloat(children[1])).toFixed(3) * count)}$`}</div>
+              <div className="modal-body__item-total-price">{`${((parseInt(children[1] * 100) / 100) * count).toFixed(2)}$`}</div>
             </div>
           </div>
           <div className="modal-footer">
