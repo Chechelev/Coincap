@@ -1,46 +1,41 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { useState } from 'react';
 import './wallet-items.scss';
 
-export class WalletItems extends Component {
+export function WalletItems() {
 
-  state = {
-    coins: JSON.parse(localStorage.getItem("walletData")),
+  let existingEntries = JSON.parse(localStorage.getItem("walletData"));
+  if (existingEntries == null) existingEntries = [];
 
-  };
+  const [coins, setCoins] = useState(JSON.parse(localStorage.getItem("walletData")));
 
-  handleDeleteElement = (index) => {
-    this.setState(({ coins }) => {
-      coins.splice(index, 1);
-      return {
-        coins: coins
-      }
-    });
+  const handleDeleteElement = (index) => {
+    const temp = [...coins];
 
-    let existingEntries = JSON.parse(localStorage.getItem("walletData"));
-    if (existingEntries == null) existingEntries = [];
+    temp.splice(index, 1);
+    setCoins(temp);
+
     existingEntries.splice(index, 1);
     localStorage.setItem("walletData", JSON.stringify(existingEntries));
   };
 
-  render() {
-
-    let existingEntries = JSON.parse(localStorage.getItem("walletData"));
-    if (existingEntries == null) existingEntries = [];
-
-    return existingEntries.map((element, i) => {
-      return (
-        <div className="modal-body__items">
-          <div className="modal-body__item" key={i} >
-            <div className="modal-body__item-name">{element.name}</div>
-            <div className="modal-body__item-amount">{element.amount}</div>
-            <div className="modal-body__item-total-price">{`${(element.amount * ((parseInt(element.price * 100)) / 100)).toFixed(2)}`}$</div>
-            <div className="crypto-minus" onClick={() => this.handleDeleteElement(i)}>
-              <i className="fa-solid fa-minus"></i>
-            </div>
-          </div >
-        </div>
-      );
-    });
-  };
+  return <RenderCoins existingEntries={existingEntries} handleDeleteElement={handleDeleteElement} />
 };
 
+function RenderCoins({ existingEntries, handleDeleteElement }) {
+
+  return existingEntries.map((element, i) => {
+    return (
+      <div className="modal-body__items">
+        <div className="modal-body__item" key={element.id} >
+          <div className="modal-body__item-name">{element.name}</div>
+          <div className="modal-body__item-amount">{element.amount}</div>
+          <div className="modal-body__item-total-price">{`${(element.amount * ((parseInt(element.price * 100)) / 100)).toFixed(2)}`}$</div>
+          <div className="crypto-minus" onClick={() => handleDeleteElement(i)}>
+            <i className="fa-solid fa-minus"></i>
+          </div>
+        </div >
+      </div>
+    );
+  });
+};
