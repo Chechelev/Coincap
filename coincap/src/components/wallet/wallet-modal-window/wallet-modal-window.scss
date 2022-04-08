@@ -17,6 +17,23 @@
   margin: 0;
   padding: 0;
 
+  &-main {
+    position: fixed;
+    background: $white-color;
+    width: 80%;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &-active {
+    opacity: 1;
+    pointer-events: auto;
+    overflow-y: auto;
+    z-index: 100;
+  }
+
   &:target {
     opacity: 1;
     pointer-events: auto;
@@ -57,7 +74,7 @@
     background: $header-footer-bg-color;
   }
 
-  &-title {
+  &-header__title {
     margin-top: 0;
     margin-bottom: 0;
     line-height: 1.5;
@@ -91,6 +108,21 @@
       }
     }
   }
+}
+
+.display-none {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: $modal-bg-color;
+  -webkit-transition: opacity 200ms ease-in;
+  -moz-transition: opacity 200ms ease-in;
+  transition: opacity 200ms ease-in;
+  pointer-events: none;
+  margin: 0;
+  padding: 0;
 }
 
 .close {
