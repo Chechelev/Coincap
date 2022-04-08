@@ -1,8 +1,9 @@
 import React from 'react';
 import './wallet-modal-window.scss';
 
+import { WalletModalHeader } from './wallet-modal-header/wallet-modal-header';
+import { WalletModalBody } from './wallet-modal-body/wallet-modal-body';
 import { WalletItems } from '../wallet-items/wallet-items';
-
 
 export const Wallet = ({ handleClose, show }) => {
 
@@ -12,19 +13,9 @@ export const Wallet = ({ handleClose, show }) => {
     <div id="openModal" className={showHideClassName}>
       <div className="modal-dialog">
         <div className="modal-content">
-          <div className="modal-header">
-            <h3 className="modal-title">My Coins</h3>
-            <a className="close" onClick={handleClose}>×</a>
-          </div>
-          <div className="modal-body">
-            <div className="modal-body__titles-wallet">
-              <div className="modal-body__titles-wallet-name">Name</div>
-              <div className="modal-body__titles-wallet-amount">Amount</div>
-              <div className="modal-body__titles-wallet-total-price">Total Sum</div>
-            </div>
-            <hr></hr>
-            <WalletItems />
-          </div>
+          <WalletModalHeader handleClose={handleClose} />
+          <WalletModalBody />
+          <WalletItems />
         </div>
       </div>
     </div>

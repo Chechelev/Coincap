@@ -23,7 +23,8 @@
 .modal-body__item {
   @include flexible();
   justify-content: space-around;
-  margin-top: 15px;
+  margin-bottom: 15px;
+  padding-left: 15px;
 
   &-name {
     width: 30%;

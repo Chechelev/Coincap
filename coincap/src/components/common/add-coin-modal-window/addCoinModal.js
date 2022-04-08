@@ -22,4 +22,4 @@ const Modal = ({ handleClose, handleSubmit, show, warning, children }) => {
   )
 };
 
-export default Modal
+export default Modal;

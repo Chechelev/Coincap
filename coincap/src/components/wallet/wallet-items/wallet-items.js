@@ -18,7 +18,7 @@ export class WalletItems extends Component {
 
     let existingEntries = JSON.parse(localStorage.getItem("walletData"));
     if (existingEntries == null) existingEntries = [];
-    existingEntries.splice(index, 1)
+    existingEntries.splice(index, 1);
     localStorage.setItem("walletData", JSON.stringify(existingEntries));
   };
 
@@ -29,14 +29,16 @@ export class WalletItems extends Component {
 
     return existingEntries.map((element, i) => {
       return (
-        <div className="modal-body__item" key={i} >
-          <div className="modal-body__item-name">{element.name}</div>
-          <div className="modal-body__item-amount">{element.amount}</div>
-          <div className="modal-body__item-total-price">{`${(element.amount * ((parseInt(element.price * 100)) / 100)).toFixed(2)}`}$</div>
-          <div className="crypto-minus" onClick={() => this.handleDeleteElement(i)}>
-            <i className="fa-solid fa-minus"></i>
-          </div>
-        </div >
+        <div className="modal-body__items">
+          <div className="modal-body__item" key={i} >
+            <div className="modal-body__item-name">{element.name}</div>
+            <div className="modal-body__item-amount">{element.amount}</div>
+            <div className="modal-body__item-total-price">{`${(element.amount * ((parseInt(element.price * 100)) / 100)).toFixed(2)}`}$</div>
+            <div className="crypto-minus" onClick={() => this.handleDeleteElement(i)}>
+              <i className="fa-solid fa-minus"></i>
+            </div>
+          </div >
+        </div>
       );
     });
   };
