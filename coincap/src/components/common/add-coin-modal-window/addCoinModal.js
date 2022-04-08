@@ -2,6 +2,8 @@ import React from 'react';
 import { useState } from 'react';
 import './addCoinModal.scss';
 
+import { ModalHeader } from './modal-header/modal-header';
+
 const Modal = ({ handleClose, handleSubmit, show, warning, children }) => {
 
   const showHideClassName = show ? "modal modal-active" : "modal display-none";
@@ -14,10 +16,7 @@ const Modal = ({ handleClose, handleSubmit, show, warning, children }) => {
     <div className={showHideClassName}>
       <div className="modal-dialog">
         <div className="modal-content">
-          <div className="modal-header">
-            <h3 className="modal-title">Buy Coins</h3>
-            <a className="close" onClick={handleClose}>×</a>
-          </div>
+          <ModalHeader handleClose={handleClose} />
           <div className="modal-body">
             <div className="modal-body__titles">
               <div className="modal-body__titles-name">Name</div>

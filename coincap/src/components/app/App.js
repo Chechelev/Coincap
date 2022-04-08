@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import { Header } from '../header/header';
-import { CryptoTable } from '../crypto-table/crypto-table';
-import { CoinDetails } from '../crypto-item-details/crypto-details';
-import { Footer } from '../footer/footer'
+import { Header } from '../layout/header/header';
+import { CryptoTable } from '../pages/crypto-table-page/crypto-table/crypto-table';
+import { CoinDetails } from '../pages/crypto-details-page/crypto-item-details/crypto-details';
+import { Footer } from '../layout/footer/footer';
 class App extends Component {
 
   state = {

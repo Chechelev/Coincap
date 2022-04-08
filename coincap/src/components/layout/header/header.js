@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './header.scss';
 import logo from './logo.svg';
-import { CoincapService } from '../../services/coincap-service';
-import { Spinner } from '../spinner/spinner';
-import { Wallet } from '../wallet-modal-window/wallet-modal-window';
+import { CoincapService } from '../../../services/coincap-service';
+import { Spinner } from '../../common/spinner/spinner';
+import { Wallet } from '../../wallet/wallet-modal-window/wallet-modal-window';
 export class Header extends Component {
 
   coincapService = new CoincapService();

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import './crypto-table.scss';
 
 import { Link } from 'react-router-dom';
-import { CoincapService } from '../../services/coincap-service';
-import { Spinner } from '../spinner/spinner';
-import Modal from '../add-coin-modal-window/addCoinModal';
+import { CoincapService } from '../../../../services/coincap-service';
+import { Spinner } from '../../../common/spinner/spinner';
+import Modal from '../../../common/add-coin-modal-window/addCoinModal';
 import ReactPaginate from 'react-paginate';
 
 export class CryptoTable extends Component {

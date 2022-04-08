@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { CoincapService } from '../../services/coincap-service';
-import { Spinner } from '../spinner/spinner';
+import { CoincapService } from '../../../../services/coincap-service';
+import { Spinner } from '../../../common/spinner/spinner';
 import TradingViewWidget from 'react-tradingview-widget';
-import Modal from '../add-coin-modal-window/addCoinModal';
+import Modal from '../../../common/add-coin-modal-window/addCoinModal';
 
 import './crypto-details.scss';
 export class CoinDetails extends Component {

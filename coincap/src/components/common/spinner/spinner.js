@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './spinner.css';
+import './spinner.scss';
 
 export class Spinner extends Component {
     render() {

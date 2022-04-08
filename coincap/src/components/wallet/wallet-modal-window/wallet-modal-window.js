@@ -1,7 +1,7 @@
 import React from 'react';
 import './wallet-modal-window.scss';
 
-import { WalletItems } from '../walletItems/wallet-items';
+import { WalletItems } from '../wallet-items/wallet-items';
 
 
 export const Wallet = ({ handleClose, show }) => {
