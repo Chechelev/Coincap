@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import { Header } from '../layout/header/header';
@@ -7,6 +7,7 @@ import { CoinDetails } from '../pages/crypto-details-page/crypto-item-details/cr
 import { Footer } from '../layout/footer/footer';
 class App extends Component {
 
+  //let [selectedCoin, setSelectedCon] = useState()
   state = {
     selectedCoin: localStorage.getItem('coinId') || null,
   }

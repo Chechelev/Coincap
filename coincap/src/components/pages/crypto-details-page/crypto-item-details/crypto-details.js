@@ -1,10 +1,75 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CoincapService } from '../../../../services/coincap-service';
-import { Spinner } from '../../../common/spinner/spinner';
-import TradingViewWidget from 'react-tradingview-widget';
-import Modal from '../../../common/add-coin-modal-window/addCoinModal';
-
+import { addWalletItem } from '../../../wallet/wallet-items/add-wallet-items';
+import { RenderCryptoDetails } from './render-crypto-details';
 import './crypto-details.scss';
+
+export function CoinDetails(props) {
+
+  const coinCap = new CoincapService();
+  let [coin, setCoin] = useState({});
+  let [show, setShow] = useState(false);
+  let [warning, setWarning] = useState(false);
+
+
+  const showModal = () => {
+    setShow(show = true);
+  };
+
+  const hideModal = () => {
+    setShow(show = false);
+    setWarning(warning = false);
+  };
+
+  const submitModal = () => {
+    if (localStorage.getItem('submit') == 0) {
+      alert('Please enter a bigger amount');
+      setWarning(warning = true);
+    }
+    else if (localStorage.getItem('submit') > 1000) {
+      alert('You can buy only 999 coins per time');
+      setWarning(warning = true);
+    }
+    else {
+      setShow(show = false);
+      setWarning(warning = false);
+      addWalletItem(coin);
+    }
+  };
+
+  const getCoinInfo = () => {
+    const coinId = props.coinId;
+    coinCap
+      .getCoin(coinId)
+      .then((coin) => {
+        setCoin(coin)
+      })
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      getCoinInfo();
+    }, 1000);
+    return () => {
+      setCoin({});
+      clearInterval(interval);
+    };
+  }, []);
+
+  return (
+    <RenderCryptoDetails
+      coin={coin}
+      show={show}
+      warning={warning}
+      handleClose={hideModal}
+      handleSubmit={submitModal}
+      showModal={showModal}
+      children={[coin.name, coin.priceUsd]}
+    />
+  )
+}
+
+/*
 export class CoinDetails extends Component {
 
   coinCap = new CoincapService();
@@ -134,109 +199,111 @@ export class CoinDetails extends Component {
         </div>
       );
     }
-
-    else if (windowInnerWidth >= 650) {
-
-      return (
-        <div className="crypto-details">
-          <div className="container">
-            <div className="crypto-details__container">
-
-              <div className="crypto-details__left">
-                <div className="crypto-details__name">{name} ({symbol})</div>
-                <div className="crypto-details__date">{date}</div>
+    /*
+        else if (windowInnerWidth >= 650) {
+    
+          return (
+            <div className="crypto-details">
+              <div className="container">
+                <div className="crypto-details__container">
+    
+                  <div className="crypto-details__left">
+                    <div className="crypto-details__name">{name} ({symbol})</div>
+                    <div className="crypto-details__date">{date}</div>
+                  </div>
+    
+                  <div className="crypto-details__middle">
+                    <div className="crypto-details__change">Change <span className={changePercent24Hr >= 0 ? 'change-green' : 'change-red'}>{`${parseFloat(changePercent24Hr).toFixed(3)}%`}</span></div>
+                    <div className="crypto-details__price">Price <span>{`${parseFloat(priceUsd).toFixed(3)}$`}</span></div>
+                  </div>
+    
+                  <Modal show={this.state.show} warning={this.state.warning} handleClose={this.hideModal} handleSubmit={this.submitModal}>{[name, priceUsd]}</Modal>
+    
+                  <div className="crypto-details__right">
+                    <button className="btn__buy-coin" type="button" onClick={this.showModal}>Buy</button>
+                  </div>
+    
+                </div>
+    
+                <div className="crypto-details__graphic">
+                  <TradingViewWidget
+                    symbol={`${symbol}USD`}
+                    autosize={true}
+                    interval="D"
+                    timezone="Etc/UTC"
+                    theme="Light"
+                    locale='en'
+                    toolbar_bg="#f1f3f6"
+                    enable_publishing={false}
+                    hide_top_toolbar={true}
+                    save_image={false}
+                    container_id="tradingview_60d45"
+                    visual_order={false}
+                  />
+                </div>
+    
+                <div className="crypto-details__media-container">
+                  <div className="crypto-details__marketCapUsd">MarketCap <span>{`${parseFloat(marketCapUsd / 1000000000).toFixed(2)}$ b.`}</span></div>
+                  <div className="crypto-details__vwap24Hr">Vwap <span>{`${parseFloat(vwap24Hr).toFixed(2)}$`}</span></div>
+                </div>
               </div>
-
-              <div className="crypto-details__middle">
-                <div className="crypto-details__change">Change <span className={changePercent24Hr >= 0 ? 'change-green' : 'change-red'}>{`${parseFloat(changePercent24Hr).toFixed(3)}%`}</span></div>
-                <div className="crypto-details__price">Price <span>{`${parseFloat(priceUsd).toFixed(3)}$`}</span></div>
+            </div>
+          );
+        }
+    
+        else if (windowInnerWidth < 650) {
+    
+          return (
+            <div className="crypto-details">
+              <div className="container">
+                <div className="crypto-details__container">
+    
+                  <div className="crypto-details__left">
+                    <div className="crypto-details__name">{name} ({symbol})</div>
+                    <div className="crypto-details__date">{date}</div>
+                  </div>
+    
+                  <div className="crypto-details__middle">
+                    <div className="crypto-details__change">Change <span className={changePercent24Hr >= 0 ? 'change-green' : 'change-red'}>{`${parseFloat(changePercent24Hr).toFixed(3)}%`}</span></div>
+                    <div className="crypto-details__price">Price <span>{`${parseFloat(priceUsd).toFixed(3)}$`}</span></div>
+                  </div>
+    
+                  <Modal show={this.state.show} warning={this.state.warning} handleClose={this.hideModal} handleSubmit={this.submitModal}>{[name, priceUsd]}</Modal>
+    
+                  <div className="crypto-details__right">
+                    <button className="btn__buy-coin" type="button" onClick={this.showModal}>Buy</button>
+                  </div>
+    
+                </div>
+    
+                <div className="crypto-details__graphic">
+                  <TradingViewWidget
+                    symbol={`${symbol}USD`}
+                    autosize={true}
+                    interval="D"
+                    timezone="Etc/UTC"
+                    theme="Light"
+                    locale='en'
+                    toolbar_bg="#f1f3f6"
+                    enable_publishing={false}
+                    hide_top_toolbar={true}
+                    save_image={false}
+                    container_id="tradingview_60d45"
+                    visual_order={false}
+                  />
+                </div>
+    
+                <div className="crypto-details__media-container">
+                  <div className="crypto-details__marketCapUsd">MarketCap <span>{`${parseFloat(marketCapUsd / 1000000000).toFixed(2)}$ b.`}</span></div>
+                  <div className="crypto-details__vwap24Hr">Vwap <span>{`${parseFloat(vwap24Hr).toFixed(2)}$`}</span></div>
+                  <div className="crypto-details__supply">Supply <span>{`${parseFloat(supply / 1000000).toFixed(2)}m.`}</span></div>
+                  <div className="crypto-details__volume">Volume <span>{`${parseFloat(volumeUsd24Hr / 1000000).toFixed(2)}m.`}</span></div>
+                </div>
               </div>
-
-              <Modal show={this.state.show} warning={this.state.warning} handleClose={this.hideModal} handleSubmit={this.submitModal}>{[name, priceUsd]}</Modal>
-
-              <div className="crypto-details__right">
-                <button className="btn__buy-coin" type="button" onClick={this.showModal}>Buy</button>
-              </div>
-
             </div>
-
-            <div className="crypto-details__graphic">
-              <TradingViewWidget
-                symbol={`${symbol}USD`}
-                autosize={true}
-                interval="D"
-                timezone="Etc/UTC"
-                theme="Light"
-                locale='en'
-                toolbar_bg="#f1f3f6"
-                enable_publishing={false}
-                hide_top_toolbar={true}
-                save_image={false}
-                container_id="tradingview_60d45"
-                visual_order={false}
-              />
-            </div>
-
-            <div className="crypto-details__media-container">
-              <div className="crypto-details__marketCapUsd">MarketCap <span>{`${parseFloat(marketCapUsd / 1000000000).toFixed(2)}$ b.`}</span></div>
-              <div className="crypto-details__vwap24Hr">Vwap <span>{`${parseFloat(vwap24Hr).toFixed(2)}$`}</span></div>
-            </div>
-          </div>
-        </div>
-      );
-    }
-
-    else if (windowInnerWidth < 650) {
-
-      return (
-        <div className="crypto-details">
-          <div className="container">
-            <div className="crypto-details__container">
-
-              <div className="crypto-details__left">
-                <div className="crypto-details__name">{name} ({symbol})</div>
-                <div className="crypto-details__date">{date}</div>
-              </div>
-
-              <div className="crypto-details__middle">
-                <div className="crypto-details__change">Change <span className={changePercent24Hr >= 0 ? 'change-green' : 'change-red'}>{`${parseFloat(changePercent24Hr).toFixed(3)}%`}</span></div>
-                <div className="crypto-details__price">Price <span>{`${parseFloat(priceUsd).toFixed(3)}$`}</span></div>
-              </div>
-
-              <Modal show={this.state.show} warning={this.state.warning} handleClose={this.hideModal} handleSubmit={this.submitModal}>{[name, priceUsd]}</Modal>
-
-              <div className="crypto-details__right">
-                <button className="btn__buy-coin" type="button" onClick={this.showModal}>Buy</button>
-              </div>
-
-            </div>
-
-            <div className="crypto-details__graphic">
-              <TradingViewWidget
-                symbol={`${symbol}USD`}
-                autosize={true}
-                interval="D"
-                timezone="Etc/UTC"
-                theme="Light"
-                locale='en'
-                toolbar_bg="#f1f3f6"
-                enable_publishing={false}
-                hide_top_toolbar={true}
-                save_image={false}
-                container_id="tradingview_60d45"
-                visual_order={false}
-              />
-            </div>
-
-            <div className="crypto-details__media-container">
-              <div className="crypto-details__marketCapUsd">MarketCap <span>{`${parseFloat(marketCapUsd / 1000000000).toFixed(2)}$ b.`}</span></div>
-              <div className="crypto-details__vwap24Hr">Vwap <span>{`${parseFloat(vwap24Hr).toFixed(2)}$`}</span></div>
-              <div className="crypto-details__supply">Supply <span>{`${parseFloat(supply / 1000000).toFixed(2)}m.`}</span></div>
-              <div className="crypto-details__volume">Volume <span>{`${parseFloat(volumeUsd24Hr / 1000000).toFixed(2)}m.`}</span></div>
-            </div>
-          </div>
-        </div>
-      );
-    };
+          );
+        };
+     
   };
 };
+*/
