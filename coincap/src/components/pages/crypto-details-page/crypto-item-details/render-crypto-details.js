@@ -11,9 +11,9 @@ export function RenderCryptoDetails(props) {
 
   if (!props.coin) {
     return <Spinner />;
-  };
+  }
 
-  if (windowInnerWidth >= 900) {
+  else if (windowInnerWidth >= 900 && props.coin) {
 
     return (
       <div className="crypto-details">
@@ -65,7 +65,7 @@ export function RenderCryptoDetails(props) {
     );
   }
 
-  else if (windowInnerWidth >= 650) {
+  else if (windowInnerWidth >= 650 && props.coin) {
 
     return (
       <div className="crypto-details">
@@ -117,7 +117,7 @@ export function RenderCryptoDetails(props) {
     );
   }
 
-  else if (windowInnerWidth < 650) {
+  else if (windowInnerWidth < 650 && props.coin) {
 
     return (
       <div className="crypto-details">
