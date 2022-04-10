@@ -3,9 +3,10 @@ export class CoincapService {
   _apiBase = 'https://api.coincap.io/v2';
 
   constructor() {
-    localStorage.setItem('page', 1);
+    if (localStorage.getItem('page') == null) {
+      localStorage.setItem('page', 1);
+    }
   }
-
   getResource = async (url) => {
     const res = await fetch(`${this._apiBase}${url}`);
 
@@ -29,7 +30,8 @@ export class CoincapService {
     return this._transformCoin(coin);
   }
 
-  getCoinsPerPage = async (currentPage = +localStorage.getItem('page')) => {
+
+  getCoinsPerPage = async (currentPage) => {
     let res = '';
 
     switch (currentPage) {

@@ -17,7 +17,7 @@ export function CryptoTable(props) {
 
   const getCoinsInfo = () => {
     coincapService
-      .getCoinsPerPage()
+      .getCoinsPerPage(+localStorage.getItem('page'))
       .then((tableCoinList) => {
         setTableCoinList(tableCoinList)
       });
@@ -33,7 +33,7 @@ export function CryptoTable(props) {
   useEffect(() => {
     const interval = setInterval(() => {
       getCoinsInfo();
-    }, 10000);
+    }, 1000);
     return () => {
       clearInterval(interval);
     };
