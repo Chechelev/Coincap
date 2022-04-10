@@ -1,12 +1,137 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import './crypto-table.scss';
 
-import { Link } from 'react-router-dom';
 import { CoincapService } from '../../../../services/coincap-service';
-import { Spinner } from '../../../common/spinner/spinner';
+//import { Spinner } from '../../../common/spinner/spinner';
 import Modal from '../../../common/add-coin-modal-window/addCoinModal';
 import ReactPaginate from 'react-paginate';
+import { RenderTableItem } from './render-crypto-table-item';
+import { addWalletItem } from '../../../wallet/wallet-items/add-wallet-items';
 
+export function CryptoTable(props) {
+
+  const coincapService = new CoincapService();
+
+  let [tableCoinList, setTableCoinList] = useState({});
+  let [selectedCoinID, setSelectedCoinID] = useState(null);
+  let [selectedCoinName, setSelectedCoinName] = useState(null);
+  let [selectedCoinPrice, setSelectedCoinPrice] = useState(null);
+  let [show, setShow] = useState(false);
+  let [warning, setWarning] = useState(false);
+
+  const getCoinsInfo = () => {
+    coincapService
+      .getCoinsPerPage()
+      .then((tableCoinList) => {
+        setTableCoinList(tableCoinList)
+      });
+  };
+
+  useEffect(() => {
+    getCoinsInfo();
+    return () => {
+      setTableCoinList({});
+    };
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      getCoinsInfo();
+    }, 10000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  const getCoinInfo = (id) => {
+    coincapService
+      .getCoin(id)
+      .then((coin) => {
+        setSelectedCoinID(selectedCoinID = coin)
+      });
+  };
+
+  const handlePageClick = (data) => {
+    localStorage.setItem('page', data.selected + 1);
+    coincapService
+      .getCoinsPerPage(data.selected + 1)
+      .then((table) => {
+        setTableCoinList(tableCoinList = table)
+      });
+  };
+
+  const showModal = (id, name, price) => {
+    getCoinInfo(id);
+    setShow(show = true);
+    setSelectedCoinName(selectedCoinName = name);
+    setSelectedCoinPrice(selectedCoinPrice = price);
+  };
+
+  const handleClose = () => {
+    setShow(show = false);
+    setWarning(warning = false);
+  };
+
+  const submitModal = () => {
+    if (localStorage.getItem('submit') == 0) {
+      alert('Please enter a bigger amount');
+      setWarning(warning = true);
+    }
+    else if (localStorage.getItem('submit') > 1000) {
+      alert('You can buy only 999 coins per time');
+      setWarning(warning = true);
+    }
+    else {
+      setShow(show = false);
+      setWarning(warning = false);
+      addWalletItem(selectedCoinID);
+    }
+  };
+
+  return (
+    <>
+      <ReactPaginate
+        nextLabel=""
+        onPageChange={handlePageClick}
+        pageCount={5}
+        previousLabel=""
+        renderOnZeroPageCount={null}
+        containerClassName="pagination"
+        pageClassName='page-item'
+        pageLinkClassName='page-link'
+        activeClassName='active'>
+      </ReactPaginate>
+
+      <div className="container">
+        <table>
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Marcet Cap</th>
+              <th>VWAP (24Hr)</th>
+              <th>Supply</th>
+              <th>Volume (24Hr)</th>
+              <th>Change (24Hr)</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <RenderTableItem
+              tableCoinList={tableCoinList}
+              showModal={showModal}
+              onItemSelected={props.onItemSelected}>
+            </RenderTableItem>
+          </tbody>
+        </table>
+      </div>
+      <Modal show={show} warning={warning} handleClose={handleClose} handleSubmit={submitModal}>{[selectedCoinName, selectedCoinPrice]}</Modal>
+    </>
+  );
+
+};
+/*
 export class CryptoTable extends Component {
 
   coincapService = new CoincapService();
@@ -143,7 +268,7 @@ export class CryptoTable extends Component {
     const items = this.renderItems(tableCoinList)
 
     return (
-      <React.Fragment>
+      <>
         <ReactPaginate
           nextLabel=""
           onPageChange={this.handlePageClick}
@@ -171,12 +296,13 @@ export class CryptoTable extends Component {
               </tr>
             </thead>
             <tbody>
-              {items}
+              <RenderItem tableCoinList={tableCoinList} />
             </tbody>
           </table>
         </div>
         <Modal show={this.state.show} warning={this.state.warning} handleClose={this.hideModal} handleSubmit={this.submitModal}>{[selectedCoin, selectedCoinPrice]}</Modal>
-      </React.Fragment>
+      </>
     );
   };
 }; 
+*/

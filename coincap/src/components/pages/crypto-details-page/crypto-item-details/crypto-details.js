@@ -6,7 +6,7 @@ import './crypto-details.scss';
 
 export function CoinDetails(props) {
 
-  const coinCap = new CoincapService();
+  const coincapService = new CoincapService();
   let [coin, setCoin] = useState({});
   let [show, setShow] = useState(false);
   let [warning, setWarning] = useState(false);
@@ -35,11 +35,12 @@ export function CoinDetails(props) {
       setWarning(warning = false);
       addWalletItem(coin);
     }
+    console.log(coin)
   };
 
   const getCoinInfo = () => {
     const coinId = props.coinId;
-    coinCap
+    coincapService
       .getCoin(coinId)
       .then((coin) => {
         setCoin(coin)

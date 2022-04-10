@@ -30,7 +30,13 @@ export function RenderCryptoDetails(props) {
               <div className="crypto-details__price">Price <span>{`${parseFloat(priceUsd).toFixed(3)}$`}</span></div>
             </div>
 
-            <Modal show={props.show} warning={props.warning} handleClose={props.handleClose} handleSubmit={props.handleSubmit}>{[name, priceUsd]}</Modal>
+            <Modal
+              show={props.show}
+              warning={props.warning}
+              handleClose={props.handleClose}
+              handleSubmit={props.handleSubmit}>
+              {[name, priceUsd]}
+            </Modal>
 
             <div className="crypto-details__right">
               <button className="btn__buy-coin" type="button" onClick={props.showModal}>Buy</button>

@@ -14,7 +14,7 @@ const Modal = ({ handleClose, handleSubmit, show, warning, children }) => {
       <div className="modal-dialog">
         <div className="modal-content">
           <ModalHeader handleClose={handleClose} />
-          <ModalBody warning={warning} children={children} ></ModalBody>
+          <ModalBody warning={warning} children={children}></ModalBody>
           <ModalFooter handleSubmit={handleSubmit}></ModalFooter>
         </div>
       </div>
