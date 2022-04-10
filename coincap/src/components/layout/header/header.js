@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './header.scss';
 import logo from './logo.svg';
@@ -6,6 +6,156 @@ import { CoincapService } from '../../../services/coincap-service';
 import { Spinner } from '../../common/spinner/spinner';
 import { Wallet } from '../../wallet/wallet-modal-window/wallet-modal-window';
 
+export function Header(props) {
+  const coincapService = new CoincapService();
+
+  let [headerCoinList, setHeaderCoinList] = useState({});
+  let [headerCoinCost, setHeaderCoinCost] = useState({});
+  let [show, setShow] = useState(false);
+
+  const setCoins = () => {
+    coincapService
+      .getAllCoins()
+      .then((headerCoinList) => {
+        setHeaderCoinList(headerCoinList)
+      });
+  };
+
+  const setCurrentCost = () => {
+    getCurrentCost()
+      .then((headerCoinCost) => {
+        setHeaderCoinCost(headerCoinCost)
+      });
+  }
+
+  useEffect(() => {
+    setCoins();
+    setCurrentCost();
+    return () => {
+      setHeaderCoinList({});
+    };
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCoins();
+      setCurrentCost();
+    }, 10000);
+    return () => {
+      setHeaderCoinList({});
+      setHeaderCoinCost({});
+      clearInterval(interval);
+    };
+  }, []);
+
+
+  const getLocaleCost = () => {
+    let localCostArr = [];
+    let sum = 0;
+
+    let existingEntries = JSON.parse(localStorage.getItem("walletData"));
+    if (existingEntries == null) existingEntries = [];
+
+    existingEntries.map(el => {
+      localCostArr.push(el.price * el.amount)
+    });
+
+    for (let i = 0; i < localCostArr.length; i++) {
+      sum += +localCostArr[i];
+    };
+
+    return sum;
+  };
+
+  const getCurrentCost = async () => {
+    let currentCostArr = [];
+    let sum = 0;
+
+    let existingEntries = JSON.parse(localStorage.getItem("walletData"));
+    if (existingEntries == null) existingEntries = [];
+
+    await Promise.all(existingEntries.map(async (el) => {
+      const coin = await coincapService.getCoin(el.id)
+      currentCostArr.push(+coin.priceUsd * +el.amount)
+    }));
+
+    for await (const variable of currentCostArr) {
+      sum += variable;
+    };
+
+    return sum;
+  };
+
+  const renderItems = (arr) => {
+    let data = Array.from(arr);
+    return data.slice(0, 3).map(({ id, name, priceUsd }) => {
+      return (
+        <div className="top-coins__item" key={id}>
+          <div className="top-coins__item-name">{name}</div>
+          <div className="top-coins__item-price">{`${parseFloat(priceUsd).toFixed(3)}$`}</div>
+        </div>
+      );
+    });
+  };
+
+  const showModal = () => {
+    setShow(show = true);
+  };
+
+  const hideModal = () => {
+    setShow(show = false);
+  };
+
+  console.log('list ' + headerCoinList);
+  console.log('cost ' + headerCoinCost);
+
+
+
+
+  if (!headerCoinList) {
+    return <Spinner />;
+  }
+
+  const items = renderItems(headerCoinList);
+  let currentCost = headerCoinCost;
+  const localeCost = getLocaleCost();
+  const difference = parseFloat(currentCost - localeCost).toFixed(2);
+  const diff = difference > 0 ? '+' + (difference) : (difference);
+  let percent = parseFloat(((diff) * 100) / currentCost).toFixed(2);
+  let totalPercent = (percent < 0 ? + percent : "" + percent);
+
+
+
+  return (
+    <>
+      <header className="header">
+        <div className="container">
+          <div className="container__inner">
+            <div className="logo">
+              <Link to="/">
+                <img src={logo} alt="Coincap"></img>
+              </Link>
+            </div>
+            <div className="top-coins">
+              {items}
+            </div>
+
+            <div className="user-wallet-info" onClick={showModal}>
+              <div className="user-wallet__current-cost">{parseFloat(currentCost).toFixed(2)} $</div>
+              <div className="user-wallet__different-cost">{`${diff == NaN ? 0 : diff}`}</div>
+              <div className="user-wallet__different-cost-percent">{(isNaN(percent) || percent == Infinity) ? 0 : totalPercent}%</div>
+              <i className="fa-solid fa-briefcase"></i>
+            </div>
+
+          </div>
+        </div>
+      </header>
+      <Wallet show={show} handleClose={hideModal} />
+    </>
+  )
+}
+
+/*
 export class Header extends Component {
 
   coincapService = new CoincapService();
@@ -25,7 +175,7 @@ export class Header extends Component {
           headerCoinCost
         });
       });
-    this.interval = setInterval(this.updateData, 10000);
+    this.interval = setInterval(this.updateData, 5000);
     this.interval1 = setInterval(this.updateCostData, 5000);
   };
 
@@ -155,3 +305,4 @@ export class Header extends Component {
     )
   }
 }
+*/

@@ -35,7 +35,6 @@ export function CoinDetails(props) {
       setWarning(warning = false);
       addWalletItem(coin);
     }
-    console.log(coin)
   };
 
   const getCoinInfo = () => {
