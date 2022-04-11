@@ -1,10 +1,20 @@
-const cryptoLoaded = (newCrypto) => {
+export function itemsHasErrored(bool) {
   return {
-    type: 'CRYPTO_LOADED',
-    payload: newCrypto
+    type: 'ITEMS_HAS_ERRORED',
+    hasErrored: bool
   };
-};
+}
 
-export {
-  cryptoLoaded
-};
+export function itemsIsLoading(bool) {
+  return {
+    type: 'ITEMS_IS_LOADING',
+    isLoading: bool
+  };
+}
+
+export function itemsFetchDataSuccess(items) {
+  return {
+    type: 'ITEMS_FETCH_DATA_SUCCESS',
+    items
+  };
+}

@@ -7,9 +7,9 @@ import { HeaderTopCoins } from './header-top-coins/header-top-coins';
 import { getCurrentCost } from './header-prices/header-prices';
 import { HeaderWallet } from './header-wallet/header-wallet';
 import { RenderHeaderLogo } from './header-logo/header-logo';
+import { connect } from 'react-redux';
 
 export function Header() {
-
   const coincapService = new CoincapService();
 
   let [headerCoinList, setHeaderCoinList] = useState({});
@@ -76,3 +76,19 @@ export function Header() {
     </>
   );
 };
+
+const mapStateToProps = (state) => {
+  return {
+    items: state.items,
+    hasErrored: state.itemsHasErrored,
+    isLoading: state.itemsIsLoading
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchData: (url) => dispatch(itemsFetchData(url))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderTopCoins);
