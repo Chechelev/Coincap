@@ -1,27 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import './header.scss';
 
-import { CoincapService } from '../../../services/coincap-service';
 import { Wallet } from '../../wallet/wallet-modal-window/wallet-modal-window';
 import { HeaderTopCoins } from './header-top-coins/header-top-coins';
 import { getCurrentCost } from './header-prices/header-prices';
 import { HeaderWallet } from './header-wallet/header-wallet';
 import { RenderHeaderLogo } from './header-logo/header-logo';
 import { connect } from 'react-redux';
+import { itemsFetchData } from '../../../actions/items';
 
-export function Header() {
-  const coincapService = new CoincapService();
+function Header(props) {
 
-  let [headerCoinList, setHeaderCoinList] = useState({});
   let [headerCoinCost, setHeaderCoinCost] = useState({});
   let [show, setShow] = useState(false);
 
   const setCoins = () => {
-    coincapService
-      .getAllCoins()
-      .then((headerCoinList) => {
-        setHeaderCoinList(headerCoinList)
-      });
+    props.fetchData('https://api.coincap.io/v2/assets');
   };
 
   const setCurrentCost = () => {
@@ -29,14 +23,11 @@ export function Header() {
       .then((headerCoinCost) => {
         setHeaderCoinCost(headerCoinCost)
       });
-  }
+  };
 
   useEffect(() => {
     setCoins();
     setCurrentCost();
-    return () => {
-      setHeaderCoinList({});
-    };
   }, []);
 
   useEffect(() => {
@@ -45,7 +36,6 @@ export function Header() {
       setCurrentCost();
     }, 1000);
     return () => {
-      setHeaderCoinList({});
       setHeaderCoinCost({});
       clearInterval(interval);
     };
@@ -66,7 +56,7 @@ export function Header() {
           <div className="container__inner">
             <RenderHeaderLogo />
             <div className="top-coins">
-              <HeaderTopCoins headerCoinList={headerCoinList} />
+              <HeaderTopCoins headerCoinList={props.items} />
             </div>
             <HeaderWallet showModal={showModal} headerCoinCost={headerCoinCost} />
           </div>
@@ -91,4 +81,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HeaderTopCoins);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

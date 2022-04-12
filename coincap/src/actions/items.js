@@ -1,4 +1,4 @@
-import { itemsFetchDataSuccess, itemsIsLoading, itemsHasErrored } from "./actions";
+import { itemsFetchDataSuccess, itemsIsLoading, itemsHasErrored } from './actions';
 
 export function itemsFetchData(url) {
   return (dispatch) => {
