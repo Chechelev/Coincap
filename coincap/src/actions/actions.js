@@ -18,3 +18,24 @@ export function itemsFetchDataSuccess(items) {
     items
   };
 }
+
+export function coinHasErrored(bool) {
+  return {
+    type: 'COIN_HAS_ERRORED',
+    hasErrored: bool
+  };
+}
+
+export function coinIsLoading(bool) {
+  return {
+    type: 'COIN_IS_LOADING',
+    isLoading: bool
+  };
+}
+
+export function coinFetchDataSuccess(coin) {
+  return {
+    type: 'COIN_FETCH_DATA_SUCCESS',
+    coin
+  };
+}

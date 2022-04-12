@@ -10,7 +10,6 @@ import { connect } from 'react-redux';
 import { itemsFetchData } from '../../../actions/items';
 
 function Header(props) {
-
   let [headerCoinCost, setHeaderCoinCost] = useState({});
   let [show, setShow] = useState(false);
 
@@ -56,7 +55,7 @@ function Header(props) {
           <div className="container__inner">
             <RenderHeaderLogo />
             <div className="top-coins">
-              <HeaderTopCoins headerCoinList={props.items} />
+              <HeaderTopCoins HeaderTopCoins={props} />
             </div>
             <HeaderWallet showModal={showModal} headerCoinCost={headerCoinCost} />
           </div>

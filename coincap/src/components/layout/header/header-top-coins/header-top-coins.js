@@ -1,16 +1,13 @@
 import React from "react";
-import { Spinner } from "../../../common/spinner/spinner";
 
 export function HeaderTopCoins(props) {
-  let data = Array.from(props.headerCoinList);
+  const { hasErrored, items } = props.HeaderTopCoins;
+  let data = Array.from(items);
 
-  if (props.hasErrored) {
+  if (hasErrored) {
     return <p>Sorry! There was an error loading the items</p>;
   }
 
-  if (props.isLoading) {
-    return <Spinner />;
-  }
   return data.slice(0, 3).map(({ id, name, priceUsd }) => {
     return (
       <div className="top-coins__item" key={id}>

@@ -1,8 +1,13 @@
 import { combineReducers } from 'redux';
-import { items, itemsHasErrored, itemsIsLoading } from './reducers'
+import { items, itemsHasErrored, itemsIsLoading } from './coins';
+import { coin, coinHasErrored, coinIsLoading } from './coin-detail';
 
 export default combineReducers({
   items,
   itemsHasErrored,
-  itemsIsLoading
+  itemsIsLoading,
+
+  coin,
+  coinHasErrored,
+  coinIsLoading
 });
