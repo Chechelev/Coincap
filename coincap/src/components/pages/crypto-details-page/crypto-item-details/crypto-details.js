@@ -3,6 +3,8 @@ import { CoincapService } from '../../../../services/coincap-service';
 import { addWalletItem } from '../../../wallet/wallet-items/add-wallet-items';
 import { RenderCryptoDetails } from './render-crypto-details';
 import './crypto-details.scss';
+import { coinFetchData } from '../../../../actions/items';
+import { connect } from 'react-redux';
 
 export function CoinDetails(props) {
 

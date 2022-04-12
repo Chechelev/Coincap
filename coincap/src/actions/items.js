@@ -1,4 +1,16 @@
-import { itemsFetchDataSuccess, itemsIsLoading, itemsHasErrored, coinFetchDataSuccess, coinIsLoading, coinHasErrored } from './actions';
+import {
+  itemsFetchDataSuccess,
+  itemsIsLoading,
+  itemsHasErrored,
+  coinFetchDataSuccess,
+  coinIsLoading,
+  coinHasErrored,
+  coinTableFetchDataSuccess,
+  coinTableIsLoading,
+  coinTableHasErrored
+}
+  from './actions';
+
 
 export function itemsFetchData(url) {
   return (dispatch) => {
@@ -24,7 +36,7 @@ export function coinFetchData(url) {
   return (dispatch) => {
     dispatch(coinIsLoading(true));
 
-    fetch(url)
+    fetch(`https://api.coincap.io/v2/assets/${url}`)
       .then((response) => {
         if (!response.ok) {
           throw Error(response.statusText);
@@ -37,5 +49,25 @@ export function coinFetchData(url) {
       .then((response) => response.json())
       .then((coin) => dispatch(coinFetchDataSuccess(coin.data)))
       .catch(() => dispatch(coinHasErrored(true)));
+  };
+}
+
+export function coinsPerPageFetchData(url) {
+  return (dispatch) => {
+    dispatch(coinTableIsLoading(true));
+
+    fetch(url)
+      .then((response) => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+
+        dispatch(coinTableIsLoading(false));
+
+        return response;
+      })
+      .then((response) => response.json())
+      .then((coinTable) => dispatch(coinTableFetchDataSuccess(coinTable)))
+      .catch(() => dispatch(coinTableHasErrored(true)));
   };
 }

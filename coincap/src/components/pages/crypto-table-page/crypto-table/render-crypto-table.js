@@ -1,17 +1,12 @@
 import React from "react";
 import './crypto-table.scss';
 
-import { Spinner } from "../../../common/spinner/spinner";
 import ReactPaginate from 'react-paginate';
 import Modal from "../../../common/add-coin-modal-window/addCoinModal";
 import { TableHeader } from "./table-header/table-header";
 import { RenderTableItem } from "./table-item/render-crypto-table-item";
 
 export function RenderCryptoTable(props) {
-
-  if (!props) {
-    return <Spinner />;
-  }
 
   return (
     <>

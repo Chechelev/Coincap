@@ -3,9 +3,11 @@ import React, { useState, useEffect } from 'react';
 import { CoincapService } from '../../../../../services/coincap-service';
 import { addWalletItem } from '../../../../wallet/wallet-items/add-wallet-items';
 import { RenderCryptoTable } from '../render-crypto-table';
+import { connect } from 'react-redux';
+import { coinsPerPageFetchData } from '../../../../../actions/items';
+import { Spinner } from '../../../../common/spinner/spinner';
 
-export function CryptoTable(props) {
-
+function CryptoTable(props) {
   const coincapService = new CoincapService();
 
   let [tableCoinList, setTableCoinList] = useState({});
@@ -33,7 +35,7 @@ export function CryptoTable(props) {
   useEffect(() => {
     const interval = setInterval(() => {
       getCoinsInfo();
-    }, 1000);
+    }, 10000);
     return () => {
       clearInterval(interval);
     };
@@ -83,6 +85,9 @@ export function CryptoTable(props) {
       addWalletItem(selectedCoinID);
     }
   };
+  if (!tableCoinList) {
+    return <Spinner></Spinner>
+  }
 
   return (
     <RenderCryptoTable
@@ -97,3 +102,19 @@ export function CryptoTable(props) {
     </RenderCryptoTable>
   );
 };
+
+const mapStateToProps = (state) => {
+  return {
+    coinTable: state.coinTable,
+    hasErrored: state.coinTableHasErrored,
+    isLoading: state.coinTableIsLoading
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchData: (url) => dispatch(coinsPerPageFetchData(url))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CryptoTable);

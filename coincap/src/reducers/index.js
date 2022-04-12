@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
-import { items, itemsHasErrored, itemsIsLoading } from './coins';
+import { items, itemsHasErrored, itemsIsLoading } from './reducers';
 import { coin, coinHasErrored, coinIsLoading } from './coin-detail';
+import { coinTable, coinTableHasErrored, coinTableIsLoading } from './coin-table';
 
 export default combineReducers({
   items,
@@ -9,5 +10,9 @@ export default combineReducers({
 
   coin,
   coinHasErrored,
-  coinIsLoading
+  coinIsLoading,
+
+  coinTable,
+  coinTableHasErrored,
+  coinTableIsLoading
 });

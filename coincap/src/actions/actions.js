@@ -39,3 +39,24 @@ export function coinFetchDataSuccess(coin) {
     coin
   };
 }
+
+export function coinTableHasErrored(bool) {
+  return {
+    type: 'COINTABLE_HAS_ERRORED',
+    hasErrored: bool
+  };
+}
+
+export function coinTableIsLoading(bool) {
+  return {
+    type: 'COINTABLE_IS_LOADING',
+    isLoading: bool
+  };
+}
+
+export function coinTableFetchDataSuccess(coinTable) {
+  return {
+    type: 'COINTABLE_FETCH_DATA_SUCCESS',
+    coinTable
+  };
+}

@@ -1,7 +1,7 @@
 export function coinHasErrored(state = false, action) {
   switch (action.type) {
     case 'COIN_HAS_ERRORED':
-      return action.coinHasErrored;
+      return action.hasErrored;
 
     default:
       return state;
@@ -11,7 +11,7 @@ export function coinHasErrored(state = false, action) {
 export function coinIsLoading(state = false, action) {
   switch (action.type) {
     case 'COIN_IS_LOADING':
-      return action.coinIsLoading;
+      return action.isLoading;
 
     default:
       return state;
