@@ -2,6 +2,7 @@ import React from "react";
 import { Spinner } from "../../../common/spinner/spinner";
 import TradingViewWidget from 'react-tradingview-widget';
 import Modal from "../../../common/add-coin-modal-window/addCoinModal";
+import { BuyBtn } from "./btn-buy-coin";
 
 export function RenderCryptoDetails(props) {
 
@@ -9,7 +10,7 @@ export function RenderCryptoDetails(props) {
   let date = new Date().toDateString();
   let windowInnerWidth = window.innerWidth;
 
-  if (!props.coin) {
+  if (!props) {
     return <Spinner />;
   }
 
@@ -38,9 +39,7 @@ export function RenderCryptoDetails(props) {
               {[name, priceUsd]}
             </Modal>
 
-            <div className="crypto-details__right">
-              <button className="btn__buy-coin" type="button" onClick={props.showModal}>Buy</button>
-            </div>
+            <BuyBtn buyCoin={props.showModal}></BuyBtn>
 
           </div>
 
@@ -84,9 +83,7 @@ export function RenderCryptoDetails(props) {
 
             <Modal show={props.show} warning={props.warning} handleClose={props.handleClose} handleSubmit={props.handleSubmit}>{[name, priceUsd]}</Modal>
 
-            <div className="crypto-details__right">
-              <button className="btn__buy-coin" type="button" onClick={props.showModal}>Buy</button>
-            </div>
+            <BuyBtn buyCoin={props.showModal}></BuyBtn>
 
           </div>
 
@@ -136,9 +133,7 @@ export function RenderCryptoDetails(props) {
 
             <Modal show={props.show} warning={props.warning} handleClose={props.handleClose} handleSubmit={props.handleSubmit}>{[name, priceUsd]}</Modal>
 
-            <div className="crypto-details__right">
-              <button className="btn__buy-coin" type="button" onClick={props.showModal}>Buy</button>
-            </div>
+            <BuyBtn buyCoin={props.showModal}></BuyBtn>
 
           </div>
 
