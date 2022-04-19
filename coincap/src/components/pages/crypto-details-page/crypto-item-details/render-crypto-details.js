@@ -2,7 +2,7 @@ import React from "react";
 import { Spinner } from "../../../common/spinner/spinner";
 import TradingViewWidget from 'react-tradingview-widget';
 import Modal from "../../../common/add-coin-modal-window/addCoinModal";
-import { BuyBtn } from "./btn-buy-coin";
+import BuyBtn from "../btn-buy-coin/btn-buy-coin";
 
 export function RenderCryptoDetails(props) {
 
