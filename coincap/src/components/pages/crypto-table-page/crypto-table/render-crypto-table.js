@@ -1,16 +1,16 @@
 import React from "react";
 import './crypto-table.scss';
-
+import PropTypes from 'prop-types';
 import ReactPaginate from 'react-paginate';
 import Modal from "../../../common/add-coin-modal-window/addCoinModal";
 import { TableHeader } from "./table-header/table-header";
 import { RenderTableItem } from "./table-item/render-crypto-table-item";
 
 export function RenderCryptoTable(props) {
-
+  console.log(props)
   return (
     <>
-      <ReactPaginate
+      <ReactPaginate className={`pagination ${props.pagination}`}
         nextLabel=""
         onPageChange={props.handlePageClick}
         pageCount={5}
@@ -24,12 +24,13 @@ export function RenderCryptoTable(props) {
 
       <div className="container">
         <table>
-          <TableHeader />
+          <TableHeader state={props.size} />
           <tbody>
             <RenderTableItem
               tableCoinList={props.tableCoinList}
               showModal={props.showModal}
-              onItemSelected={props.onItemSelected}>
+              onItemSelected={props.onItemSelected}
+              color={props.color}>
             </RenderTableItem>
           </tbody>
         </table>
@@ -45,3 +46,9 @@ export function RenderCryptoTable(props) {
     </>
   );
 };
+
+RenderCryptoTable.propTypes = {
+  tableCoinList: PropTypes.object,
+  color: PropTypes.string,
+  pagination: PropTypes.bool,
+}

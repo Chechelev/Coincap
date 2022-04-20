@@ -8,6 +8,7 @@ table {
   width: 100%;
   border-collapse: collapse;
   border-radius: 5px;
+  font-family: 'Roboto', sans-serif;
   text-align: left;
   box-shadow: 0px 0px 20px 7px #cacaca;
 
@@ -78,8 +79,6 @@ td:not(:last-child) {
   }
 }
 
-
-
 .fa-plus {
   border: 1px solid $blue-color;
   padding: 3px;
@@ -113,6 +112,14 @@ td:not(:last-child) {
   background-color: #ddd;
 }
 
+//for stories
+.display-none, .false {
+  display: none;
+}
+
+.hover-table-row {
+  color: $blue-color;
+}
 
 @media screen and (max-width: 900px) {
   .crypto-add {

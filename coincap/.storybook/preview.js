@@ -1,3 +1,5 @@
+import '../src/index.scss';
+
 export const parameters = {
   actions: { argTypesRegex: "^[a-z].*" },
   controls: {
@@ -5,5 +7,5 @@ export const parameters = {
       color: /(background|color)$/i,
       date: /Date$/,
     },
-  },
+  }
 }

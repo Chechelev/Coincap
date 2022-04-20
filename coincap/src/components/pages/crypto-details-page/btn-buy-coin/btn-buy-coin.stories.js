@@ -5,6 +5,7 @@ import BuyBtn from './btn-buy-coin';
 export default {
   component: BuyBtn,
   title: 'Buy Button',
+  parameters: { controls: { sort: ['Default', 'Hover', 'Active', 'Media'] } },
   argTypes: {
     text: {
       description: 'Button text',
@@ -32,7 +33,7 @@ export default {
     type: {
       description: 'Button type',
       type: 'string',
-      name: 'label',
+      name: 'type',
       defaultValue: 'button',
       options: ['button'],
       control: { type: 'radio' },
