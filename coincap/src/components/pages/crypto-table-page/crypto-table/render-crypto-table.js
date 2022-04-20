@@ -7,7 +7,6 @@ import { TableHeader } from "./table-header/table-header";
 import { RenderTableItem } from "./table-item/render-crypto-table-item";
 
 export function RenderCryptoTable(props) {
-  console.log(props)
   return (
     <>
       <ReactPaginate className={`pagination ${props.pagination}`}
@@ -51,4 +50,4 @@ RenderCryptoTable.propTypes = {
   tableCoinList: PropTypes.object,
   color: PropTypes.string,
   pagination: PropTypes.bool,
-}
+};

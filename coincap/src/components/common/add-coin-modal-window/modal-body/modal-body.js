@@ -2,7 +2,6 @@ import React from 'react';
 import { useState } from 'react';
 
 export function ModalBody(props) {
-
   const warningClassName = props.warning ? "modal-body__item-amount-warning " : "modal-body__item-amount";
   const [count, setCount] = useState(0);
   localStorage.setItem('submit', count);
