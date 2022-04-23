@@ -113,9 +113,11 @@ td:not(:last-child) {
 }
 
 //for stories
+/*
 .display-none, .false {
-  display: none;
+  visibility: hidden;
 }
+*/
 
 .hover-table-row {
   color: $blue-color;

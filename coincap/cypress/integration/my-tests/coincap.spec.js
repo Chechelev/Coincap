@@ -30,8 +30,7 @@ describe('The CoinCap main page', () => {
           .should('have.length', 9);
 
         const arr = ['Rank', 'Name', 'Price', 'Marcet Cap', 'VWAP (24Hr)', 'Supply', 'Volume (24Hr)', 'Change (24Hr)']
-        for (let i = 0; i < arr.length; i++) {
-
+        for (let i = 0; i < arr.length; i++) {// here we check the names of our thead
           cy.get(`thead tr th:nth-child(${(i + 1)})`)
             .should(
               'have.text',
@@ -39,10 +38,9 @@ describe('The CoinCap main page', () => {
             );
         }
 
-
         cy.get('tbody tr')
           .should('be.visible')
-          .should('have.length', 20);
+          .should('have.length', 20); //check the length of our coins per page
       })
 
     cy.get('.pagination')
@@ -72,14 +70,54 @@ describe('The CoinCap main page', () => {
       })
   })
 
+  it('check the add button of a concrete coin', () => {
+    let numberOfCoins = '1'; // taken as an example of input
 
-  // Form
-  /*
-  cy.get('h2').should('contain.text', 'Enter Your Choices!')
-  cy.get('table').should('be.visible')
-  cy.get('tr').should('have.length', 10)
-  cy.get('button')
-    .should('contain.text', 'Complete')
-    .should('be.disabled')
-*/
+    cy.get('.crypto-add')
+      .eq(0)
+      .click(); // buy first coin of the list
+
+    cy.get('.modal modal-active')
+      .should('be.visible');
+
+    cy.get('.modal-header')
+      .should(
+        'have.text',
+        'Buy Coins'
+      );
+
+    cy.get('.modal-body__titles')
+      .children()
+      .should('have.length', 3);
+
+    const arr = ['Name', 'Amount', 'Total Sum']
+    for (let i = 0; i < arr.length; i++) {// here we check the titles of our modal body
+      cy.get(`.modal-body__titles`)
+        .children(i)
+        .should(
+          'have.text',
+          `${arr[i]}`
+        );
+    }
+
+    cy.get('.modal-body__item-amount')
+      .type(numberOfCoins);
+
+    cy.get('.modal-footer__btn')
+      .click();
+  })
+
+
+  it('check the wallet activation', () => {
+
+  })
+
+  it('check the deletion of wallet items', () => {
+
+  })
+
+  it('close wallet', () => {
+
+  })
+
 });
