@@ -10,7 +10,7 @@ export function RenderCryptoDetails(props) {
   let date = new Date().toDateString();
   let windowInnerWidth = window.innerWidth;
 
-  if (!props) {
+  if (!props.coin) {
     return <Spinner />;
   }
 
