@@ -19,7 +19,7 @@ describe('The CoinCap main page', () => {
           .should('be.visible')
           .children()
           .should('have.length', 4);
-      })
+      });
 
     cy.get('table')
       .should('be.visible')
@@ -36,12 +36,12 @@ describe('The CoinCap main page', () => {
               'have.text',
               `${arr[i]}`
             );
-        }
+        };
 
         cy.get('tbody tr')
           .should('be.visible')
           .should('have.length', 20); //check the length of our coins per page
-      })
+      });
 
     cy.get('.pagination')
       .should('be.visible')
@@ -67,57 +67,107 @@ describe('The CoinCap main page', () => {
             'have.text',
             'GitHub'
           );
-      })
+      });
   })
 
-  it('check the add button of a concrete coin', () => {
+  it('opens modal window of the table', () => {
+    cy.get('.crypto-add')
+      .should('be.visible')
+      .eq(0)
+      .click();// buy first coin of the list
+  });
+
+
+  it('checks components of the modal window', () => {
+    cy.get('.modal.modal-active')
+      .should('be.visible')
+      .within(() => {
+
+        cy.get('.modal-header')
+          .should(
+            'have.text',
+            'Buy Coins×'
+          );
+
+        cy.get('.modal-body__titles')
+          .children()
+          .should('have.length', 3);
+
+        const arr = ['Name', 'Amount', 'Total Sum'];
+        for (let i = 0; i < arr.length; i++) {// here we check the titles of our modal body
+          cy.get(`.modal-body__titles`)
+            .children().eq(i)
+            .should(
+              'contain.text',
+              `${arr[i]}`
+            );
+        };
+      });
+  });
+
+  it('buys coin from the table', () => {
     let numberOfCoins = '1'; // taken as an example of input
 
-    cy.get('.crypto-add')
-      .eq(0)
-      .click(); // buy first coin of the list
-
-    cy.get('.modal modal-active')
-      .should('be.visible');
-
-    cy.get('.modal-header')
-      .should(
-        'have.text',
-        'Buy Coins'
-      );
-
-    cy.get('.modal-body__titles')
-      .children()
-      .should('have.length', 3);
-
-    const arr = ['Name', 'Amount', 'Total Sum']
-    for (let i = 0; i < arr.length; i++) {// here we check the titles of our modal body
-      cy.get(`.modal-body__titles`)
-        .children(i)
-        .should(
-          'have.text',
-          `${arr[i]}`
-        );
-    }
-
     cy.get('.modal-body__item-amount')
-      .type(numberOfCoins);
+      .type(numberOfCoins)
+      .should('have.value', numberOfCoins);
 
     cy.get('.modal-footer__btn')
+      .click()
+      .then(() => {
+        cy.get('.modal-body__item')
+          .should('have.length', 1)
+      });
+
+    cy.wait(5000);
+
+    cy.get('.user-wallet-info')
+      .should('be.visible')
       .click();
-  })
 
+    cy.get('.modal.modal-active').eq(0)
+      .should('be.visible')
+      .within(() => {
 
-  it('check the wallet activation', () => {
+        cy.get('.modal-content')
+          .should('be.visible')
 
-  })
+        cy.get('.modal-header')
+          .should(
+            'have.text',
+            'My Coins×'
+          );
 
-  it('check the deletion of wallet items', () => {
+        cy.get('.modal-body__titles-wallet')
+          .children()
+          .should('have.length', 3);
 
-  })
+        cy.get('.modal-body__items') // check the length of bought coins
+          .children()
+          .should('have.length', 1)
+
+        cy.get('.crypto-minus')
+          .click()
+        Cypress.on('uncaught:exception', (err, runnable) => {
+          return false
+        })
+
+        cy
+          .get('.modal-body__items')
+          .then(elem => {
+            elem[0].removeAttribute('.modal-body__item');
+          })
+      });
+  });
 
   it('close wallet', () => {
+    cy.get('.modal-header').eq(0)
+      .should('be.visible')
+      .click()
+      .within(() => {
 
-  })
-
-});
+        cy.get('.close').eq(0)
+          .click();
+      });
+  });
+})
