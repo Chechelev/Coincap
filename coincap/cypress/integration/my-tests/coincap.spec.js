@@ -170,4 +170,73 @@ describe('The CoinCap main page', () => {
           .click();
       });
   });
+
+  it('opens details', () => {
+    cy.get('tbody tr').eq(0)
+      .should('be.visible')
+      .click()
+  });
+
+  it('loads details page', () => {
+    cy.get('.crypto-details__container')
+      .should('be.visible')
+      .within(() => {
+        cy.get('.crypto-details__left')
+          .should('be.visible')
+          .children()
+          .should('have.length', 2);
+
+        const dayjs = require('dayjs')
+        let weekday = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][new Date().getDay()]
+        let dateFormat = dayjs().format(`MMM DD YYYY`)
+        let res = weekday + "" + dateFormat
+
+        const arr = ['Bitcoin (BTC)', res];
+        for (let i = 0; i < arr.length; i++) {
+          cy.get(`.crypto-details__left`)
+            .children().eq(i)
+            .should(
+              'contain.text',
+              `${arr[i]}`
+            );
+        };
+
+        cy.get('.crypto-details__middle')
+          .should('be.visible')
+          .children()
+          .should('have.length', 2);
+
+        const arr1 = ['Change', 'Price'];
+        for (let i = 0; i < arr1.length; i++) {
+          cy.get(`.crypto-details__middle`)
+            .children().eq(i)
+            .should(
+              'contain.text',
+              `${arr[i]}`
+            );
+        };
+
+      })
+
+    cy.get('.crypto-details__right')
+      .should('be.visible');
+
+    cy.get('.crypto-details__graphic')
+      .should('be.visible');
+  });
+
+  it('opens open buy-coin modal window', () => {
+    cy.get('.crypto-details__right')
+      .click()
+  });
+
+  it('closes buy-coin modal window', () => {
+    cy.get('.modal-content')
+      .within(() => {
+        cy.get('.modal-header')
+          .find('.close')
+          .click()
+      })
+  });
+
 })
