@@ -68,6 +68,7 @@ describe('The CoinCap main page', () => {
             'GitHub'
           );
       });
+    cy.document().imageSnapshot()
   })
 
   it('opens modal window of the table', () => {
@@ -75,6 +76,7 @@ describe('The CoinCap main page', () => {
       .should('be.visible')
       .eq(0)
       .click();// buy first coin of the list
+    cy.document().imageSnapshot()
   });
 
 
@@ -101,6 +103,7 @@ describe('The CoinCap main page', () => {
               'contain.text',
               `${arr[i]}`
             );
+          cy.document().imageSnapshot()
         };
       });
   });
@@ -117,6 +120,7 @@ describe('The CoinCap main page', () => {
       .then(() => {
         cy.get('.modal-body__item')
           .should('have.length', 1)
+        cy.document().imageSnapshot()
       });
 
     cy.wait(5000);
@@ -124,6 +128,7 @@ describe('The CoinCap main page', () => {
     cy.get('.user-wallet-info')
       .should('be.visible')
       .click();
+    cy.document().imageSnapshot()
 
     cy.get('.modal.modal-active').eq(0)
       .should('be.visible')
@@ -168,6 +173,7 @@ describe('The CoinCap main page', () => {
 
         cy.get('.close').eq(0)
           .click();
+        cy.document().imageSnapshot()
       });
   });
 
@@ -175,6 +181,7 @@ describe('The CoinCap main page', () => {
     cy.get('tbody tr').eq(0)
       .should('be.visible')
       .click()
+    cy.document().imageSnapshot()
   });
 
   it('loads details page', () => {
@@ -199,12 +206,14 @@ describe('The CoinCap main page', () => {
               'contain.text',
               `${arr[i]}`
             );
+          cy.document().imageSnapshot()
         };
 
         cy.get('.crypto-details__middle')
           .should('be.visible')
           .children()
           .should('have.length', 2);
+        cy.document().imageSnapshot()
 
         const arr1 = ['Change', 'Price'];
         for (let i = 0; i < arr1.length; i++) {
@@ -215,6 +224,7 @@ describe('The CoinCap main page', () => {
               `${arr[i]}`
             );
         };
+        cy.document().imageSnapshot()
 
       })
 
@@ -228,6 +238,7 @@ describe('The CoinCap main page', () => {
   it('opens open buy-coin modal window', () => {
     cy.get('.crypto-details__right')
       .click()
+    cy.document().imageSnapshot()
   });
 
   it('closes buy-coin modal window', () => {
@@ -237,6 +248,7 @@ describe('The CoinCap main page', () => {
           .find('.close')
           .click()
       })
+    cy.document().imageSnapshot()
   });
 
 })
