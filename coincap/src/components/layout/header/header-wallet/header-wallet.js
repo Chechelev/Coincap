@@ -1,14 +1,9 @@
 import React from "react";
-import { Spinner } from "../../../common/spinner/spinner";
 import { getLocaleCost } from '../header-prices/header-prices';
 
-export function HeaderWallet(props) {
+export function HeaderWallet({ headerCoinCost, showModal }) {
 
-  if (!props) {
-    return <Spinner />
-  }
-
-  let currentCost = props.headerCoinCost;
+  let currentCost = headerCoinCost;
   const localeCost = getLocaleCost();
   const difference = parseFloat(currentCost - localeCost).toFixed(2);
   const diff = difference > 0 ? '+' + (difference) : (difference);
@@ -16,7 +11,7 @@ export function HeaderWallet(props) {
   let totalPercent = (percent < 0 ? + percent : "" + percent);
 
   return (
-    <div className="user-wallet-info" onClick={props.showModal}>
+    <div className="user-wallet-info" onClick={showModal}>
       <div className="user-wallet__current-cost">{parseFloat(currentCost).toFixed(2)} $</div>
       <div className="user-wallet__different-cost">{`${diff == NaN ? 0 : diff}`}</div>
       <div className="user-wallet__different-cost-percent">{(isNaN(percent) || percent == Infinity || percent == -Infinity) ? 0 : totalPercent}%</div>

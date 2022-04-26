@@ -1,7 +1,7 @@
 import React from "react";
 
-export function HeaderTopCoins(props) {
-  const { hasErrored, items } = props.HeaderTopCoins;
+export function HeaderTopCoins({ items, hasErrored }) {
+
   let data = Array.from(items);
 
   if (hasErrored) {
@@ -10,9 +10,9 @@ export function HeaderTopCoins(props) {
 
   return data.slice(0, 3).map(({ id, name, priceUsd }) => {
     return (
-      <div className="top-coins__item" key={id}>
-        <div className="top-coins__item-name">{name}</div>
-        <div className="top-coins__item-price">{`${parseFloat(priceUsd).toFixed(3)}$`}</div>
+      <div data-testid="headerTopCoins" className="top-coins__item" key={id}>
+        <div data-testid="headerTopCoins-name" className="top-coins__item-name">{name}</div>
+        <div data-testid="headerTopCoins-price" className="top-coins__item-price">{`${parseFloat(priceUsd).toFixed(3)}$`}</div>
       </div>
     );
   });

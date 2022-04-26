@@ -51,7 +51,13 @@
     "@storybook/preset-create-react-app": "^4.1.0",
     "@storybook/react": "^6.4.22",
     "@storybook/testing-library": "0.0.9",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^12.1.5",
     "cypress": "^9.5.4",
+    "jest-dom": "^4.0.0",
+    "jest-watch-typeahead": "^0.6.5",
+    "react-test-render": "^1.1.2",
+    "react-test-renderer": "^18.0.0",
     "redux-devtools": "^3.7.0",
     "webpack": "^5.72.0"
   },

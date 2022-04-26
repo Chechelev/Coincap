@@ -55,7 +55,7 @@ function Header(props) {
           <div className="container__inner">
             <RenderHeaderLogo />
             <div className="top-coins">
-              <HeaderTopCoins HeaderTopCoins={props} />
+              <HeaderTopCoins hasErrored={props.hasErrored} items={props.items} />
             </div>
             <HeaderWallet showModal={showModal} headerCoinCost={headerCoinCost} />
           </div>
