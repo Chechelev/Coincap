@@ -68,21 +68,45 @@ describe('The CoinCap main page', () => {
             'GitHub'
           );
       });
-    cy.document().imageSnapshot()
   })
+
+  it('opens modal window of the wallet without coins', () => {
+    cy.get('.user-wallet-info')
+      .should('be.visible')
+      .eq(0)
+      .click()// opens modal window
+      .snapshot()
+
+    cy.get('.modal.modal-active')
+      .should('be.visible')
+      .within(() => {
+
+        cy.get('.modal-header')
+          .should(
+            'have.text',
+            'My Coins×'
+          );
+
+        cy.get('.modal-body__items')
+          .should('not.exist')
+
+        cy.get('.close')
+          .click()
+      });
+  });
 
   it('opens modal window of the table', () => {
     cy.get('.crypto-add')
       .should('be.visible')
       .eq(0)
       .click();// buy first coin of the list
-    cy.document().imageSnapshot()
   });
 
 
   it('checks components of the modal window', () => {
     cy.get('.modal.modal-active')
       .should('be.visible')
+      .snapshot('modal-window snapshot')
       .within(() => {
 
         cy.get('.modal-header')
@@ -93,7 +117,7 @@ describe('The CoinCap main page', () => {
 
         cy.get('.modal-body__titles')
           .children()
-          .should('have.length', 3);
+          .should('have.length', 3)
 
         const arr = ['Name', 'Amount', 'Total Sum'];
         for (let i = 0; i < arr.length; i++) {// here we check the titles of our modal body
@@ -103,7 +127,6 @@ describe('The CoinCap main page', () => {
               'contain.text',
               `${arr[i]}`
             );
-          cy.document().imageSnapshot()
         };
       });
   });
@@ -119,16 +142,14 @@ describe('The CoinCap main page', () => {
       .click()
       .then(() => {
         cy.get('.modal-body__item')
-          .should('have.length', 1)
-        cy.document().imageSnapshot()
+          .should('have.length', 1 || 2)
       });
 
     cy.wait(5000);
 
     cy.get('.user-wallet-info')
       .should('be.visible')
-      .click();
-    cy.document().imageSnapshot()
+      .click()
 
     cy.get('.modal.modal-active').eq(0)
       .should('be.visible')
@@ -173,18 +194,19 @@ describe('The CoinCap main page', () => {
 
         cy.get('.close').eq(0)
           .click();
-        cy.document().imageSnapshot()
       });
+
+    cy.wait(10)
   });
 
-  it('opens details', () => {
+  it('loads details', () => {
     cy.get('tbody tr').eq(0)
       .should('be.visible')
       .click()
-    cy.document().imageSnapshot()
   });
 
   it('loads details page', () => {
+
     cy.get('.crypto-details__container')
       .should('be.visible')
       .within(() => {
@@ -196,7 +218,7 @@ describe('The CoinCap main page', () => {
         const dayjs = require('dayjs')
         let weekday = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][new Date().getDay()]
         let dateFormat = dayjs().format(`MMM DD YYYY`)
-        let res = weekday + "" + dateFormat
+        let res = weekday + " " + dateFormat
 
         const arr = ['Bitcoin (BTC)', res];
         for (let i = 0; i < arr.length; i++) {
@@ -206,14 +228,12 @@ describe('The CoinCap main page', () => {
               'contain.text',
               `${arr[i]}`
             );
-          cy.document().imageSnapshot()
         };
 
         cy.get('.crypto-details__middle')
           .should('be.visible')
           .children()
           .should('have.length', 2);
-        cy.document().imageSnapshot()
 
         const arr1 = ['Change', 'Price'];
         for (let i = 0; i < arr1.length; i++) {
@@ -221,11 +241,9 @@ describe('The CoinCap main page', () => {
             .children().eq(i)
             .should(
               'contain.text',
-              `${arr[i]}`
+              `${arr1[i]}`
             );
         };
-        cy.document().imageSnapshot()
-
       })
 
     cy.get('.crypto-details__right')
@@ -238,17 +256,16 @@ describe('The CoinCap main page', () => {
   it('opens open buy-coin modal window', () => {
     cy.get('.crypto-details__right')
       .click()
-    cy.document().imageSnapshot()
   });
 
   it('closes buy-coin modal window', () => {
     cy.get('.modal-content')
       .within(() => {
         cy.get('.modal-header')
-          .find('.close')
+          .find('.close').eq(1)
           .click()
-      })
-    cy.document().imageSnapshot()
+          .snapshot();
+      });
   });
 
 })
