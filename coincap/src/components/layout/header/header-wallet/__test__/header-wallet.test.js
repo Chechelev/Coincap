@@ -28,7 +28,7 @@ it('checks the current cost element', () => {
 
   expect(userWalletDifferenceElement).toBeInTheDocument();
   expect(userWalletElement).toBeInTheDocument();
-  expect(userWalletElement).toHaveTextContent(544123.12)
+  expect(userWalletElement).toHaveTextContent(544123.12);
 });
 
 it('calls onClick prop when clicked', () => {

@@ -3,13 +3,11 @@ import PropTypes from 'prop-types';
 import './btn-buy-coin.scss';
 
 export default function BuyBtn({ buyCoin, text = 'buy', state = '', size = '', type = 'button' }) {
-  //const buyCoin = props.buyCoin;
   return (
-    <div className={`crypto-details__right`}>
-      <button className={`btn__buy-coin ${state} ${size}`} type={type} onClick={buyCoin}>{text}</button>
+    <div data-testid="cryptoDetailsRightTest" className={`crypto-details__right`}>
+      <button data-testid="btnBuyCoin" className={`btn__buy-coin ${state} ${size}`} type={type} onClick={buyCoin}>{text}</button>
     </div>
   );
-
 };
 
 BuyBtn.propTypes = {
