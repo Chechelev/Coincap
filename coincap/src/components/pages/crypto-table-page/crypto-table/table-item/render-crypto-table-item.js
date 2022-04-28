@@ -7,21 +7,22 @@ import { LinkTo } from "@storybook/addon-links";
 
 export function RenderTableItem(props) {
   let data = Array.from(props.tableCoinList);
+
   if (!data) {
     return <Spinner></Spinner>;
   }
   else {
     return data.map(({ id, rank, name, priceUsd, marketCapUsd, vwap24Hr, supply, volumeUsd24Hr, changePercent24Hr }) => {
       return (
-        // <Router>
-        <tr key={id} onClick={() => props.onItemSelected(id)}>
-          <td>
+        //  <Router>
+        <tr data-testid="tableItem" key={id} onClick={() => props.onItemSelected(id)}>
+          <td data-testid="tableColumn">
             <Link style={{ color: `${props.color}` }} to="/details">{rank}</Link>
           </td>
-          <td>
+          <td data-testid="tableColumn">
             <Link style={{ color: `${props.color}` }} to="/details">{name}</Link>
           </td>
-          <td>
+          <td data-testid="tableColumn">
             <Link style={{ color: `${props.color}` }} to="/details">{`${parseFloat(priceUsd).toFixed(3)}$`}</Link>
           </td>
           <td>
