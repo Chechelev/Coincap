@@ -2,7 +2,7 @@ import React from "react";
 
 export function TableHeader() {
   return (
-    <thead>
+    <thead data-testid="tableHeader">
       <tr>
         <th>Rank</th>
         <th>Name</th>

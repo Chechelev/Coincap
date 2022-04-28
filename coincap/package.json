@@ -72,9 +72,6 @@
         ],
         "rules": {
           "import/no-anonymous-default-export": "off"
-        },
-        "jest": {
-          "resetMocks": false
         }
       }
     ]

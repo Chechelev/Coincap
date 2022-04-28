@@ -22,9 +22,9 @@ export function RenderCryptoTable(props) {
       </ReactPaginate>
 
       <div className="container">
-        <table>
+        <table data-testid='table'>
           <TableHeader state={props.size} />
-          <tbody>
+          <tbody data-testid='tbody'>
             <RenderTableItem
               tableCoinList={props.tableCoinList}
               showModal={props.showModal}
