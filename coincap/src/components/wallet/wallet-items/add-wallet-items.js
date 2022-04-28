@@ -1,5 +1,3 @@
-import React from "react";
-
 export const addWalletItem = (coin) => {
   let existingEntries = JSON.parse(localStorage.getItem("walletData"));
   if (existingEntries == null) existingEntries = [];

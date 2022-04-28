@@ -10,7 +10,7 @@ export const Wallet = ({ handleClose, show }) => {
   const showHideClassName = show ? "modal modal-active" : "modal display-none";
 
   return (
-    <div id="openModal" className={showHideClassName}>
+    <div data-testid="modalTest" id="openModal" className={showHideClassName}>
       <div className="modal-dialog">
         <div className="modal-content">
           <WalletModalHeader handleClose={handleClose} />

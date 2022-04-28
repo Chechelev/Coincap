@@ -6,6 +6,7 @@ export function ModalFooter({ handleSubmit, color }) {
       <div className="modal-footer__btn-container">
         <button
           style={{ background: `${color}` }}
+          data-testid="modalFooterBtnTest "
           className="modal-footer__btn"
           type="submit"
           onClick={handleSubmit}
