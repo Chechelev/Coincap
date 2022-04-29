@@ -35,19 +35,19 @@ const Template = args => <Modal {...args} />;
 export const Default = Template.bind({});
 Default.args = {
   show: false,
-  children: ['', 0]
+  children: ['Coin name', 0]
 };
 
 export const OpenWindow = Template.bind({});
 OpenWindow.args = {
   show: true,
-  children: ['Litecoin', 80.16]
+  children: ['Litecoin', '80.16']
 };
 
 export const Color = Template.bind({});
 Color.args = {
   show: true,
-  children: ['Litecoin', 80.16],
+  children: ['Litecoin', '80.16'],
   color: 'linear-gradient(90deg, rgba(59, 58, 153, 0.958421) 18%, rgba(2, 0, 176, 0.958421) 53%, rgba(120, 198, 191, 0.809961) 100%)'
 };
 

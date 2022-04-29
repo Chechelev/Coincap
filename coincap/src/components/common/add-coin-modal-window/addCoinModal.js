@@ -11,7 +11,7 @@ const Modal = ({
   handleSubmit,
   show = false,
   warning = '',
-  children = ['', 0],
+  children = [],
   color = 'linear-gradient(90deg, rgba(59, 58, 153, 0.957) 18%, rgba(2, 0, 176, 0.957) 53%, rgba(120, 198, 191, 0.81) 100%)' }) => {
   const showHideClassName = show ? "modal modal-active" : "modal display-none";
 
