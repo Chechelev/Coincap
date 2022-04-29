@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import Header from '../layout/header/header';
 import CryptoTable from '../pages/crypto-table-page/crypto-table/table-data/crypto-table-data';
@@ -8,11 +9,15 @@ import { Footer } from '../layout/footer/footer';
 
 function App() {
 
-  let [selectedCoin, setSelectedCon] = useState(localStorage.getItem('coinId') || null)
+  let [selectedCoin, setSelectedCon] = useState(localStorage.getItem('coinId') || null);
+  const navigate = useNavigate();
 
   const onCoinSelected = (id) => {
+
     setSelectedCon(selectedCoin = id)
     localStorage.setItem('coinId', id);
+
+    navigate('/details');
   };
 
   return (

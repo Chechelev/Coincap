@@ -15,30 +15,30 @@ export function RenderTableItem(props) {
     return data.map(({ id, rank, name, priceUsd, marketCapUsd, vwap24Hr, supply, volumeUsd24Hr, changePercent24Hr }) => {
       return (
         //<Router>
-        <tr data-testid="tableItem" key={id} onClick={() => props.onItemSelected(id)}>
-          <td data-testid="tableColumn">
-            <Link style={{ color: `${props.color}` }} to="/details">{rank}</Link>
+        <tr data-testid="tableItem" key={id} >
+          <td data-testid="tableColumn" onClick={() => props.onItemSelected(id)}>
+            <span style={{ color: `${props.color}` }} to="/details">{rank}</span>
           </td>
-          <td data-testid="tableColumn">
-            <Link style={{ color: `${props.color}` }} to="/details">{name}</Link>
+          <td data-testid="tableColumn" onClick={() => props.onItemSelected(id)}>
+            <span style={{ color: `${props.color}` }} to="/details">{name}</span>
           </td>
-          <td data-testid="tableColumn">
-            <Link style={{ color: `${props.color}` }} to="/details">{`${parseFloat(priceUsd).toFixed(3)}$`}</Link>
+          <td data-testid="tableColumn" onClick={() => props.onItemSelected(id)}>
+            <span style={{ color: `${props.color}` }} to="/details">{`${parseFloat(priceUsd).toFixed(3)}$`}</span>
           </td>
-          <td>
-            <Link style={{ color: `${props.color}` }} to="/details">{`${parseFloat(marketCapUsd / 1000000000).toFixed(2)}$ b.`}</Link>
+          <td onClick={() => props.onItemSelected(id)}>
+            <span style={{ color: `${props.color}` }} to="/details">{`${parseFloat(marketCapUsd / 1000000000).toFixed(2)}$ b.`}</span>
           </td>
-          <td>
-            <Link style={{ color: `${props.color}` }} to="/details">{`${parseFloat(vwap24Hr).toFixed(2)}$`}</Link>
+          <td onClick={() => props.onItemSelected(id)}>
+            <span style={{ color: `${props.color}` }} to="/details">{`${parseFloat(vwap24Hr).toFixed(2)}$`}</span>
           </td>
-          <td>
-            <Link style={{ color: `${props.color}` }} to="/details">{`${parseFloat(supply / 1000000).toFixed(2)}m.`}</Link>
+          <td onClick={() => props.onItemSelected(id)}>
+            <span style={{ color: `${props.color}` }} to="/details">{`${parseFloat(supply / 1000000).toFixed(2)}m.`}</span>
           </td>
-          <td>
-            <Link style={{ color: `${props.color}` }} to="/details">{`${parseFloat(volumeUsd24Hr / 1000000).toFixed(2)}m.`}</Link>
+          <td onClick={() => props.onItemSelected(id)}>
+            <span style={{ color: `${props.color}` }} to="/details">{`${parseFloat(volumeUsd24Hr / 1000000).toFixed(2)}m.`}</span>
           </td>
-          <td>
-            <Link style={{ color: `${props.color}` }} to="/details">{`${parseFloat(changePercent24Hr).toFixed(2)}%`}</Link>
+          <td onClick={() => props.onItemSelected(id)}>
+            <span style={{ color: `${props.color}` }} to="/details">{`${parseFloat(changePercent24Hr).toFixed(2)}%`}</span>
           </td>
           <td className="crypto-add" onClick={() => props.showModal(id, name, priceUsd)}>
             <i className="fa-solid fa-plus"></i>

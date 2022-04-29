@@ -5,7 +5,7 @@ export function RenderCoins({ existingEntries, handleDeleteElement }) {
   return existingEntries.map((element, i) => {
     return (
       <div data-testid="renderCoinsTest" className="modal-body__items">
-        <div className="modal-body__item" key={element.id} >
+        <div className="modal-body__item" key={i} >
           <div className="modal-body__item-name">{element.name}</div>
           <div className="modal-body__item-amount">{element.amount}</div>
           <div className="modal-body__item-total-price">{`${(element.amount * ((parseInt(element.price * 100)) / 100)).toFixed(2)}`}$</div>

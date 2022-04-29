@@ -35,6 +35,12 @@ table {
   tr {
     cursor: pointer;
 
+    &:hover {
+      td:not(:last-child) {
+        color: $blue-color;
+      }
+    }
+
     td {
       padding: 9px 0;
       border-bottom: 1px solid #ccc;
@@ -53,11 +59,6 @@ table {
 
     }
   }
-}
-
-tr:hover a,
-td:not(:last-child) {
-  color: $blue-color;
 }
 
 /*плюс*/
@@ -113,11 +114,14 @@ td:not(:last-child) {
 }
 
 //for stories
-/*
-.display-none, .false {
-  visibility: hidden;
+
+ .false {
+ visibility: hidden;
 }
-*/
+
+.true {
+  visibility: inherit;
+}
 
 .hover-table-row {
   color: $blue-color;

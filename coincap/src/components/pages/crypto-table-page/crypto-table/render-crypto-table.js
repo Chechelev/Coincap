@@ -9,7 +9,7 @@ import { RenderTableItem } from "./table-item/render-crypto-table-item";
 export function RenderCryptoTable(props) {
   return (
     <>
-      <ReactPaginate className={`pagination ${props.pagination}`}
+      <ReactPaginate className={`pagination ${props.pagination} `}
         nextLabel=""
         onPageChange={props.handlePageClick}
         pageCount={5}
