@@ -12,7 +12,8 @@ it('shows wallet modal', () => {
   const handleClick = jest.fn();
 
   render(<Wallet showModal={handleClick} show={true}></Wallet>);
-  const modalTestElement = screen.getByTestId("modalTest");
+  const modalTestElement = screen.getByTestId('modalTest');
   expect(modalTestElement).toBeInTheDocument();
+  expect(modalTestElement).toHaveClass('modal modal-active');
 
 });

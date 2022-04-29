@@ -31,6 +31,33 @@ it('checks the current cost element', () => {
   expect(userWalletElement).toHaveTextContent(544123.12);
 });
 
+it('checks the diffrence cost element', () => {
+  const headerCoinCost = 544123.123543;
+  const walletData = [
+    {
+      id: "bitcoin",
+      name: "Bitcoin",
+      price: "39144.0257023189199431",
+      amount: "1"
+    }
+  ];
+
+  localStorage.setItem('walletData', JSON.stringify(walletData));
+
+  render(<HeaderWallet headerCoinCost={headerCoinCost} ></HeaderWallet>);
+
+  const userWalletCurrentCostElement = screen.getByTestId("user-wallet__current-cost-test");
+  const userWalletDifferenceElement = screen.getByTestId("user-wallet__different-cost-test");
+  const userWalletPercentElement = screen.getByTestId("user-wallet__different-cost-percent");
+
+  expect(userWalletCurrentCostElement).toBeInTheDocument();
+  expect(userWalletDifferenceElement).toBeInTheDocument();
+  expect(userWalletPercentElement).toBeInTheDocument();
+
+  expect(localStorage.getItem('walletData')).toBe("[{\"id\":\"bitcoin\",\"name\":\"Bitcoin\",\"price\":\"39144.0257023189199431\",\"amount\":\"1\"}]");
+
+});
+
 it('calls onClick prop when clicked', () => {
   const handleClick = jest.fn();
 
@@ -40,6 +67,8 @@ it('calls onClick prop when clicked', () => {
   fireEvent.click(userWalletElement);
   expect(handleClick).toHaveBeenCalledTimes(1);
 });
+
+
 
 /*
 const localStorageMock = (function () {

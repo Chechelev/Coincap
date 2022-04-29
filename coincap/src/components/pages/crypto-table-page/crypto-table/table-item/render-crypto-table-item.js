@@ -14,7 +14,7 @@ export function RenderTableItem(props) {
   else {
     return data.map(({ id, rank, name, priceUsd, marketCapUsd, vwap24Hr, supply, volumeUsd24Hr, changePercent24Hr }) => {
       return (
-        //  <Router>
+        //<Router>
         <tr data-testid="tableItem" key={id} onClick={() => props.onItemSelected(id)}>
           <td data-testid="tableColumn">
             <Link style={{ color: `${props.color}` }} to="/details">{rank}</Link>
@@ -44,7 +44,7 @@ export function RenderTableItem(props) {
             <i className="fa-solid fa-plus"></i>
           </td>
         </tr>
-        //  </Router>
+        //  </Router >
       );
     }
     )
