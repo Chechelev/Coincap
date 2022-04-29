@@ -132,7 +132,7 @@ describe('The CoinCap main page', () => {
   });
 
   it('buys coin from the table', () => {
-    let numberOfCoins = '1'; // taken as an example of input
+    let numberOfCoins = 1; // taken as an example of input
 
     cy.get('.modal-body__item-amount')
       .type(numberOfCoins)
