@@ -17,18 +17,18 @@ export function RenderCryptoDetails(props) {
   else if (windowInnerWidth >= 900 && props.coin) {
 
     return (
-      <div className="crypto-details">
+      <div data-testid="cryptoDetailsTest" className="crypto-details">
         <div className="container">
           <div className="crypto-details__container">
 
             <div className="crypto-details__left">
-              <div className="crypto-details__name">{name} ({symbol})</div>
-              <div className="crypto-details__date">{date}</div>
+              <div data-testid="cryptoDetailsName" className="crypto-details__name">{name} ({symbol})</div>
+              <div data-testid="cryptoDetailsDate" className="crypto-details__date">{date}</div>
             </div>
 
             <div className="crypto-details__middle">
-              <div className="crypto-details__change">Change <span className={changePercent24Hr >= 0 ? 'change-green' : 'change-red'}>{`${parseFloat(changePercent24Hr).toFixed(3)}%`}</span></div>
-              <div className="crypto-details__price">Price <span>{`${parseFloat(priceUsd).toFixed(3)}$`}</span></div>
+              <div data-testid="cryptoDetailsChange" className="crypto-details__change">Change <span data-testid='change-green' className={changePercent24Hr >= 0 ? 'change-green' : 'change-red'}>{`${parseFloat(changePercent24Hr).toFixed(3)}%`}</span></div>
+              <div data-testid="cryptoDetailsPrice" className="crypto-details__price">Price <span>{`${parseFloat(priceUsd).toFixed(3)}$`}</span></div>
             </div>
 
             <Modal
