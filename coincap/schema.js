@@ -25,6 +25,7 @@ const dataType = new GraphQLObjectType({
   name: 'Coin',
   fields: () => ({
     id: { type: GraphQLID },
+    rank: { type: GraphQLString },
     name: { type: GraphQLString },
     priceUsd: { type: GraphQLString },
     supply: { type: GraphQLString },
