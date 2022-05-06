@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 export function ModalBody({ children, warning }) {
   const warningClassName = warning ? "modal-body__item-amount-warning" : "modal-body__item-amount";
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState('');
   localStorage.setItem('submit', count);
 
   return (
