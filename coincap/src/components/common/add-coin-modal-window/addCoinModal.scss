@@ -2,12 +2,16 @@
 @import '../../scss/mixin.scss';
 
 
-.modal-body__titles {
-  @include flexible();
-  color: $blue-color;
-  justify-content: space-around;
+.modal-body {
+  &__titles {
+    @include flexible();
+    color: $blue-color;
+    justify-content: space-around;
+  }
 
-  &-name, &-amount, &-total-price {
+  &-name,
+  &-amount,
+  &-total-price {
     width: 30%
   }
 
@@ -20,10 +24,12 @@
   }
 }
 
-.modal-body__item {
-  @include flexible();
-  justify-content: space-around;
-  margin-bottom: 15px;
+.modal-body {
+  &__item {
+    @include flexible();
+    justify-content: space-around;
+    margin-bottom: 15px;
+  }
 
   &-name {
     width: 30%;

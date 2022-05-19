@@ -1,9 +1,9 @@
 import React from 'react';
 import './WalletModal.scss';
 
-import { WalletModalHeader } from './wallet-modal-header/WalletModalHeader';
-import { WalletModalBody } from './wallet-modal-body/WalletModalBody';
-import { WalletItems } from '../wallet-items/WalletItems';
+import { WalletModalHeader } from './walletModalHeader/WalletModalHeader';
+import { WalletModalBody } from './walletModalBody/WalletModalBody';
+import { WalletItems } from '../walletItems/WalletItems';
 
 export const WalletModal = ({ handleClose, show }) => {
 

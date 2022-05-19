@@ -65,23 +65,6 @@
     outline: 0;
   }
 
-  &-header {
-    @include flexible();
-    justify-content: space-between;
-    padding: 15px;
-    border-bottom: 1px solid #eceeef;
-    color: $white-color;
-    background: $header-footer-bg-color;
-  }
-
-  &-header__title {
-    margin-top: 0;
-    margin-bottom: 0;
-    line-height: 1.5;
-    font-size: 1.25rem;
-    font-weight: 500;
-  }
-
   &-body {
     position: relative;
     -webkit-box-flex: 1;
@@ -90,23 +73,40 @@
     flex: 1 1 auto;
     padding: 15px;
     overflow: auto;
+  }
+}
 
-    &__titles-wallet {
-      @include flexible();
-      color: $blue-color;
-      justify-content: space-around;
+.modal-header {
+  @include flexible();
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid #eceeef;
+    color: $white-color;
+    background: $header-footer-bg-color;
 
-      &-name {
-        width: 27%;
-      }
-      &-amount {
-        width: 25%;
-      }
-      &-total-price {
-        width: 25%;
-        text-align: left;
-      }
+    &__title {
+      margin-top: 0;
+      margin-bottom: 0;
+      line-height: 1.5;
+      font-size: 1.25rem;
+      font-weight: 500;
     }
+}
+
+.modal-body__titles-wallet {
+  @include flexible();
+  color: $blue-color;
+  justify-content: space-around;
+
+  &-name {
+    width: 27%;
+  }
+  &-amount {
+    width: 25%;
+  }
+  &-total-price {
+    width: 25%;
+    text-align: left;
   }
 }
 

@@ -11,54 +11,53 @@ table {
   font-family: 'Roboto', sans-serif;
   text-align: left;
   box-shadow: 0px 0px 20px 7px #cacaca;
+}
 
-  th {
-    padding: 10px 8px;
-    text-align: center;
-    font-weight: normal;
-    color: $dark-blue;
-    border-bottom: 2px solid #6678b1;
+th {
+  padding: 10px 8px;
+  text-align: center;
+  font-weight: normal;
+  color: $dark-blue;
+  border-bottom: 2px solid #6678b1;
 
-    &:nth-child(1) {
-      width: 3%;
-    }
-
-    &:nth-child(2) {
-      width: 10%;
-    }
-
-    &:nth-child(3) {
-      width: 20%;
-    }
+  &:nth-child(1) {
+    width: 3%;
   }
 
-  tr {
-    cursor: pointer;
+  &:nth-child(2) {
+    width: 10%;
+  }
 
-    &:hover {
-      td:not(:last-child) {
-        color: $blue-color;
-      }
-    }
+  &:nth-child(3) {
+    width: 20%;
+  }
+}
 
-    td {
-      padding: 9px 0;
-      border-bottom: 1px solid #ccc;
-      color: rgb(52, 52, 80);
-      text-align: center;
-      font-weight: 300;
-      transition: .2s linear;
+tr {
+  cursor: pointer;
 
-      a {
-        display: block;
-        height: 100%;
-        width: 100%;
-        text-decoration: none;
-        color: #343450;
-      }
-
+  &:hover {
+    td:not(:last-child) {
+      color: $blue-color;
     }
   }
+}
+
+td {
+  padding: 9px 0;
+  border-bottom: 1px solid #ccc;
+  color: rgb(52, 52, 80);
+  text-align: center;
+  font-weight: 300;
+  transition: .2s linear;
+}
+
+td a {
+  display: block;
+  height: 100%;
+  width: 100%;
+  text-decoration: none;
+  color: #343450;
 }
 
 /*плюс*/
@@ -70,13 +69,13 @@ table {
   &:hover {
     transform: scale(1.1);
   }
+}
 
-  a {
-    color: #343450;
+.crypto-add a {
+  color: #343450;
 
-    &:hover {
-      color: $blue-color;
-    }
+  &:hover {
+    color: $blue-color;
   }
 }
 
@@ -115,8 +114,8 @@ table {
 
 //for stories
 
- .false {
- visibility: hidden;
+.false {
+  visibility: hidden;
 }
 
 .true {
