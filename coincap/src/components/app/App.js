@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-import Header from '../layout/header/header';
-import CryptoTable from '../pages/crypto-table-page/crypto-table/table-data/crypto-table-data';
-import { CoinDetails } from '../pages/crypto-details-page/crypto-item-details/crypto-details';
-import { Footer } from '../layout/footer/footer';
+import Header from '../layout/header/Header';
+import CryptoTable from '../pages/crypto-table-page/crypto-table/tableData/CryptoTableData';
+import { CoinDetails } from '../pages/crypto-details-page/cryptoItemDetails/CoinDetails';
+import { Footer } from '../layout/footer/Footer';
 
 function App() {
 

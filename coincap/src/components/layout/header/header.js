@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import './header.scss';
+import './Header.scss';
 
-import { Wallet } from '../../wallet/wallet-modal-window/wallet-modal-window';
-import { HeaderTopCoins } from './header-top-coins/header-top-coins';
-import { getCurrentCost } from './header-prices/header-prices';
-import { HeaderWallet } from './header-wallet/header-wallet';
-import { RenderHeaderLogo } from './header-logo/header-logo';
+import { WalletModal } from '../../wallet/wallet-modal-window/WalletModal';
+import { HeaderTopCoins } from './headerTopCoins/HeaderTopCoins';
+import { getCurrentCost } from './headerPrices/HeaderPrices';
+import { HeaderWallet } from './headerWallet/HeaderWallet';
+import { RenderHeaderLogo } from './headerLogo/HeaderLogo';
 import { connect } from 'react-redux';
 import { itemsFetchData } from '../../../actions/items';
 
@@ -61,7 +61,7 @@ function Header(props) {
           </div>
         </div>
       </header>
-      <Wallet show={show} handleClose={hideModal} />
+      <WalletModal show={show} handleClose={hideModal} />
     </>
   );
 };
