@@ -6,10 +6,8 @@ import { HeaderTopCoins } from './headerTopCoins/HeaderTopCoins';
 import { getCurrentCost } from './headerPrices/HeaderPrices';
 import { HeaderWallet } from './headerWallet/HeaderWallet';
 import { RenderHeaderLogo } from './headerLogo/HeaderLogo';
-import { connect } from 'react-redux';
-import { itemsFetchData } from '../../../actions/items';
 
-function Header() {
+export function Header() {
   let [headerCoinCost, setHeaderCoinCost] = useState({});
   let [show, setShow] = useState(false);
 
@@ -60,18 +58,3 @@ function Header() {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    items: state.items,
-    hasErrored: state.itemsHasErrored,
-    isLoading: state.itemsIsLoading
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchData: (url) => dispatch(itemsFetchData(url))
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
