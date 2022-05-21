@@ -1,43 +1,56 @@
 import React, { useState, useEffect } from 'react';
-
 import { CoincapService } from '../../../../../services/CoincapService';
 import { addWalletItem } from '../../../../wallet/walletItems/addWalletItem';
 import { RenderCryptoTable } from '../RenderCryptoTable';
+import { useQuery } from "@apollo/client";
+import { coinInfoQuery } from "../../../../queries/coinInfoQuery";
 import { Spinner } from '../../../../common/spinner/Spinner';
 
 export function CryptoTable(props) {
   const coincapService = new CoincapService();
 
-  let [tableCoinList, setTableCoinList] = useState({});
   let [selectedCoinID, setSelectedCoinID] = useState(null);
   let [selectedCoinName, setSelectedCoinName] = useState(null);
   let [selectedCoinPrice, setSelectedCoinPrice] = useState(null);
   let [show, setShow] = useState(false);
   let [warning, setWarning] = useState(false);
 
-  const getCoinsInfo = () => {
-    coincapService
-      .getCoinsPerPage(+localStorage.getItem('page'))
-      .then((tableCoinList) => {
-        setTableCoinList(tableCoinList)
-      });
-  };
+  let aaa = () => {
+    let currentPage = +localStorage.getItem('page') != null ? +localStorage.getItem('page') : 0
+    switch (currentPage) {
+      case 1:
+        currentPage = 0;
+        return currentPage;
+      case 2:
+        currentPage = 20;
+        return currentPage;
+      case 3:
+        currentPage = 40;
+        return currentPage;
+      case 4:
+        currentPage = 60;
+        return currentPage;
+      case 5:
+        currentPage = 80;
+        return currentPage;
+    }
+  }
+
+  let { loading, error, data, startPolling, stopPolling, refetch } = useQuery(coinInfoQuery, {
+    variables: {
+      offset: aaa(),
+    },
+  });
 
   useEffect(() => {
-    getCoinsInfo();
+    startPolling(1000)
     return () => {
-      setTableCoinList({});
-    };
-  }, []);
+      stopPolling()
+    }
+  }, [startPolling, stopPolling]);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      getCoinsInfo();
-    }, 10000);
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
+  if (loading) return <Spinner />;
+  if (error) return `Error! ${error.message}`;
 
   const getCoinInfo = (id) => {
     coincapService
@@ -47,17 +60,14 @@ export function CryptoTable(props) {
       });
   };
 
-  const handlePageClick = (data) => {
-    localStorage.setItem('page', data.selected + 1);
-    coincapService
-      .getCoinsPerPage(data.selected + 1)
-      .then((table) => {
-        setTableCoinList(tableCoinList = table)
-      });
+  const handlePageClick = (item) => {
+    localStorage.setItem('page', item.selected + 1);
+    refetch({ offset: aaa() })
   };
 
+
   const showModal = (id, name, price) => {
-    getCoinInfo(id);
+    getCoinInfo(id); // сюда приспособить строку
     setShow(show = true);
     setSelectedCoinName(selectedCoinName = name);
     setSelectedCoinPrice(selectedCoinPrice = price);
@@ -83,14 +93,11 @@ export function CryptoTable(props) {
       addWalletItem(selectedCoinID);
     }
   };
-  if (!tableCoinList) {
-    return <Spinner></Spinner>
-  }
 
   return (
     <RenderCryptoTable
       handlePageClick={handlePageClick}
-      tableCoinList={tableCoinList}
+      tableCoinList={data}
       showModal={showModal}
       submitModal={submitModal}
       onItemSelected={props.onItemSelected}

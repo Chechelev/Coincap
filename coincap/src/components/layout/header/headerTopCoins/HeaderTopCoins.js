@@ -7,7 +7,7 @@ export function HeaderTopCoins() {
   let { loading, error, data, startPolling, stopPolling } = useQuery(coinInfoHeader);
 
   useEffect(() => {
-    startPolling(5000)
+    startPolling(1000)
     return () => {
       stopPolling()
     }

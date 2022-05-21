@@ -3,7 +3,8 @@ const {
   GraphQLString,
   GraphQLList,
   GraphQLSchema,
-  GraphQLID } = require('graphql');
+  GraphQLID,
+  GraphQLInt } = require('graphql');
 
 const axios = require('axios');
 
@@ -49,14 +50,14 @@ const RootQuery = new GraphQLObjectType({
       }
     },
 
-    coin: {
-      type: coinId,
+    coinsPagination: {
+      type: coinTypes,
       args: {
-        id: { type: GraphQLString },
+        offset: { type: GraphQLInt },
       },
       resolve(parent, args) {
         return axios
-          .get(`https://api.coincap.io/v2/assets/${args.id}`)
+          .get(`https://api.coincap.io/v2/assets?offset=${args.offset}&limit=20`)
           .then(res => res.data);
       }
     },

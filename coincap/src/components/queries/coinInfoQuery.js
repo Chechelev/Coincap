@@ -1,11 +1,10 @@
 import {
-  useQuery,
   gql
 } from "@apollo/client";
 
 export const coinInfoQuery = gql`
- {
-   coins {
+ query CoinQuery($offset: Int!) {
+  coinsPagination (offset: $offset){
      data {
       id
       rank
