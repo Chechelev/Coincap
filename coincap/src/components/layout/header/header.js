@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Header.scss';
 
-import { WalletModal } from '../../wallet/wallet-modal-window/WalletModal';
+import { WalletModal } from '../../wallet/walletModal/WalletModal';
 import { HeaderTopCoins } from './headerTopCoins/HeaderTopCoins';
 import { getCurrentCost } from './headerPrices/HeaderPrices';
 import { HeaderWallet } from './headerWallet/HeaderWallet';
@@ -9,13 +9,9 @@ import { RenderHeaderLogo } from './headerLogo/HeaderLogo';
 import { connect } from 'react-redux';
 import { itemsFetchData } from '../../../actions/items';
 
-function Header(props) {
+function Header() {
   let [headerCoinCost, setHeaderCoinCost] = useState({});
   let [show, setShow] = useState(false);
-
-  const setCoins = () => {
-    props.fetchData('https://api.coincap.io/v2/assets');
-  };
 
   const setCurrentCost = () => {
     getCurrentCost()
@@ -25,13 +21,11 @@ function Header(props) {
   };
 
   useEffect(() => {
-    setCoins();
     setCurrentCost();
   }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCoins();
       setCurrentCost();
     }, 1000);
     return () => {
@@ -55,7 +49,7 @@ function Header(props) {
           <div className="container__inner">
             <RenderHeaderLogo />
             <div className="top-coins">
-              <HeaderTopCoins hasErrored={props.hasErrored} items={props.items} />
+              <HeaderTopCoins />
             </div>
             <HeaderWallet showModal={showModal} headerCoinCost={headerCoinCost} />
           </div>

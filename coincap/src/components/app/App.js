@@ -3,8 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 import Header from '../layout/header/Header';
-import CryptoTable from '../pages/crypto-table-page/crypto-table/tableData/CryptoTableData';
-import { CoinDetails } from '../pages/crypto-details-page/cryptoItemDetails/CoinDetails';
+import CryptoTable from '../pages/cryptoTablePage/crypto-table/tableData/CryptoTableData';
+import { CoinDetails } from '../pages/cryptoDetailsPage/cryptoItemDetails/CoinDetails';
 import { Footer } from '../layout/footer/Footer';
 
 function App() {

@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useQuery } from "@apollo/client";
+import { coinInfoHeader } from "../../../queries/coinInfoHeader";
 
-export function HeaderTopCoins({ items, hasErrored }) {
+export function HeaderTopCoins() {
 
-  let data = Array.from(items);
+  let { loading, error, data, startPolling, stopPolling } = useQuery(coinInfoHeader);
 
-  if (hasErrored) {
-    return <p>Sorry! There was an error loading the items</p>;
-  }
+  useEffect(() => {
+    startPolling(5000)
+    return () => {
+      stopPolling()
+    }
+  }, [startPolling, stopPolling])
 
-  return data.slice(0, 3).map(({ id, name, priceUsd }) => {
+  if (loading) return 'Loading...';
+  if (error) return `Error! ${error.message}`;
+
+  return data.coins.data.slice(0, 3).map(({ id, name, priceUsd }) => {
     return (
       <div data-testid="headerTopCoins" className="top-coins__item" key={id}>
         <div data-testid="headerTopCoins-name" className="top-coins__item-name">{name}</div>

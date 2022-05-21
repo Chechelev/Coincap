@@ -1,7 +1,4 @@
-import {
-  useQuery,
-  gql
-} from "@apollo/client";
+import { gql } from "@apollo/client";
 
 export const coinInfoHeader = gql`
  {
