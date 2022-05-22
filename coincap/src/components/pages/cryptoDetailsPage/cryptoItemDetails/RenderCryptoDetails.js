@@ -1,6 +1,6 @@
 import React from "react";
 import TradingViewWidget from 'react-tradingview-widget';
-import Modal from "../../../common/add-coin-modal-window/addCoinModal";
+import Modal from "../../../common/addCoinModal/addCoinModal";
 import BuyBtn from "../btnBuyCoin/BtnBuyCoin";
 
 export function RenderCryptoDetails(props) {

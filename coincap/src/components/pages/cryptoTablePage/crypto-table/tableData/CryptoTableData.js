@@ -20,7 +20,6 @@ export function CryptoTable(props) {
     },
   });
 
-
   useEffect(() => {
     startPolling(1000)
     return () => {
@@ -36,7 +35,6 @@ export function CryptoTable(props) {
     localStorage.setItem('page', item.selected + 1);
     refetch({ offset: pageNumber() })
   };
-
 
   const showModal = (id, name, price) => {
     setShow(show = true);

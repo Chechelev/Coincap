@@ -1,6 +1,4 @@
-import {
-  gql
-} from "@apollo/client";
+import { gql } from "@apollo/client";
 
 export const coinDetailsQuery = gql`
  query CoinDetailsQuery($id: String!) {

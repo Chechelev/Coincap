@@ -1,6 +1,4 @@
-import {
-  gql
-} from "@apollo/client";
+import { gql } from "@apollo/client";
 
 export const coinInfoQuery = gql`
  query CoinQuery($offset: Int!) {

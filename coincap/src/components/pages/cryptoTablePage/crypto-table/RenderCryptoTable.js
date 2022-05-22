@@ -2,7 +2,7 @@ import React from "react";
 import './CryptoTable.scss';
 import PropTypes from 'prop-types';
 import ReactPaginate from 'react-paginate';
-import Modal from "../../../common/add-coin-modal-window/addCoinModal";
+import Modal from "../../../common/addCoinModal/addCoinModal";
 import { TableHeader } from "./tableHeader/TableHeader";
 import { RenderTableItem } from "./tableItem/RenderTableItem";
 
