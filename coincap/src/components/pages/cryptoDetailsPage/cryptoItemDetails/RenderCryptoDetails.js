@@ -5,8 +5,6 @@ import BuyBtn from "../btnBuyCoin/BtnBuyCoin";
 
 export function RenderCryptoDetails(props) {
 
-  console.log(props.coin.coin.data)
-
   const { symbol, name, priceUsd, marketCapUsd, vwap24Hr, changePercent24Hr, volumeUsd24Hr, supply } = props.coin.coin.data;
   let date = new Date().toDateString();
   let windowInnerWidth = window.innerWidth;

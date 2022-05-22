@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { CoincapService } from '../../../../../services/CoincapService';
 import { addWalletItem } from '../../../../wallet/walletItems/addWalletItem';
 import { RenderCryptoTable } from '../RenderCryptoTable';
 import { useQuery } from "@apollo/client";
 import { coinInfoQuery } from "../../../../queries/coinInfoQuery";
+import { pageNumber } from '../tablePage/pageNumber';
 import { Spinner } from '../../../../common/spinner/Spinner';
 
 export function CryptoTable(props) {
-  const coincapService = new CoincapService();
 
   let [selectedCoinID, setSelectedCoinID] = useState(null);
   let [selectedCoinName, setSelectedCoinName] = useState(null);
@@ -15,32 +14,12 @@ export function CryptoTable(props) {
   let [show, setShow] = useState(false);
   let [warning, setWarning] = useState(false);
 
-  let aaa = () => {
-    let currentPage = +localStorage.getItem('page') != null ? +localStorage.getItem('page') : 0
-    switch (currentPage) {
-      case 1:
-        currentPage = 0;
-        return currentPage;
-      case 2:
-        currentPage = 20;
-        return currentPage;
-      case 3:
-        currentPage = 40;
-        return currentPage;
-      case 4:
-        currentPage = 60;
-        return currentPage;
-      case 5:
-        currentPage = 80;
-        return currentPage;
-    }
-  }
-
   let { loading, error, data, startPolling, stopPolling, refetch } = useQuery(coinInfoQuery, {
     variables: {
-      offset: aaa(),
+      offset: pageNumber(),
     },
   });
+
 
   useEffect(() => {
     startPolling(1000)
@@ -52,23 +31,21 @@ export function CryptoTable(props) {
   if (loading) return <Spinner />;
   if (error) return `Error! ${error.message}`;
 
-  const getCoinInfo = (id) => {
-    coincapService
-      .getCoin(id)
-      .then((coin) => {
-        setSelectedCoinID(selectedCoinID = coin)
-      });
-  };
 
   const handlePageClick = (item) => {
     localStorage.setItem('page', item.selected + 1);
-    refetch({ offset: aaa() })
+    refetch({ offset: pageNumber() })
   };
 
 
   const showModal = (id, name, price) => {
-    getCoinInfo(id); // сюда приспособить строку
     setShow(show = true);
+    let setCoin = {
+      id: id,
+      name: name,
+      priceUsd: price
+    }
+    setSelectedCoinID(selectedCoinID = setCoin)
     setSelectedCoinName(selectedCoinName = name);
     setSelectedCoinPrice(selectedCoinPrice = price);
   };

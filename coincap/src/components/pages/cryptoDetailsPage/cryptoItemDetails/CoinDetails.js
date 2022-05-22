@@ -11,7 +11,7 @@ export function CoinDetails(props) {
   let [show, setShow] = useState(false);
   let [warning, setWarning] = useState(false);
 
-  let { loading, error, data, startPolling, stopPolling, refetch } = useQuery(coinDetailsQuery, {
+  let { loading, error, data, startPolling, stopPolling } = useQuery(coinDetailsQuery, {
     variables: {
       id: props.coinId,
     },
@@ -37,6 +37,8 @@ export function CoinDetails(props) {
   };
 
   const submitModal = () => {
+    let coin = data.coin.data;
+
     if (localStorage.getItem('submit') == 0) {
       alert('Please enter a bigger amount');
       setWarning(warning = true);
@@ -48,7 +50,7 @@ export function CoinDetails(props) {
     else {
       setShow(show = false);
       setWarning(warning = false);
-      addWalletItem(data);
+      addWalletItem(coin);
     }
   };
 
