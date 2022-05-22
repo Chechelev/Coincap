@@ -3,7 +3,6 @@ const {
   GraphQLString,
   GraphQLList,
   GraphQLSchema,
-  GraphQLID,
   GraphQLInt } = require('graphql');
 
 const axios = require('axios');
@@ -25,8 +24,9 @@ const coinId = new GraphQLObjectType({
 const dataType = new GraphQLObjectType({
   name: 'Coin',
   fields: () => ({
-    id: { type: GraphQLID },
+    id: { type: GraphQLString },
     rank: { type: GraphQLString },
+    symbol: { type: GraphQLString },
     name: { type: GraphQLString },
     priceUsd: { type: GraphQLString },
     supply: { type: GraphQLString },
@@ -43,9 +43,21 @@ const RootQuery = new GraphQLObjectType({
   fields: {
     coins: {
       type: (coinTypes),
-      resolve(parents, args) {
+      resolve(parent, args) {
         return axios
           .get('https://api.coincap.io/v2/assets')
+          .then(res => res.data);
+      }
+    },
+
+    coin: {
+      type: coinId,
+      args: {
+        id: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        return axios
+          .get(`https://api.coincap.io/v2/assets/${args.id}`)
           .then(res => res.data);
       }
     },

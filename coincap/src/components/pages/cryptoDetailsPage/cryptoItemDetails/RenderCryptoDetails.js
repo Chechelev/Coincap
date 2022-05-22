@@ -1,20 +1,17 @@
 import React from "react";
-import { Spinner } from "../../../common/spinner/Spinner";
 import TradingViewWidget from 'react-tradingview-widget';
 import Modal from "../../../common/add-coin-modal-window/addCoinModal";
 import BuyBtn from "../btnBuyCoin/BtnBuyCoin";
 
 export function RenderCryptoDetails(props) {
 
-  const { symbol, name, priceUsd, marketCapUsd, vwap24Hr, changePercent24Hr, volumeUsd24Hr, supply } = props.coin;
+  console.log(props.coin.coin.data)
+
+  const { symbol, name, priceUsd, marketCapUsd, vwap24Hr, changePercent24Hr, volumeUsd24Hr, supply } = props.coin.coin.data;
   let date = new Date().toDateString();
   let windowInnerWidth = window.innerWidth;
 
-  if (!props.coin) {
-    return <Spinner />;
-  }
-
-  else if (windowInnerWidth >= 900 && props.coin) {
+  if (windowInnerWidth >= 900 && props.coin) {
 
     return (
       <div data-testid="cryptoDetailsTest" className="crypto-details">
