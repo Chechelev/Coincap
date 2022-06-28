@@ -17,8 +17,8 @@ const Modal = ({
 
   return (
     <div className={showHideClassName}>
-      <div className="modal-dialog">
-        <div className="modal-content">
+      <div className="modal__dialog">
+        <div className="modal__content">
           <ModalHeader handleClose={handleClose} color={color} />
           <ModalBody warning={warning} children={children}></ModalBody>
           <ModalFooter handleSubmit={handleSubmit} color={color}></ModalFooter>

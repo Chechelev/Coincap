@@ -3,7 +3,6 @@ import './WalletModal.scss';
 
 import { WalletModalHeader } from './walletModalHeader/WalletModalHeader';
 import { WalletModalBody } from './walletModalBody/WalletModalBody';
-import { WalletItems } from '../walletItems/WalletItems';
 
 export const WalletModal = ({ handleClose, show }) => {
 
@@ -11,11 +10,10 @@ export const WalletModal = ({ handleClose, show }) => {
 
   return (
     <div data-testid="modalTest" id="openModal" className={showHideClassName}>
-      <div className="modal-dialog">
-        <div className="modal-content">
+      <div className="modal__dialog">
+        <div className="modal__content">
           <WalletModalHeader handleClose={handleClose} />
           <WalletModalBody />
-          <WalletItems />
         </div>
       </div>
     </div>

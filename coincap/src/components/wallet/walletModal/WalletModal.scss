@@ -16,37 +16,20 @@
   pointer-events: none;
   margin: 0;
   padding: 0;
-
-  &-main {
-    position: fixed;
-    background: $white-color;
-    width: 80%;
-    height: auto;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  &-active {
-    opacity: 1;
-    pointer-events: auto;
-    overflow-y: auto;
-    z-index: 100;
-  }
-
+  
   &:target {
     opacity: 1;
     pointer-events: auto;
     overflow-y: auto;
   }
 
-  &_dialog {
+  &__dialog {
     position: relative;
     width: auto;
     margin: 10px;
   }
 
-  &-content {
+  &__content {
     position: relative;
     display: -webkit-box;
     display: -webkit-flex;
@@ -64,17 +47,25 @@
     border-radius: .3rem;
     outline: 0;
   }
-
-  &-body {
-    position: relative;
-    -webkit-box-flex: 1;
-    -webkit-flex: 1 1 auto;
-    -ms-flex: 1 1 auto;
-    flex: 1 1 auto;
-    padding: 15px;
-    overflow: auto;
-  }
 }
+
+.modal-main {
+  position: fixed;
+  background: $white-color;
+  width: 80%;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+} 
+
+.modal-active {
+  opacity: 1;
+  pointer-events: auto;
+  overflow-y: auto;
+  z-index: 100;
+}
+
 
 .modal-header {
   @include flexible();
@@ -93,21 +84,21 @@
     }
 }
 
+.modal-body {
+  position: relative;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 15px;
+  overflow: auto;
+}
+
 .modal-body__titles-wallet {
   @include flexible();
   color: $blue-color;
   justify-content: space-around;
-
-  &-name {
-    width: 27%;
-  }
-  &-amount {
-    width: 25%;
-  }
-  &-total-price {
-    width: 25%;
-    text-align: left;
-  }
+  width: 80%;
 }
 
 .display-none {

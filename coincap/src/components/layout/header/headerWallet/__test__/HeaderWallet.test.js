@@ -14,7 +14,7 @@ it('renders element', () => {
 
   render(<HeaderWallet></HeaderWallet>);
 
-  const userWalletElement = screen.getByTestId("user-wallet-info-test");
+  const userWalletElement = screen.getByTestId("user-wallet");
   expect(userWalletElement).toBeInTheDocument();
 
 });
@@ -24,7 +24,7 @@ it('checks the current cost element', () => {
 
   render(<HeaderWallet headerCoinCost={headerCoinCost} ></HeaderWallet>);
 
-  const userWalletCurrentCostElement = screen.getByTestId("user-wallet__current-cost-test");
+  const userWalletCurrentCostElement = screen.getByTestId("user-wallet__current-cost");
 
   expect(userWalletCurrentCostElement).toBeInTheDocument();
   expect(userWalletCurrentCostElement).toHaveTextContent(544123.12);
@@ -128,7 +128,7 @@ it('calls onClick prop when clicked', () => {
   const handleClick = jest.fn();
 
   render(<HeaderWallet showModal={handleClick} ></HeaderWallet>);
-  const userWalletElement = screen.getByTestId("user-wallet__current-cost-test");
+  const userWalletElement = screen.getByTestId("user-wallet__current-cost");
 
   fireEvent.click(userWalletElement);
   expect(handleClick).toHaveBeenCalledTimes(1);

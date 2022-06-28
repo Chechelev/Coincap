@@ -15,7 +15,7 @@ describe('The CoinCap main page', () => {
           .find('.top-coins__item')
           .should('have.length', 3);
 
-        cy.get('.user-wallet-info')
+        cy.get('.user-wallet__info')
           .should('be.visible')
           .children()
           .should('have.length', 4);
@@ -71,7 +71,7 @@ describe('The CoinCap main page', () => {
   })
 
   it('opens modal window of the wallet without coins', () => {
-    cy.get('.user-wallet-info')
+    cy.get('.user-wallet__info')
       .should('be.visible')
       .eq(0)
       .click()// opens modal window
@@ -87,7 +87,7 @@ describe('The CoinCap main page', () => {
             'My Coins×'
           );
 
-        cy.get('.modal-body__items')
+        cy.get('.modal-body__item')
           .should('not.exist')
 
         cy.get('.close')
@@ -147,7 +147,7 @@ describe('The CoinCap main page', () => {
 
     cy.wait(5000);
 
-    cy.get('.user-wallet-info')
+    cy.get('.user-wallet__info')
       .should('be.visible')
       .click()
 
@@ -155,7 +155,7 @@ describe('The CoinCap main page', () => {
       .should('be.visible')
       .within(() => {
 
-        cy.get('.modal-content')
+        cy.get('.modal__content')
           .should('be.visible')
 
         cy.get('.modal-header')
@@ -259,7 +259,7 @@ describe('The CoinCap main page', () => {
   });
 
   it('closes buy-coin modal window', () => {
-    cy.get('.modal-content')
+    cy.get('.modal__content')
       .within(() => {
         cy.get('.modal-header')
           .find('.close').eq(1)

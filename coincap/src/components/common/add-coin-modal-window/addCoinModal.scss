@@ -8,20 +8,6 @@
     color: $blue-color;
     justify-content: space-around;
   }
-
-  &-name,
-  &-amount,
-  &-total-price {
-    width: 30%
-  }
-
-  &-amount{
-    text-align: center;
-  }
-
-  &-total-price {
-    text-align: right;
-  }
 }
 
 .modal-body {
@@ -29,19 +15,6 @@
     @include flexible();
     justify-content: space-around;
     margin-bottom: 15px;
-  }
-
-  &-name {
-    width: 30%;
-  }
-
-  &-total-price {
-    width: 30%;
-    text-align: right;
-  }
-
-  &-amount-warning {
-    border: 1px solid red;
   }
 }
 
@@ -74,14 +47,14 @@
 
 
 @media (min-width: 768px) {
-  .modal-content {
+  .modal__content {
     -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
     box-shadow: 0 5px 15px $modal-bg-color;
   }
 }
 
 @media (min-width: 576px) {
-  .modal-dialog {
+  .modal__dialog {
     max-width: 500px;
     margin: 30px auto;
   }

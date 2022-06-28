@@ -32,11 +32,11 @@
   }
 }
 
-.top-coins__item {
-  &-name {
+.top-coins__item-name {
     padding-right: 5px;
-  }
+}
 
+.top-coins__item {
   &:hover {
     border-bottom: 2px solid $white-color;
   }
@@ -47,7 +47,7 @@
 }
 
 
-.user-wallet-info {
+.user-wallet {
   @include flexible();
   cursor: pointer;
 
@@ -59,7 +59,7 @@
   }
 }
 
-.user-wallet__different-cost {
+.user-wallet__difference {
   margin: 0 10px;
 }
 

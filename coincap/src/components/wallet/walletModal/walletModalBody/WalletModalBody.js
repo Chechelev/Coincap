@@ -1,4 +1,5 @@
 import React from "react";
+import { WalletItems } from "../../walletItems/WalletItems";
 
 export function WalletModalBody() {
   return (
@@ -9,6 +10,7 @@ export function WalletModalBody() {
         <div className="modal-body__titles-wallet-total-price">Total Sum</div>
       </div>
       <hr></hr>
+      <WalletItems />
     </div>
   );
 };
