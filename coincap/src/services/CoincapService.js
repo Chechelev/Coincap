@@ -16,7 +16,7 @@ export class CoincapService {
     }
 
     const body = await res.json();
-    // console.log(body)
+    //console.log(body)
     return body;
   };
 

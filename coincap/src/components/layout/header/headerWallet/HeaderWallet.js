@@ -7,8 +7,8 @@ export function HeaderWallet({ headerCoinCost, showModal }) {
   const localeCost = getLocaleCost();
   const difference = parseFloat(currentCost - localeCost).toFixed(2);
   const diff = difference > 0 ? '+' + (difference) : (difference);
-  let percent = parseFloat(((diff) * 100) / currentCost).toFixed(2);
-  let totalPercent = (percent < 0 ? + percent : "" + percent);
+  let percent = parseFloat(((localeCost - currentCost)) / localeCost * 100).toFixed(2);
+  let totalPercent = (difference < 0 ? - percent : "" + percent);
 
   return (
     <div data-testid="user-wallet-info-test" className="user-wallet-info" onClick={showModal}>
