@@ -1,13 +1,12 @@
-/*const express = require('express');;
-const graphqlHTTP = require('express-graphql').graphqlHTTP;
-const cors = require('cors');
-//const schema = require('./schema');
-const { ApolloServer, gql } = require("apollo-server");
-const { makeExecutableSchema } = require("@graphql-tools/schema");
-const { fetch } = require('cross-fetch');
-const app = express();
+// const express = require('express');;
+// const graphqlHTTP = require('express-graphql').graphqlHTTP;
+// const cors = require('cors');
+// const schema = require('./schema');
 
-const axios = require('axios');
+
+// const app = express();
+
+// const axios = require('axios');
 
 
 //Allow cross origin
@@ -110,6 +109,7 @@ const express = require('express');;
 const graphqlHTTP = require('express-graphql').graphqlHTTP;
 const cors = require('cors');
 const schema = require('./schema');
+const path = require('path');
 
 const app = express();
 
@@ -123,6 +123,12 @@ app.use(
     graphiql: true
   })
 );
+
+app.use(express.static('public'));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+});
 
 const PORT = process.env.PORT || 3001;
 
