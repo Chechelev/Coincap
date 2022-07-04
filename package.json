@@ -1,93 +1,25 @@
 {
   "name": "coincap",
-  "version": "0.1.0",
-  "private": true,
-  "engines": {
-    "node": "13.14.x"
+  "version": "1.0.0",
+  "description": "App that shows cryptos info",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefic client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "@apollo/client": "^3.6.2",
-    "@graphql-tools/utils": "^8.6.12",
-    "apollo-server": "^3.7.0",
     "axios": "^0.27.2",
+    "concurrently": "^7.2.2",
     "cors": "^2.8.5",
-    "cross-fetch": "^3.1.5",
     "express": "^4.18.1",
     "express-graphql": "^0.12.0",
-    "graphql": "^16.4.0",
-    "node-fetch": "^3.2.4",
-    "node-sass": "^4.13.1",
-    "prop-types": "^15.8.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-hook-use-state": "^1.1.0",
-    "react-paginate": "^8.1.2",
-    "react-redux": "^7.2.8",
-    "react-router": "^6.2.2",
-    "react-router-dom": "^6.2.2",
-    "react-scripts": "5.0.0",
-    "react-tradingview-widget": "^1.3.2",
-    "redux": "^4.1.2",
-    "redux-thunk": "^2.4.1",
-    "thunk": "0.0.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public",
-    "e2e-test": "cypress open"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "graphql": "^16.5.0"
   },
   "devDependencies": {
-    "@cypress/snapshot": "^2.1.7",
-    "@storybook/addon-actions": "^6.4.22",
-    "@storybook/addon-essentials": "^6.4.22",
-    "@storybook/addon-interactions": "^6.4.22",
-    "@storybook/addon-links": "^6.4.22",
-    "@storybook/builder-webpack5": "^6.4.22",
-    "@storybook/manager-webpack5": "^6.4.22",
-    "@storybook/node-logger": "^6.4.22",
-    "@storybook/preset-create-react-app": "^4.1.0",
-    "@storybook/react": "^6.4.22",
-    "@storybook/testing-library": "0.0.9",
-    "@testing-library/dom": "^8.13.0",
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^12.1.5",
-    "@testing-library/user-event": "^14.1.1",
-    "cypress": "^9.5.4",
-    "jest-dom": "^4.0.0",
-    "jest-localstorage-mock": "^2.4.21",
-    "jest-watch-typeahead": "^0.6.5",
-    "react-test-render": "^1.1.2",
-    "react-test-renderer": "^18.0.0",
-    "redux-devtools": "^3.7.0",
-    "webpack": "^5.72.0"
-  },
-  "eslintConfig": {
-    "overrides": [
-      {
-        "files": [
-          "**/*.stories.*"
-        ],
-        "rules": {
-          "import/no-anonymous-default-export": "off"
-        }
-      }
-    ]
-  },
-  "proxy": "http://localhost:3001"
+    "nodemon": "^2.0.18"
+  }
 }
