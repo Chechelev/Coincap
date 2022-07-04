@@ -2,6 +2,9 @@
   "name": "coincap",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "13.14.0"
+  },
   "dependencies": {
     "@apollo/client": "^3.6.2",
     "@graphql-tools/utils": "^8.6.12",
