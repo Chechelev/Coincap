@@ -7,7 +7,7 @@ import './index.scss';
 import App from './components/app/App';
 
 const client = new ApolloClient({
-  uri: '/graphql',
+  uri: 'https://62bafc8a888da0086552289a--storied-hotteok-6a4a08.netlify.app/',
   cache: new InMemoryCache()
 });
 
