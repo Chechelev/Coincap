@@ -1,0 +1,32 @@
+@import '../../../scss/colors.scss';
+@import '../../../scss/mixin.scss';
+
+.top-coins {
+  @include flexible();
+
+  @media screen and (max-width: 900px) {
+    display: none;
+  }
+
+  &__item {
+    @include flexible();
+    margin-right: 20px;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: all .2s;
+  }
+}
+
+.top-coins__item-name {
+  padding-right: 5px;
+}
+
+.top-coins__item {
+  &:hover {
+    border-bottom: 2px solid $white-color;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+}

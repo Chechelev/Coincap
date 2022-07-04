@@ -1,0 +1,29 @@
+@import '../../scss/colors.scss';
+@import '../../scss/mixin.scss';
+
+.pagination {
+  @include flexible();
+  justify-content: center;
+}
+
+.page-item {
+  color: $black-color;
+  border: 3px;
+}
+
+.page-link {
+  float: left;
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+  transition: all .2s;
+  cursor: pointer;
+}
+
+.active {
+  color: $white-color;
+  background-color: $blue-color;
+}
+
+.page-link:hover:not(.active) {
+  background-color: #ddd;
+}

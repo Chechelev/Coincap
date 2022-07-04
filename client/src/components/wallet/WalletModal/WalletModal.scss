@@ -1,0 +1,101 @@
+@import '../../scss/colors.scss';
+@import '../../scss/mixin.scss';
+
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: $modal-bg-color;
+  z-index: 2;
+  opacity: 0;
+  -webkit-transition: opacity 200ms ease-in;
+  -moz-transition: opacity 200ms ease-in;
+  transition: opacity 200ms ease-in;
+  pointer-events: none;
+  margin: 0;
+  padding: 0;
+  
+  &:target {
+    opacity: 1;
+    pointer-events: auto;
+    overflow-y: auto;
+  }
+
+  &__dialog {
+    position: relative;
+    width: auto;
+    margin: 10px;
+  }
+
+  &__content {
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    background-color: $white-color;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: .3rem;
+    outline: 0;
+  }
+}
+
+.modal-main {
+  position: fixed;
+  background: $white-color;
+  width: 80%;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+} 
+
+.modal-active {
+  opacity: 1;
+  pointer-events: auto;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.display-none {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: $modal-bg-color;
+  -webkit-transition: opacity 200ms ease-in;
+  -moz-transition: opacity 200ms ease-in;
+  transition: opacity 200ms ease-in;
+  pointer-events: none;
+  margin: 0;
+  padding: 0;
+}
+
+.close {
+  float: right;
+  font-family: sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+  color: $black-color;
+  text-shadow: 0 1px 0 $white-color;
+  opacity: .5;
+  text-decoration: none;
+
+  &:focus, &:hover{
+    color: $black-color;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: .75;
+  } 
+}

@@ -1,0 +1,87 @@
+@import '../../components/scss/colors.scss';
+@import'../../components/scss/mixin.scss';
+
+table {
+  margin: 50px 0px;
+  font-size: 16px;
+  background: $white-color;
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 5px;
+  font-family: 'Roboto', sans-serif;
+  text-align: left;
+  box-shadow: 0px 0px 20px 7px #cacaca;
+}
+
+tr {
+  cursor: pointer;
+
+  &:hover {
+    td:not(:last-child) {
+      color: $blue-color;
+    }
+  }
+}
+
+/*плюс*/
+.crypto-add {
+  padding-right: 8px;
+  font-size: 20px;
+  transition: all linear .2s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.crypto-add a {
+  color: #343450;
+
+  &:hover {
+    color: $blue-color;
+  }
+}
+
+.fa-plus {
+  border: 1px solid $blue-color;
+  padding: 3px;
+  border-radius: 3px;
+}
+
+//for stories
+
+.false {
+  visibility: hidden;
+}
+
+.true {
+  visibility: inherit;
+}
+
+.hover-table-row {
+  color: $blue-color;
+}
+
+@media screen and (max-width: 900px) {
+  .crypto-add {
+    font-size: 18px;
+  }
+}
+
+
+@media screen and (max-width: 650px) {
+  .crypto-add {
+    font-size: 18px;
+  }
+
+  table {
+    margin: 20px 0;
+
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .crypto-add {
+    font-size: 16px;
+  }
+}

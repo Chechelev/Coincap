@@ -1,0 +1,27 @@
+@import '../../scss/colors.scss';
+@import '../../scss/mixin.scss';
+
+.header {
+  width: 100%;
+  padding: 15px 10px;
+  background: $header-footer-bg-color;
+}
+
+.container__inner {
+  @include flexible();
+  justify-content: space-between;
+  font-size: 18px;
+  color: $white-color;
+}
+
+@media screen and (max-width: 800px) {
+  .container__inner {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .top-coins {
+    display: none;
+  }
+}

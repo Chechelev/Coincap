@@ -1,0 +1,19 @@
+@import '../../../scss/colors.scss';
+@import '../../../scss/mixin.scss';
+
+.modal-body {
+  position: relative;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 15px;
+  overflow: auto;
+}
+
+.modal-body__titles-wallet {
+  @include flexible();
+  color: $blue-color;
+  justify-content: space-around;
+  width: 80%;
+}

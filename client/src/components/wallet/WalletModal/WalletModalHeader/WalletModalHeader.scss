@@ -1,0 +1,19 @@
+@import '../../../scss/colors.scss';
+@import '../../../scss/mixin.scss';
+
+.modal-header {
+  @include flexible();
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid #eceeef;
+    color: $white-color;
+    background: $header-footer-bg-color;
+
+    &__title {
+      margin-top: 0;
+      margin-bottom: 0;
+      line-height: 1.5;
+      font-size: 1.25rem;
+      font-weight: 500;
+    }
+}

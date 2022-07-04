@@ -1,0 +1,61 @@
+@import '../../../components/scss/colors.scss';
+@import'../../../components/scss/mixin.scss';
+
+table {
+
+  tr {
+    cursor: pointer;
+
+    &:hover {
+      td:not(:last-child) {
+        color: $blue-color;
+      }
+    }
+  }
+
+  td {
+    padding: 9px 0;
+    border-bottom: 1px solid #ccc;
+    color: rgb(52, 52, 80);
+    text-align: center;
+    font-weight: 300;
+    transition: .2s linear;
+
+    @media screen and (max-width: 900px) {
+
+      &:nth-child(4) {
+        display: none;
+      }
+
+      &:nth-child(5) {
+        display: none;
+      }
+    }
+
+    @media screen and (max-width: 650px) {
+
+      &:nth-child(6) {
+        display: none;
+      }
+
+      &:nth-child(7) {
+        display: none;
+      }
+    }
+
+    @media screen and (max-width: 450px) {
+
+      &:nth-child(8) {
+        display: none;
+      }
+    }
+  }
+
+  td a {
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+    color: #343450;
+  }
+}

@@ -1,0 +1,65 @@
+@import '../../../components/scss/colors.scss';
+@import'../../../components/scss/mixin.scss';
+
+th {
+  padding: 10px 8px;
+  text-align: center;
+  font-weight: normal;
+  color: $dark-blue;
+  border-bottom: 2px solid #6678b1;
+
+  @media screen and (max-width: 900px) {
+    &:nth-child(4) {
+      display: none;
+    }
+
+    &:nth-child(5) {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 650px) {
+
+    &:nth-child(2) {
+      width: auto;
+    }
+
+    &:nth-child(3) {
+      width: auto;
+    }
+
+
+    &:nth-child(6) {
+      display: none;
+    }
+
+    &:nth-child(7) {
+      display: none;
+    }
+
+    &:nth-child(8) {
+      width: 20%;
+    }
+
+  }
+
+  @media screen and (max-width: 450px) {
+
+
+    &:nth-child(2) {
+      width: auto;
+    }
+
+    &:nth-child(8) {
+      display: none;
+    }
+
+    &:nth-child(1) {
+      width: 3%;
+    }
+
+    &:nth-child(3) {
+      width: auto;
+    }
+  }
+}
